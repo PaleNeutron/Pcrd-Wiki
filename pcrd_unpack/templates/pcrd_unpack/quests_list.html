@@ -1,0 +1,27 @@
+{% extends "pcrd_unpack/layout.html" %}
+
+{% block content %}
+
+
+    <div class="card-columns">
+    {% with card_styles="success secondary info dark primary"%}
+    {% for questareadata in questareadata_list %}
+        <div class="card  bg-{{ card_styles.split|random }} text-white">
+            <div class="card-body">
+                <h3 class="card-title">{{ questareadata.area_name }}</h3>
+
+{#                <p class="card-text">{{ d.department_introduction }}</p>#}
+            </div>
+{#            <div class="card-footer">#}
+{#                <a class="btn btn-light btn-sm" href="{% url 'app:department' d.pk%}">#}
+{#                    详情#}
+{#                </a>#}
+{#            </div>#}
+
+        </div>
+    {% endfor %}
+    {% endwith %}
+
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "pcrd_unpack/layout.html" %}
+
+
+{% block content %}
+
+<table class="table table-striped" id="equipment_table">
+    <thead>
+
+    </thead>
+    <tbody>
+    {% for q in quests %}
+        <tr>
+            <th>
+                {{ q.0 }}
+            </th>
+            {% for i in q %}
+                {% if forloop.counter != 1 %}
+                    <td>
+                        <img src="{{ equipment_icon_dir }}/icon_equipment_{{ i }}.png" alt="" class="rounded .img-thumbnail">
+                    </td>
+                {% endif %}            
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock %}

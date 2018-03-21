@@ -99,3 +99,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+.idea/
+unpacked_asset/
+pcrd_db/*
+db.sqlite3
