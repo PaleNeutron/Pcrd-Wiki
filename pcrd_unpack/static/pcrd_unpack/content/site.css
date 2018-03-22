@@ -3,10 +3,39 @@
     height: 4em;
 }
 
-/*body {*/
-    /*padding-top: 50px;*/
-    /*padding-bottom: 20px;*/
+#equipment_card_column img{
+    width: 6em;
+    height: 6em;
+}
+
+/*@media (min-width: 576px) {*/
+    /*.card-columns {*/
+        /*column-count: 2;*/
+    /*}*/
 /*}*/
+
+/*@media (min-width: 768px) {*/
+    /*.card-columns {*/
+        /*column-count: 4;*/
+    /*}*/
+/*}*/
+
+/*@media (min-width: 992px) {*/
+    /*.card-columns {*/
+        /*column-count: 6;*/
+    /*}*/
+/*}*/
+
+/*@media (min-width: 1200px) {*/
+    /*.card-columns {*/
+        /*column-count: 7;*/
+    /*}*/
+/*}*/
+
+body {
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
 
 /* Set padding to keep content from hitting the edges */
 /*.body-content {*/

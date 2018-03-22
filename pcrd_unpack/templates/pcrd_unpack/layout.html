@@ -8,11 +8,14 @@
     {% static '/Texture2D/assets/_elementsresources/resources/icon/equipment' as equipment_icon_dir %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/bootstrap.min.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/site.css' %}" />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.0/bootstrap-table.min.css">
+
+    {#    my css#}
+    <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/site.css' %}" />
+
     <link rel="shortcut icon" type="image/x-icon"  href="{%  static 'favicon.ico' %}">
-    <script src="{% static 'pcrd_unpack/scripts/modernizr-2.6.2.js' %}"></script>
+{#    <script src="{% static 'pcrd_unpack/scripts/modernizr-2.6.2.js' %}"></script>#}
 </head>
 
 <body>
@@ -25,11 +28,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'pcrd_unpack:index' %}">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{% url 'pcrd_unpack:index' %}">Quest Areas <span class="sr-only">(current)</span></a>
             </li>
-{#            <li class="nav-item">#}
-{#                <a class="nav-link" href="{% url 'pcrd_unpack:about' %}">About</a>#}
-{#            </li>#}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'pcrd_unpack:equipment_list' %}">Equipments</a>
+            </li>
 {#            <li class="nav-item">#}
 {#                <a class="nav-link" href="{% url 'pcrd_unpack:contact' %}">Contact</a>#}
 {#            </li>#}
@@ -74,6 +77,7 @@
     <!-- Latest compiled and minified Locales -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.0/locale/bootstrap-table-zh-CN.min.js"></script>
 
+{#    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>#}
 {#    use bootstrap tooltip#}
     <script type="text/javascript">
         $(function () {
