@@ -1,0 +1,23 @@
+{# passing one dict "quest_reward" to this template #}
+{# QuestData: Query[QuestRewardDataCustom]#}
+<table class="table"  id="equipment_table">
+    <thead>
+
+    </thead>
+    <tbody>
+    {% for q, r_set in quest_reward.items %}
+        <tr>
+            <th>{{ q.quest_name }}</th>
+            <td>
+                {% for r in r_set %}
+                    {% if r.equipment_id %}
+                        <a href="{% url "pcrd_unpack:equipment" r.equipment_id %}"><img class="rounded .img-thumbnail" data-toggle="tooltip" title="{{ r.rate }} %"
+                             src="{{ equipment_icon_dir }}/icon_equipment_{{ r.equipment_id }}.png" alt=""></a>
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
