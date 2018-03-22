@@ -104,3 +104,4 @@ ENV/
 unpacked_asset/
 pcrd_db/*
 db.sqlite3
+*.ico
