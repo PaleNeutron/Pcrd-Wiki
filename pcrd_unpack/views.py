@@ -5,7 +5,7 @@ from . import coop
 # Create your views here.
 from . import models
 
-class EqupimentView(TemplateView):
+class EquipmentView(TemplateView):
     """docstring for """
     template_name = "pcrd_unpack/equipment.html"
 
@@ -17,6 +17,15 @@ class EqupimentView(TemplateView):
         quests = [i.quest for i in drops]
         context['drop_info'] = dict(zip(quests, [q.questrewarddatacustom_set.order_by('-rate') for q in quests]))
         return context
+
+class EquipmentListView(ListView):
+    """docstring for Equi"""
+    template_name = "pcrd_unpack/equipment_list.html"
+    # model = models.EquipmentData
+
+    def get_queryset(self):
+        return models.EquipmentData.objects.order_by("-promotion_level")
+
 
 class QuestAreaListView(ListView):
     """docstring for QuestAreaListView"""
