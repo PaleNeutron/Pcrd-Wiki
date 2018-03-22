@@ -10,7 +10,7 @@
     <tbody>
     {% for q, r_set in quest_reward.items %}
         <tr>
-            <th scope="row">{{ q.quest_name }}</th>
+            <th scope="row" {% if q.is_hard %} class="text-danger" {% endif %} >{{ q.quest_name }}</th>
             <td>
                 {% for r in r_set %}
                     {% if r.equipment_id %}
