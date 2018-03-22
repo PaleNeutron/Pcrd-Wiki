@@ -30,7 +30,7 @@ urlpatterns = [
     path('login/',
          django.contrib.auth.views.login,
          {
-             'template_name': 'app/login.html',
+             'template_name': 'pcrd_unpack/login.html',
              'authentication_form': pcrd_unpack.forms.BootstrapAuthenticationForm,
              'extra_context':
                  {
