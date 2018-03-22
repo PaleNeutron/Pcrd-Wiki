@@ -11,7 +11,11 @@ class EqupimentView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['quests'] = coop.get_drop_string()
+        eq = models.EquipmentData.objects.get(pk=self.kwargs["equipment_id"])
+        context['equipment'] = eq
+        drops = eq.questrewarddatacustom_set.all()
+        quests = [i.quest for i in drops]
+        context['drop_info'] = dict(zip(quests, [q.questrewarddatacustom_set.order_by('-rate') for q in quests]))
         return context
 
 class QuestAreaListView(ListView):

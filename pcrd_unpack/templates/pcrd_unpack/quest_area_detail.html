@@ -13,26 +13,6 @@
     </div>
 {#    <pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre>#}
 
-    <table class="table"  id="equipment_table">
-    <thead>
-
-    </thead>
-    <tbody>
-        {% for q, r_set in quest_reward.items %}
-            <tr>
-            <th>{{ q.quest_name }}</th>
-            <td>
-                {% for r in r_set %}
-                    {% if r.equipment_id %}
-                        <img type="button" class="rounded .img-thumbnail" data-toggle="tooltip" title="{{ r.rate }} %"
-                             src="{{ equipment_icon_dir }}/icon_equipment_{{ r.equipment_id }}.png" alt="">
-                    {% endif %}
-                {% endfor %}
-            </td>
-            </tr>
-        {% endfor %}
-
-    </tbody>
-    </table>
+{% include "pcrd_unpack/quest_drop_table.html" with quest_reward=quest_reward %}
 
 {% endblock %}

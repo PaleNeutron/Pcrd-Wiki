@@ -3,27 +3,13 @@
 
 {% block content %}
 
-<table class="table table-striped" id="equipment_table">
-    <thead>
+    <div class="jumbotron">
+        <h1 class="display-4"><img src="{{ equipment_icon_dir }}/icon_equipment_{{ equipment.equipment_id }}.png" alt="">
+            {{ equipment.equipment_name }}</h1>
+        <hr class="my-4">
+        <p class="lead">{{ equipment.description }}</p>
+    </div>
 
-    </thead>
-    <tbody>
-    {% for q in quests %}
-        <tr>
-            <th>
-                {{ q.0 }}
-            </th>
-            {% for i in q %}
-                {% if forloop.counter != 1 %}
-                    <td>
-                        <img src="{{ equipment_icon_dir }}/icon_equipment_{{ i }}.png" alt="" class="rounded .img-thumbnail">
-                    </td>
-                {% endif %}            
-            {% endfor %}
-        </tr>
-        {% endfor %}
-
-    </tbody>
-</table>
+    {% include "pcrd_unpack/quest_drop_table.html" with quest_reward=drop_info%}
 
 {% endblock %}
