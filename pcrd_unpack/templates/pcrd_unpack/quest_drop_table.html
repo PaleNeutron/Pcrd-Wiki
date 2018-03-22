@@ -1,13 +1,16 @@
 {# passing one dict "quest_reward" to this template #}
 {# QuestData: Query[QuestRewardDataCustom]#}
-<table class="table"  id="equipment_table">
-    <thead>
-
+<table class="table table-striped table-hover"  id="equipment_table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Quest Name</th>
+        <th scope="col">Droped Rewards</th>
+    </tr>
     </thead>
     <tbody>
     {% for q, r_set in quest_reward.items %}
         <tr>
-            <th>{{ q.quest_name }}</th>
+            <th scope="row">{{ q.quest_name }}</th>
             <td>
                 {% for r in r_set %}
                     {% if r.equipment_id %}
