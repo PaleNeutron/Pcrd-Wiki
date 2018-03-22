@@ -1,5 +1,5 @@
 # Pcrd-Wiki
-Princess Connect Re:Dive Wiki Website
+[Princess Connect Re:Dive Wiki Website](http://pcrd.azurewebsites.net)
 
 - Features:
   - [x] area map
@@ -10,3 +10,18 @@ Princess Connect Re:Dive Wiki Website
   - [ ] unit character equipment per rank
   - [ ] Beautify all pages
     
+    
+ ## For Developers
+ 
+Database and static files are not contained in this repo, you should grab and plce it by yourself.
+
+#### Database
+
+Go to your android `/data/data/jp.co.cygames.princessconnectredive/files/manifest`
+you could find a 3 Mb file, this is the sqlite database.
+place it any where in project and edit `DATABASES` in `settings.py`.
+
+#### Static files
+
+Use `Unity Studio` to unpack resource in `/data/data/jp.co.cygames.princessconnectredive/files/`
+Place it where you want and add it into `STATICFILES_DIRS`. 
