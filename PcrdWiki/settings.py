@@ -76,21 +76,26 @@ WSGI_APPLICATION = 'PcrdWiki.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
     'pcrd_db': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'pcrd_db/7d2bdcfa272ce3dadad2c2094b496a0ab1176aeb'),
     },
+    'pcrd_custom_db': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'pcrd_unpack/pcrd_custom.sqlite3'),
+    },
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
 }
 
-DATABASES_APPS_MAPPING = {
-    'pcrd_unpack': 'pcrd_db',
-}
 
-DATABASE_ROUTERS = ['pcrd_unpack.db_router.DatabaseAppsRouter']
+DATABASE_ROUTERS = [
+    'pcrd_unpack.db_router.DatabaseCustomRouter',
+    'pcrd_unpack.db_router.DatabaseUnpackedRouter',
+    'pcrd_unpack.db_router.DefaultRouter',
+]
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 

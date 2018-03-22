@@ -14,18 +14,25 @@ class EqupimentView(TemplateView):
         context['quests'] = coop.get_drop_string()
         return context
 
-class QuestListView(ListView):
-    """docstring for QuestView"""
+class QuestAreaListView(ListView):
+    """docstring for QuestAreaListView"""
     template_name = "pcrd_unpack/quests_list.html"
     model = models.QuestAreaData
 
-class QuestDetailView(TemplateView):
-    """docstring for QuestDetailView"""
-    template_name = "pcrd_unpack/quest_detail.html"
+class QuestAreaDetailView(TemplateView):
+    """docstring for QuestAreaDetailView"""
+    template_name = "pcrd_unpack/quest_area_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context =
+        area_id = self.kwargs["area_id"]
+        quests_in_charpter = models.QuestData.objects.filter(area_id=area_id)
+        context["area_title"] = models.QuestAreaData.objects.get(pk=area_id).area_name
+        context["quests_in_charpter"] = quests_in_charpter
+        context["quest_reward"] = {}
+        for q in quests_in_charpter:
+            context["quest_reward"][q] = q.questrewarddatacustom_set.order_by('-rate')
+        return context
 
 
 

@@ -24,7 +24,8 @@ from . import views
 app_name = 'pcrd_unpack'
 
 urlpatterns = [
-    path("", views.QuestListView.as_view(), name="index"),
+    path("", views.QuestAreaListView.as_view(), name="index"),
+    path("area/<int:area_id>", views.QuestAreaDetailView.as_view(), name="area_detail"),
     path("equipment", views.EqupimentView.as_view(), name="equipment"),
     path('login/',
          django.contrib.auth.views.login,

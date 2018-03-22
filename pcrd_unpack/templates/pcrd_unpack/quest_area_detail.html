@@ -1,0 +1,38 @@
+{% extends "pcrd_unpack/layout.html" %}
+
+{% block content %}
+
+    <div class="jumbotron">
+        <h1 class="display-4">{{ area_title }}</h1>
+        <p class="lead">here should be some discription</p>
+        <hr class="my-4">
+{#        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>#}
+{#        <p class="lead">#}
+{#            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>#}
+{#        </p>#}
+    </div>
+{#    <pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre>#}
+
+    <table class="table"  id="equipment_table">
+    <thead>
+
+    </thead>
+    <tbody>
+        {% for q, r_set in quest_reward.items %}
+            <tr>
+            <th>{{ q.quest_name }}</th>
+            <td>
+                {% for r in r_set %}
+                    {% if r.equipment_id %}
+                        <img type="button" class="rounded .img-thumbnail" data-toggle="tooltip" title="{{ r.rate }} %"
+                             src="{{ equipment_icon_dir }}/icon_equipment_{{ r.equipment_id }}.png" alt="">
+                    {% endif %}
+                {% endfor %}
+            </td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+    </table>
+
+{% endblock %}
