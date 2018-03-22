@@ -27,7 +27,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'pcrd.azurewebsites.net'
+    'pcrd.azurewebsites.net',
+    'pcrdwiki.xyz',
+    'www.pcrdwiki.xyz',
 ]
 
 
