@@ -1,22 +1,35 @@
 {% extends "pcrd_unpack/layout.html" %}
 {% load static %}
+
+{% block style_sheet %}
+    <style type="text/css">
+        img {
+            max-width: 100%;
+            {#max-height: 100%;#}
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
+    {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/icon" as unit_icon %}
+    {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/icon/unitplate/" as unitplate %}
 
     <div class="jumbotron h-100">
-        <h1 class="display-4"><img src="{{ unitdata_list }}/icon_equipment_{{ equipment.equipment_id }}.png" alt="">
-            {{ equipment.equipment_name }}</h1>
+        <h1 class="display-4">
+            Unit List</h1>
         <hr class="my-4">
-        <p class="lead">{{ equipment.description|linebreaksbr }}</p>
+        <p class="lead">You can find all units here</p>
     </div>
 
     <div class="d-flex flex-wrap" id="unitdata_list">
         {% for unitdata in unitdata_list %}
-            {% if not unitdata.craft_flg %}
-
-                <a href="{% url "pcrd_unpack:equipment" unitdata.equipment_id %}">
-                    <img class="rounded mx-3 my-1" src="{{ equipment_icon_dir }}/icon_equipment_{{ unitdata.equipment_id }}.png" alt="">
+            {% if unitdata.comment %}
+                <div class="w-25 mx-4 my-2">
+                <a href="{% url "pcrd_unpack:unit" unitdata.unit_id %}">
+                    <img class="rounded"
+                         src="{{ unitplate }}/unit_plate_{% if unitdata.rarity == 3 %}{{ unitdata.unit_id|add:"30" }}{% else %}{{ unitdata.unit_id|add:"10" }}{% endif %}.jpg" alt="">
                 </a>
-
+                </div>
             {% endif %}
         {% endfor %}
     </div>

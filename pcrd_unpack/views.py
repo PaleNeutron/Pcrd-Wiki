@@ -53,6 +53,9 @@ class UnitListView(ListView):
     template_name = "pcrd_unpack/unit_list.html"
     model = models.UnitData
 
+    def get_queryset(self, **hints):
+        return self.model.objects.order_by("-rarity")
+
 
 
 class UnitDetailView(TemplateView):

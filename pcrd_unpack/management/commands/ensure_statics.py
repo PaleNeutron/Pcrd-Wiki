@@ -10,7 +10,12 @@ class Command(BaseCommand):
     target_static_dir = "pcrd_unpack/static/pcrd_unpack"
 
     def handle(self, *args, **options):
-        self.get_img(["unpacked_asset/Texture2D/assets/_elementsresources/resources/icon/equipment/"])
+        self.get_img([
+            "unpacked_asset/Texture2D/assets/_elementsresources/resources/icon/equipment/",
+            "unpacked_asset/Texture2D/assets/_elementsresources/resources/icon/item/",
+            "unpacked_asset/Texture2D/assets/_elementsresources/resources/icon/unitplate/",
+            "unpacked_asset/Texture2D/assets/_elementsresources/resources/unit/icon/",
+        ])
         self.get_img([r"unpacked_asset\Texture2D\assets\_elementsresources\resources\unit\profile/"], force43=True)
         self.get_img([r"unpacked_asset\Texture2D\assets\_elementsresources\resources\unit\actualprofile/"], force43=True)
 
