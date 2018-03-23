@@ -12,6 +12,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.get_img(["unpacked_asset/Texture2D/assets/_elementsresources/resources/icon/equipment/"])
         self.get_img([r"unpacked_asset\Texture2D\assets\_elementsresources\resources\unit\profile/"], force43=True)
+        self.get_img([r"unpacked_asset\Texture2D\assets\_elementsresources\resources\unit\actualprofile/"], force43=True)
 
     def get_img(self, img_dirs, force43=False, fill_color="#fff"):
         for d in img_dirs:
@@ -32,9 +33,9 @@ class Command(BaseCommand):
                 if force43:
                     x, y = im.size
                     y = x // 4 * 3
-                    im = im.resize((x, y))
+                    im = im.resize((x, y), Image.ANTIALIAS)
                 logging.debug("saved {}".format(outfile))
-                im.save(outfile, "JPEG")
+                im.save(outfile, "JPEG", quality=85)
 
 
 
