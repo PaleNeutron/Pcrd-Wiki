@@ -39,8 +39,9 @@ class QuestAreaDetailView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         area_id = self.kwargs["area_id"]
+        area = get_object_or_404(models.QuestAreaData.objects, pk=area_id)
+        context["area_title"] = area.area_name
         quests_in_charpter = models.QuestData.objects.filter(area_id=area_id)
-        context["area_title"] = models.QuestAreaData.objects.get(pk=area_id).area_name
         context["quests_in_charpter"] = quests_in_charpter
         context["quest_reward"] = {}
         for q in quests_in_charpter:
@@ -48,4 +49,5 @@ class QuestAreaDetailView(TemplateView):
         return context
 
 
-
+def handler404(request, exception):
+    return render(request, 'pcrd_unpack/errors/404.html', locals())

@@ -21,3 +21,5 @@ urlpatterns = [
     path("", include("pcrd_unpack.urls")),
     path('admin/', admin.site.urls),
 ]
+
+handler404 = 'pcrd_unpack.views.handler404'
