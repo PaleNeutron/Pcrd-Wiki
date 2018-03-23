@@ -1,0 +1,48 @@
+{% extends "pcrd_unpack/layout.html" %}
+{% load static %}
+{% static "Texture2D/assets/_elementsresources/resources/unit/profile" as profile_image %}
+
+{% block style_sheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/junbotron_bg.css' %}" />
+    <style type="text/css">
+        .bg-cover {
+            background-image: url('{% static "Texture2D/assets/_elementsresources/resources/unit/profile" %}/thumb_unit_profile_{{ unit_data.unit_id|add:"30" }}.png');
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+{#    <pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre>#}
+    <div class="jumbotron  jumbotron bg-cover">
+        <div class="overlay"></div>
+        <div class="container">
+        <h1 class="display-4">
+            {{ unit_data.unit_name }}</h1>
+        <hr class="my-4">
+        <p class="lead">{{ unit_data.comment }}</p>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(window).resize(recover_img);
+        $(window).ready(recover_img);
+
+        function recover_img () {      //当浏览器大小变化时
+            var j = $("body > div > div");
+            jw = j.outerWidth();
+            jh = j.outerHeight();
+            if (jw/4 > jh/3) {
+                pw = jw;
+                ph = pw /4 * 3;
+            } else {
+                ph = jh;
+                pw = ph /3 *4;
+            }
+            j.css("background-size",  pw.toString() + "px " + ph.toString() + "px");
+        }
+    </script>
+{% endblock %}

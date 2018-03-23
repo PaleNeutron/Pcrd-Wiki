@@ -13,6 +13,8 @@
 
     {#    my css#}
     <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/site.css' %}" />
+    {% block style_sheet %}
+    {% endblock %}
 
     <link rel="icon" type="image/png" sizes="96x96" href="{%  static "favicon-96x96.png" %}">
 {#    <script src="{% static 'pcrd_unpack/scripts/modernizr-2.6.2.js' %}"></script>#}
