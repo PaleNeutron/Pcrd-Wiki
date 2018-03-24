@@ -11,3 +11,8 @@ def static_exists(path):
         return True
     else:
         return False
+
+@register.filter
+def escape_return(string):
+    # path =static(path)
+    return string.replace("\\n", "\n")

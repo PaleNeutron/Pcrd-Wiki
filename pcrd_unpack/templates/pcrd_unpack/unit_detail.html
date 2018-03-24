@@ -2,35 +2,39 @@
 {% load static %}
 {% load static_exists %}
 {% block style_sheet %}
-{#    <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/junbotron_bg.css' %}" />#}
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/junbotron_bg.css' %}" />#}
     <style type="text/css">
-    .carousel-caption{
-        text-align: center;
-        color: white;
-        text-shadow: 2px 2px #000;
+        .carousel-caption {
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px #000;
         {#z-index: -5;#}
-    }
+        }
 
-    .carousel img {
-        margin-top: -10%;
-        margin-bottom: -30%;
-    }
+        .carousel img {
+            margin-top: -10%;
+            margin-bottom: -30%;
+        }
 
-    .lead span {
-        color: orange;
-        font-weight: bold;
-    }
+        .lead span {
+            color: orange;
+            font-weight: bold;
+        }
 
-    .overlay {
-        background-color: #000;
-        opacity: 0.3;
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
+        .overlay {
+            background-color: #000;
+            opacity: 0.3;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
         {#z-index: 0;#}
-    }
+        }
+
+        #myTabContent img {
+            width: 7em;
+        }
     </style>
 {% endblock %}
 
@@ -43,25 +47,27 @@
 
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="{{ profile_image }}/thumb_unit_profile_{{ unit_data.unit_id|add:"30" }}.jpg" alt="3 star">
+                <img class="d-block w-100"
+                     src="{{ profile_image }}/thumb_unit_profile_{{ unit_data.unit_id|add:"30" }}.jpg" alt="3 star">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="{{ profile_image }}/thumb_unit_profile_{{ unit_data.unit_id|add:"10" }}.jpg" alt="initial">
+                <img class="d-block w-100"
+                     src="{{ profile_image }}/thumb_unit_profile_{{ unit_data.unit_id|add:"10" }}.jpg" alt="initial">
             </div>
             <div class="carousel-item">
                 {% with unit_data.unit_id|add:"30"|stringformat:"s" as suid %}
-                {% with unit_data.unit_id|add:"31"|stringformat:"s" as suid2 %}
-                {% with actualprofile_image|add:"/thumb_actual_unit_profile_"|add:suid|add:".jpg" as actualprofile_image_path %}
-                {% with actualprofile_image|add:"/thumb_actual_unit_profile_"|add:suid2|add:".jpg" as actualprofile_image_path2 %}
-                    {% if actualprofile_image_path|static_exists %}
-                        <img class="d-block w-100" src="{{ actualprofile_image_path }}" alt="real world">
-                    {% else %}
-                        <img class="d-block w-100" src="{{ actualprofile_image_path2 }}" alt="real world">
-                    {% endif %}
+                    {% with unit_data.unit_id|add:"31"|stringformat:"s" as suid2 %}
+                        {% with actualprofile_image|add:"/thumb_actual_unit_profile_"|add:suid|add:".jpg" as actualprofile_image_path %}
+                            {% with actualprofile_image|add:"/thumb_actual_unit_profile_"|add:suid2|add:".jpg" as actualprofile_image_path2 %}
+                                {% if actualprofile_image_path|static_exists %}
+                                    <img class="d-block w-100" src="{{ actualprofile_image_path }}" alt="real world">
+                                {% else %}
+                                    <img class="d-block w-100" src="{{ actualprofile_image_path2 }}" alt="real world">
+                                {% endif %}
+                            {% endwith %}
                         {% endwith %}
                     {% endwith %}
                 {% endwith %}
-            {% endwith %}
             </div>
         </div>
         <div class="overlay"></div>
@@ -86,45 +92,176 @@
 
     </div>
 
+    <hr/>
+    <div class="container">
+        <div class="row">
+            <table class="table col-md-3">
+                <tbody>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <td>
+                        {{ unit_profile.unit_name }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Guild
+                    </th>
+                    <td>
+                        {{ unit_profile.guild }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Race
+                    </th>
+                    <td>
+                        {{ unit_profile.race }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Height
+                    </th>
+                    <td>
+                        {{ unit_profile.height }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Weight
+                    </th>
+                    <td>
+                        {{ unit_profile.weight }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Birthday
+                    </th>
+                    <td>
+                        {{ unit_profile.birth_day }}//{{ unit_profile.birth_month }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Favorite
+                    </th>
+                    <td>
+                        {{ unit_profile.favorite }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        CV
+                    </th>
+                    <td>
+                        {{ unit_profile.voice }}
+                    </td>
+                </tr>
 
-    <table class="table">
+                </tbody>
+            </table>
+            <table class="table col-md-3">
+                <thead>
+                <tr>
+                    <th>
+                        Meeting Text
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        {{ unit_profile.catch_copy }}
+                    </td>
+                </tr>
+                </tbody>
+                <thead>
+                <tr>
+                    <th>
+                        Self Text
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        {{ unit_profile.self_text|escape_return }}
+                    </td>
+                </tr>
+                </tbody>
 
-    </table>
+            </table>
 
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        {% for upr in unit_promotion %}
-            <li class="nav-item">
-                <a class="nav-link {% if forloop.counter == 1 %}active{% endif %}" id="rank-tab-{{ forloop.counter }}" data-toggle="tab" href="#rank{{ forloop.counter }}" role="tab" aria-controls="home" aria-selected="true">
-                    Rank {{ forloop.counter }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <div class="tab-content" id="myTabContent">
-        {% for upr in unit_promotion %}
-            <div class="tab-pane fade {% if forloop.counter == 1 %}show active{% endif %}" id="rank{{ forloop.counter }}" role="tabpanel" aria-labelledby="rank-tab-{{ forloop.counter }}">{{ upr.equip_slot_1 }}</div>
-{#            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">content 2</div>#}
-        {% endfor %}
+            <div class="col-md-6 ml-auto">
+                <div class="d-flex flex-wrap">
+                    <ul class="nav flex-column nav-pills nav-fill col-md-4" id="myTab" role="tablist"
+                        aria-orientation="vertical">
+                        {% for upr in unit_promotion %}
+                            <li class="nav-item">
+                                <a class="nav-link {% if forloop.counter == 1 %}active{% endif %}"
+                                   id="rank-tab-{{ forloop.counter }}" data-toggle="tab"
+                                   href="#rank{{ forloop.counter }}"
+                                   role="tab" aria-controls="home" aria-selected="true">
+                                    Rank {{ forloop.counter }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="tab-content col-md-8 " id="myTabContent">
+                        {% for upr in unit_promotion %}
+                            <div class="tab-pane fade {% if forloop.counter == 1 %}show active{% endif %}"
+                                 id="rank{{ forloop.counter }}" role="tabpanel"
+                                 aria-labelledby="rank-tab-{{ forloop.counter }}">
+                                <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_1 %}">
+                                    <img class="rounded mx-3 my-1"
+                                         src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_1 }}.jpg"
+                                         alt="">
+                                </a>
+                                <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_2 %}">
+                                    <img class="rounded mx-3 my-1"
+                                         src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_2 }}.jpg"
+                                         alt="">
+                                </a>
+                                <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_3 %}">
+                                    <img class="rounded mx-3 my-1"
+                                         src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_3 }}.jpg"
+                                         alt="">
+                                </a>
+                                <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_4 %}">
+                                    <img class="rounded mx-3 my-1"
+                                         src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_4 }}.jpg"
+                                         alt="">
+                                </a>
+                                <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_5 %}">
+                                    <img class="rounded mx-3 my-1"
+                                         src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_5 }}.jpg"
+                                         alt="">
+                                </a>
+                                <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_6 %}">
+                                    <img class="rounded mx-3 my-1"
+                                         src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_6 }}.jpg"
+                                         alt="">
+                                </a>
+
+                            </div>
+                            {#            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">content 2</div>#}
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
+
 
 {% endblock %}
 
 {% block scripts %}
-{#    <script>#}
-{#        $(window).resize(recover_img);#}
-{#        $(window).ready(recover_img);#}
-{##}
-{#        function recover_img () {      //当浏览器大小变化时#}
-{#            var j = $("body > div > div");#}
-{#            jw = j.outerWidth();#}
-{#            jh = j.outerHeight();#}
-{#            if (jw/4 > jh/3) {#}
-{#                pw = jw;#}
-{#                ph = pw /4 * 3;#}
-{#            } else {#}
-{#                ph = jh;#}
-{#                pw = ph /3 *4;#}
-{#            }#}
-{#            j.css("background-size",  pw.toString() + "px " + ph.toString() + "px");#}
-{#        }#}
-{#    </script>#}
+        <script>
+            $(".table th").addClass("table-dark");
+        </script>
 {% endblock %}
