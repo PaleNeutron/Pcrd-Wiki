@@ -1,5 +1,13 @@
 {% extends "pcrd_unpack/layout.html" %}
 
+{% block style_sheet %}
+    <style>
+    .drop_num {
+        text-align: center;
+    }
+    </style>
+{% endblock %}
+
 
 {% block content %}
 
@@ -10,6 +18,34 @@
         <p class="lead">{{ equipment.description }}</p>
     </div>
 
+    {% if equipment.craft_flg %}
+        <div class="container ">
+            <div class="row">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th><h3>Equipment Craft info</h3></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+{#            <pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre>#}
+            <div class="row justify-content-center">
+                {% for eq_id, eq_num in components.items %}
+                    <div>
+                        <a href="{% url "pcrd_unpack:equipment" eq_id %}">
+                            <img class="rounded mx-3 my-1" src="{{ equipment_icon_dir }}/icon_equipment_{{ eq_id }}.jpg" alt="">
+                        </a>
+                        <hr>
+                        <div class="container drop_num">
+                            <h5>Num: {{ eq_num }}</h5>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
     {% include "pcrd_unpack/quest_drop_table.html" with quest_reward=drop_info%}
+    {% endif %}
 
 {% endblock %}
