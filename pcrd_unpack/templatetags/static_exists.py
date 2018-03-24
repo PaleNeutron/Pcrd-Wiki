@@ -9,7 +9,8 @@ register = template.Library()
 @register.filter
 def static_exists(path):
     srt = settings.STATIC_ROOT
-    if finders.find(path[1:].split("/", 1)[1]) or os.path.exists(os.path.join(srt, path[1:])):
+    relative_path = path[1:].split("/", 1)[1]
+    if finders.find(relative_path) or os.path.exists(os.path.join(srt, relative_path)):
         return True
     else:
         return False
