@@ -8,13 +8,13 @@
         <p class="lead">Click Icons and check dropped Quests</p>
     </div>
 
-    <div class="d-flex flex-wrap" id="equipment_card_column">
+    <div class="d-flex flex-wrap  justify-content-center" id="equipment_card_column">
     {% for equipmentdata in equipmentdata_list %}
         {% if not equipmentdata.craft_flg %}
 {#            <div class="grid-item">#}
 {#            <div class="card bg-secondary mb-3" style="max-width: 18rem;">#}
                 <a href="{% url "pcrd_unpack:equipment" equipmentdata.equipment_id %}">
-                    <img class="rounded mx-3 my-1" src="{{ equipment_icon_dir }}/icon_equipment_{{ equipmentdata.equipment_id }}.png" alt="">
+                    <img class="rounded mx-3 my-1" src="{{ equipment_icon_dir }}/icon_equipment_{{ equipmentdata.equipment_id }}.jpg" alt="">
                 </a>
 {#                <div class="card-body">#}
 {#                    <h5 class="card-title">{{ equipmentdata.equipment_name }}</h5>#}

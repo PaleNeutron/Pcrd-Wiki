@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Princess Connect Re:Dive Wiki</title>
-    {% load staticfiles %}
-    {% static '/Texture2D/assets/_elementsresources/resources/icon/equipment' as equipment_icon_dir %}
+    {% load static %}
+    {% static 'pcrd_unpack/Texture2D/assets/_elementsresources/resources/icon/equipment' as equipment_icon_dir %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/bootstrap.min.css' %}" />
     <!-- Latest compiled and minified CSS -->
@@ -13,6 +13,8 @@
 
     {#    my css#}
     <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/site.css' %}" />
+    {% block style_sheet %}
+    {% endblock %}
 
     <link rel="icon" type="image/png" sizes="96x96" href="{%  static "favicon-96x96.png" %}">
 {#    <script src="{% static 'pcrd_unpack/scripts/modernizr-2.6.2.js' %}"></script>#}
@@ -32,6 +34,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'pcrd_unpack:equipment_list' %}">Equipments</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'pcrd_unpack:unit_list' %}">Characters</a>
             </li>
 {#            <li class="nav-item">#}
 {#                <a class="nav-link" href="{% url 'pcrd_unpack:contact' %}">Contact</a>#}
