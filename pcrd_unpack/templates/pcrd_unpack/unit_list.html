@@ -24,7 +24,7 @@
     <div class="d-flex flex-wrap justify-content-center" id="unitdata_list">
         {% for unitdata in unitdata_list %}
             {% if unitdata.comment %}
-                <div class="w-25 mx-4 my-2">
+                <div class="col-lg-3 col-md-4 col-sm-6 my-2">
                 <a href="{% url "pcrd_unpack:unit" unitdata.unit_id %}">
                     <img class="rounded"
                          src="{{ unitplate }}/unit_plate_{% if unitdata.rarity == 3 %}{{ unitdata.unit_id|add:"30" }}{% else %}{{ unitdata.unit_id|add:"10" }}{% endif %}.jpg" alt="">
