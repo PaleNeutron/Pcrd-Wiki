@@ -31,6 +31,9 @@
             right: 0;
         {#z-index: 0;#}
         }
+        .carousel-inner {
+            background-color: white;
+        }
 
         #myTabContent img {
             width: 7em;
@@ -70,11 +73,11 @@
                 {% endwith %}
             </div>
         </div>
-        <div class="overlay"></div>
         <div class="carousel-caption d-none d-md-block">
             <h1>{{ unit_data.unit_name }}</h1>
             <p>{{ unit_data.comment }}</p>
         </div>
+        <div class="overlay"></div>
 
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
