@@ -16,6 +16,16 @@ class EquipmentView(TemplateView):
         drops = eq.questrewarddatacustom_set.all()
         quests = [i.quest for i in drops]
         context['drop_info'] = dict(zip(quests, [q.questrewarddatacustom_set.order_by('-rate') for q in quests]))
+        if eq.craft_flg:
+            cinfo =  get_object_or_404(models.EquipmentCraft, pk=self.kwargs["equipment_id"])
+            context["craft_info"] = cinfo
+            components = {}
+            for i in range(1, 11):
+                eqid = getattr(cinfo, "condition_equipment_id_{}".format(i))
+                eq_num = getattr(cinfo, "consume_num_{}".format(i))
+                if eqid:
+                    components[eqid] = eq_num
+            context["components"] = components
         return context
 
 class EquipmentListView(ListView):
