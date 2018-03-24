@@ -1,5 +1,10 @@
 # Pcrd-Wiki
-[Princess Connect Re:Dive Wiki Website](http://pcrd.azurewebsites.net)
+
+####Note
+[Princess Connect Re:Dive Wiki Website On Azure](http://pcrd.azurewebsites.net) is synced with repo's master branch
+and should be used only for develop.
+
+[pcrxwiki.xyz](https://pcrxwiki.xyz) is the production site, updated manually by myself.
 
 - Features:
   - [x] area map
@@ -7,7 +12,7 @@
   - [x] equipment page
   - [ ] unit character page (avatar & skill data)
   - [ ] monsters page
-  - [ ] unit character equipment per rank
+  - [x] unit character equipment per rank
   - [ ] Beautify all pages
     
     
