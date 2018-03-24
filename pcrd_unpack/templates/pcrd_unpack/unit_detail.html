@@ -94,8 +94,9 @@
 
     <hr/>
     <div class="container">
-        <div class="row">
-            <table class="table col-md-3">
+        <div class="d-flex flex-wrap ">
+        <div class="col-md-3">
+            <table class="table">
                 <tbody>
                 <tr>
                     <th>
@@ -103,6 +104,14 @@
                     </th>
                     <td>
                         {{ unit_profile.unit_name }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Age
+                    </th>
+                    <td>
+                        {{ unit_profile.age }}
                     </td>
                 </tr>
                 <tr>
@@ -164,7 +173,9 @@
 
                 </tbody>
             </table>
-            <table class="table col-md-3">
+        </div>
+            <div class="col-md-3">
+            <table class="table">
                 <thead>
                 <tr>
                     <th>
@@ -195,10 +206,12 @@
                 </tbody>
 
             </table>
+            </div>
+
 
             <div class="col-md-6 ml-auto">
-                <div class="d-flex flex-wrap">
-                    <ul class="nav flex-column nav-pills nav-fill col-md-4" id="myTab" role="tablist"
+                <div class=" d-flex flex-wrap">
+                    <ul class="nav flex-column nav-pills nav-fill col-md-4 col-sm-3" id="myTab" role="tablist"
                         aria-orientation="vertical">
                         {% for upr in unit_promotion %}
                             <li class="nav-item">
@@ -211,7 +224,7 @@
                         {% endfor %}
                     </ul>
 
-                    <div class="tab-content col-md-8 " id="myTabContent">
+                    <div class="tab-content col-md-8 col-sm-9" id="myTabContent">
                         {% for upr in unit_promotion %}
                             <div class="tab-pane fade {% if forloop.counter == 1 %}show active{% endif %}"
                                  id="rank{{ forloop.counter }}" role="tabpanel"
