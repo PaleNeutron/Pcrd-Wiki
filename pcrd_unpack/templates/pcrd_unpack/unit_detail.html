@@ -1,6 +1,6 @@
 {% extends "pcrd_unpack/layout.html" %}
 {% load static %}
-
+{% load static_exists %}
 {% block style_sheet %}
 {#    <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/junbotron_bg.css' %}" />#}
     <style type="text/css">
@@ -21,11 +21,6 @@
         font-weight: bold;
     }
 
-    {#.carousel-inner {#}
-    {##}
-    {#    z-index: -2;#}
-    {#}#}
-
     .overlay {
         background-color: #000;
         opacity: 0.3;
@@ -43,7 +38,7 @@
     {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/profile" as profile_image %}
     {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/actualprofile" as actualprofile_image %}
 
-{#    <pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre>#}
+
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
         <div class="carousel-inner">
@@ -54,7 +49,19 @@
                 <img class="d-block w-100" src="{{ profile_image }}/thumb_unit_profile_{{ unit_data.unit_id|add:"10" }}.jpg" alt="initial">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="{{ actualprofile_image }}/thumb_actual_unit_profile_{{ unit_data.unit_id|add:"30" }}.jpg" alt="real world">
+                {% with unit_data.unit_id|add:"30"|stringformat:"s" as suid %}
+                {% with unit_data.unit_id|add:"31"|stringformat:"s" as suid2 %}
+                {% with actualprofile_image|add:"/thumb_actual_unit_profile_"|add:suid|add:".jpg" as actualprofile_image_path %}
+                {% with actualprofile_image|add:"/thumb_actual_unit_profile_"|add:suid2|add:".jpg" as actualprofile_image_path2 %}
+                    {% if actualprofile_image_path|static_exists %}
+                        <img class="d-block w-100" src="{{ actualprofile_image_path }}" alt="real world">
+                    {% else %}
+                        <img class="d-block w-100" src="{{ actualprofile_image_path2 }}" alt="real world">
+                    {% endif %}
+                        {% endwith %}
+                    {% endwith %}
+                {% endwith %}
+            {% endwith %}
             </div>
         </div>
         <div class="overlay"></div>
@@ -83,6 +90,21 @@
     <table class="table">
 
     </table>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        {% for upr in unit_promotion %}
+            <li class="nav-item">
+                <a class="nav-link {% if forloop.counter == 1 %}active{% endif %}" id="rank-tab-{{ forloop.counter }}" data-toggle="tab" href="#rank{{ forloop.counter }}" role="tab" aria-controls="home" aria-selected="true">
+                    Rank {{ forloop.counter }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        {% for upr in unit_promotion %}
+            <div class="tab-pane fade {% if forloop.counter == 1 %}show active{% endif %}" id="rank{{ forloop.counter }}" role="tabpanel" aria-labelledby="rank-tab-{{ forloop.counter }}">{{ upr.equip_slot_1 }}</div>
+{#            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">content 2</div>#}
+        {% endfor %}
+    </div>
 
 {% endblock %}
 
