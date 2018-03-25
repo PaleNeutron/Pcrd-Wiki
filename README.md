@@ -1,6 +1,7 @@
 # Pcrd-Wiki
 
-####Note
+#### Note
+
 [Princess Connect Re:Dive Wiki Website On Azure](http://pcrd.azurewebsites.net) is synced with repo's master branch
 and should be used only for develop.
 
