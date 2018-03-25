@@ -31,6 +31,7 @@
             right: 0;
         {#z-index: 0;#}
         }
+
         .carousel-inner {
             background-color: white;
         }
@@ -44,6 +45,7 @@
 {% block content %}
     {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/profile" as profile_image %}
     {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/actualprofile" as actualprofile_image %}
+    {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/icon" as unit_icon %}
 
 
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -98,117 +100,135 @@
     <hr/>
     <div class="container">
         <div class="d-flex flex-wrap ">
-        <div class="col-md-3">
-            <table class="table">
-                <tbody>
-                <tr>
-                    <th>
-                        Name
-                    </th>
-                    <td>
-                        {{ unit_profile.unit_name }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        Age
-                    </th>
-                    <td>
-                        {{ unit_profile.age }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        Guild
-                    </th>
-                    <td>
-                        {{ unit_profile.guild }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        Race
-                    </th>
-                    <td>
-                        {{ unit_profile.race }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        Height
-                    </th>
-                    <td>
-                        {{ unit_profile.height }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        Weight
-                    </th>
-                    <td>
-                        {{ unit_profile.weight }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        Birthday
-                    </th>
-                    <td>
-                        {{ unit_profile.birth_day }}//{{ unit_profile.birth_month }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        Favorite
-                    </th>
-                    <td>
-                        {{ unit_profile.favorite }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        CV
-                    </th>
-                    <td>
-                        {{ unit_profile.voice }}
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
-        </div>
             <div class="col-md-3">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>
-                        Meeting Text
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        {{ unit_profile.catch_copy }}
-                    </td>
-                </tr>
-                </tbody>
-                <thead>
-                <tr>
-                    <th>
-                        Self Text
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        {{ unit_profile.self_text|escape_return }}
-                    </td>
-                </tr>
-                </tbody>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <td>
+                            {{ unit_profile.unit_name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Age
+                        </th>
+                        <td>
+                            {{ unit_profile.age }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Guild
+                        </th>
+                        <td>
+                            {{ unit_profile.guild }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Race
+                        </th>
+                        <td>
+                            {{ unit_profile.race }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Height
+                        </th>
+                        <td>
+                            {{ unit_profile.height }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Weight
+                        </th>
+                        <td>
+                            {{ unit_profile.weight }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Birthday
+                        </th>
+                        <td>
+                            {{ unit_profile.birth_day }}//{{ unit_profile.birth_month }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Favorite
+                        </th>
+                        <td>
+                            {{ unit_profile.favorite }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            CV
+                        </th>
+                        <td>
+                            {{ unit_profile.voice }}
+                        </td>
+                    </tr>
 
-            </table>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <div class="col">
+                    <table>
+                        <tbody>
+                        <tr class="col">
+
+                            <td>
+                                <a href="{% url "pcrd_unpack:item" unit_data.unit_id|stringformat:"d"|slice:"2:4"|add:"31000" %}">
+                                    <img class="rounded .img-thumbnail w-100"
+                                         src="{{ unit_icon }}/icon_unit_{{ unit_data.unit_id|add:30 }}.jpg" alt="">
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url "pcrd_unpack:item" unit_data.unit_id|stringformat:"d"|slice:"2:4"|add:"31000" %}">
+                                    <img class="rounded .img-thumbnail w-100"
+                                         src="{{ unit_icon }}/icon_unit_{{ unit_data.unit_id|add:10 }}.jpg" alt="">
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>
+                            Meeting Text
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            {{ unit_profile.catch_copy }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            Self Text
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            {{ unit_profile.self_text|escape_return }}
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
             </div>
 
 
@@ -277,7 +297,7 @@
 {% endblock %}
 
 {% block scripts %}
-        <script>
-            $(".table th").addClass("table-dark");
-        </script>
+    <script>
+        $(".table th").addClass("table-dark");
+    </script>
 {% endblock %}

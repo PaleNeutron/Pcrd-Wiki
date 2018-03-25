@@ -27,6 +27,7 @@ urlpatterns = [
     path("", views.UnitListView.as_view(), name="index"),
     path("unit/<int:unit_id>", views.UnitDetailView.as_view(), name="unit"),
     path("unit/", views.UnitListView.as_view(), name="unit_list"),
+    path("item/<int:item_id>", views.ItemView.as_view(), name="item"),
     path("equipment_list", views.EquipmentListView.as_view(), name="equipment_list"),
     path("area/", views.QuestAreaListView.as_view(), name="area"),
     path("area/<int:area_id>", views.QuestAreaDetailView.as_view(), name="area_detail"),

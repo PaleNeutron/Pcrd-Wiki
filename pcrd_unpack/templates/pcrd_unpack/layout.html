@@ -6,6 +6,7 @@
     <title>Princess Connect Re:Dive Wiki</title>
     {% load static %}
     {% static 'pcrd_unpack/Texture2D/assets/_elementsresources/resources/icon/equipment' as equipment_icon_dir %}
+    {% static 'pcrd_unpack/Texture2D/assets/_elementsresources/resources/icon/item' as item_icon_dir %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/bootstrap.min.css' %}" />
     <!-- Latest compiled and minified CSS -->
@@ -38,6 +39,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'pcrd_unpack:unit_list' %}">Characters</a>
             </li>
+{#            <li class="nav-item">#}
+{#                <a class="nav-link" href="{% url 'pcrd_unpack:item_list' %}">Items</a>#}
+{#            </li>#}
 {#            <li class="nav-item">#}
 {#                <a class="nav-link" href="{% url 'pcrd_unpack:contact' %}">Contact</a>#}
 {#            </li>#}

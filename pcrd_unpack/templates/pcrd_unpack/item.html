@@ -1,0 +1,23 @@
+{% extends "pcrd_unpack/layout.html" %}
+
+{% block style_sheet %}
+    <style>
+        .drop_num {
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="jumbotron">
+        <h1 class="display-4"><img src="{{ item_icon_dir }}/icon_item_{{ item.item_id }}.jpg" alt="">
+            {{ item.item_name }}</h1>
+        <hr class="my-4">
+        <p class="lead">{{ item.description }}</p>
+    </div>
+
+    {% include "pcrd_unpack/quest_drop_table.html" with quest_reward=drop_info%}
+
+{% endblock %}

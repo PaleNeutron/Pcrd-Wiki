@@ -36,6 +36,27 @@ class EquipmentListView(ListView):
     def get_queryset(self):
         return models.EquipmentData.objects.order_by("-promotion_level")
 
+class ItemView(TemplateView):
+    """docstring for """
+    template_name = "pcrd_unpack/item.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        item = get_object_or_404(models.ItemData, pk=self.kwargs["item_id"])
+        context['item'] = item
+        drops = item.questrewarddatacustom_set.all()
+        quests = [i.quest for i in drops]
+        context['drop_info'] = dict(zip(quests, [q.questrewarddatacustom_set.order_by('-rate') for q in quests]))
+        return context
+
+# class ItemListView(ListView):
+#     """docstring for Equi"""
+#     template_name = "pcrd_unpack/item_list.html"
+#     # model = models.EquipmentData
+#
+#     def get_queryset(self):
+#         return models.ItemData.objects.order_by("-promotion_level")
+
 
 class QuestAreaListView(ListView):
     """docstring for QuestAreaListView"""
