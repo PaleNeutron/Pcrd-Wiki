@@ -1,30 +1,43 @@
 {# passing one dict "quest_reward" to this template #}
 {# QuestData: Query[QuestRewardDataCustom]#}
-<table class="table table-striped table-hover"  id="equipment_table">
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col">Quest Name</th>
-        <th scope="col">Droped Rewards</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for q, r_set in quest_reward.items %}
+<div class="container">
+    <table class="table table-striped table-hover text-center table-responsive " id="equipment_table">
+        <thead class="thead-dark ">
         <tr>
-            <th scope="row" {% if q.is_hard %} class="text-danger" {% endif %} >{% if q.is_hard %} Hard {% endif %} {{ q.quest_name }}</th>
-            <td>
-                {% for r in r_set %}
-                    {% if r.equipment_id %}
-                        <a href="{% url "pcrd_unpack:equipment" r.equipment_id %}"><img class="rounded .img-thumbnail" data-toggle="tooltip" title="{{ r.rate }} %"
-                             src="{{ equipment_icon_dir }}/icon_equipment_{{ r.equipment_id }}.jpg" alt=""></a>
-                    {% endif %}
-                    {% if r.item_id %}
-                        <a href="{% url "pcrd_unpack:item" r.item_id %}"><img class="rounded .img-thumbnail" data-toggle="tooltip" title="{{ r.rate }} %"
-                                                                                        src="{{ item_icon_dir }}/icon_item_{{ r.item_id }}.jpg" alt=""></a>
-                    {% endif %}
-                {% endfor %}
-            </td>
+            <th scope="col">Quest Name</th>
+            <th colspan="20" scope="col">Droped Rewards</th>
         </tr>
-    {% endfor %}
+        </thead>
+        <tbody>
+        {% for q, r_set in quest_reward.items %}
+            <tr>
+                <th rowspan="2" scope="rowgroup" {% if q.is_hard %} class="text-danger" {% endif %} >{% if q.is_hard %}
+                    Hard {% endif %} {{ q.quest_name }}</th>
+                {% for r in r_set %}
+                    <td>
+                        {% if r.equipment_id %}
+                            <a href="{% url "pcrd_unpack:equipment" r.equipment_id %}"><img
+                                    class="rounded "
+                                    src="{{ equipment_icon_dir }}/icon_equipment_{{ r.equipment_id }}.jpg" alt=""></a>
+                        {% endif %}
+                        {% if r.item_id %}
+                            <a href="{% url "pcrd_unpack:item" r.item_id %}">
+                                <img class="rounded "
+                                     src="{{ item_icon_dir }}/icon_item_{{ r.item_id }}.jpg"
+                                     alt=""></a>
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for r in r_set %}
+                    <td class="justify-content-center">
+                        {{ r.rate }} %
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>

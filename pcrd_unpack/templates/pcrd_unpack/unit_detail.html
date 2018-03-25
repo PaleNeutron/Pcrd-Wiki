@@ -1,6 +1,6 @@
 {% extends "pcrd_unpack/layout.html" %}
 {% load static %}
-{% load static_exists %}
+{% load custom_tags %}
 {% block style_sheet %}
     {#    <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/junbotron_bg.css' %}" />#}
     <style type="text/css">
@@ -40,7 +40,7 @@
             width: 7em;
         }
 
-        .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+        .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
             color: #fff !important;
             background-color: #212529;
             font-weight: bold;
@@ -186,26 +186,20 @@
                 </table>
             </div>
             <div class="col-md-3">
-                <div class="col">
-                    <table>
-                        <tbody>
-                        <tr class="col">
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <a href="{% url "pcrd_unpack:item" unit_data.unit_id|stringformat:"d"|slice:"2:4"|add:"31000" %}">
+                            <img class="rounded img-thumbnail w-100"
+                                 src="{{ unit_icon }}/icon_unit_{{ unit_data.unit_id|add:30 }}.jpg" alt="">
+                        </a>
+                    </div>
+                    <div  class="col-6">
+                        <a href="{% url "pcrd_unpack:item" unit_data.unit_id|stringformat:"d"|slice:"2:4"|add:"31000" %}">
+                            <img class="rounded img-thumbnail w-100"
+                                 src="{{ unit_icon }}/icon_unit_{{ unit_data.unit_id|add:10 }}.jpg" alt="">
+                        </a>
+                    </div>
 
-                            <td>
-                                <a href="{% url "pcrd_unpack:item" unit_data.unit_id|stringformat:"d"|slice:"2:4"|add:"31000" %}">
-                                    <img class="rounded .img-thumbnail w-100"
-                                         src="{{ unit_icon }}/icon_unit_{{ unit_data.unit_id|add:30 }}.jpg" alt="">
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{% url "pcrd_unpack:item" unit_data.unit_id|stringformat:"d"|slice:"2:4"|add:"31000" %}">
-                                    <img class="rounded .img-thumbnail w-100"
-                                         src="{{ unit_icon }}/icon_unit_{{ unit_data.unit_id|add:10 }}.jpg" alt="">
-                                </a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
                 </div>
                 <table class="table">
                     <tbody>
@@ -240,7 +234,7 @@
 
             <div class="col-md-6 ml-auto">
                 <div class=" d-flex flex-wrap">
-                    <ul class="nav flex-column nav-pills nav-fill col-md-4 col-sm-3" id="myTab" role="tablist"
+                    <ul class="nav flex-column nav-pills nav-fill col-4" id="myTab" role="tablist"
                         aria-orientation="vertical">
                         {% for upr in unit_promotion %}
                             <li class="nav-item">
@@ -253,41 +247,63 @@
                         {% endfor %}
                     </ul>
 
-                    <div class="tab-content col-md-8 col-sm-9" id="myTabContent">
+                    <div class="tab-content col-8" id="myTabContent">
                         {% for upr in unit_promotion %}
                             <div class="tab-pane fade {% if forloop.last %}show active{% endif %}"
                                  id="rank{{ forloop.counter }}" role="tabpanel"
                                  aria-labelledby="rank-tab-{{ forloop.counter }}">
+                            <div class="row">
+                                <div class="col-6">
                                 <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_1 %}">
-                                    <img class="rounded mx-3 my-1"
+                                    <img class="rounded img-thumbnail w-100"
                                          src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_1 }}.jpg"
                                          alt="">
                                 </a>
+                                </div>
+                                <div class="col-6">
                                 <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_2 %}">
-                                    <img class="rounded mx-3 my-1"
+                                    <img class="rounded img-thumbnail w-100"
                                          src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_2 }}.jpg"
                                          alt="">
                                 </a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                            <div class="col-6">
                                 <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_3 %}">
-                                    <img class="rounded mx-3 my-1"
+                                    <img class="rounded img-thumbnail w-100"
                                          src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_3 }}.jpg"
                                          alt="">
                                 </a>
-                                <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_4 %}">
-                                    <img class="rounded mx-3 my-1"
+                            </div>
+                            <div class="col-6">
+
+                            <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_4 %}">
+                                    <img class="rounded img-thumbnail w-100"
                                          src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_4 }}.jpg"
                                          alt="">
                                 </a>
+                            </div>
+                            </div>
+
+                            <div class="row">
+                            <div class="col-6">
                                 <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_5 %}">
-                                    <img class="rounded mx-3 my-1"
+                                    <img class="rounded img-thumbnail w-100"
                                          src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_5 }}.jpg"
                                          alt="">
                                 </a>
-                                <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_6 %}">
-                                    <img class="rounded mx-3 my-1"
+                            </div>
+                            <div class="col-6">
+
+                            <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_6 %}">
+                                    <img class="rounded img-thumbnail w-100"
                                          src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_6 }}.jpg"
                                          alt="">
                                 </a>
+                            </div>
+                            </div>
 
                             </div>
                             {#            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">content 2</div>#}

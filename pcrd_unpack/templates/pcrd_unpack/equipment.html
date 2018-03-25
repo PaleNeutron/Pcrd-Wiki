@@ -1,5 +1,5 @@
 {% extends "pcrd_unpack/layout.html" %}
-
+{% load custom_tags %}
 {% block style_sheet %}
     <style>
     .drop_num {
@@ -15,7 +15,7 @@
         <h1 class="display-4"><img src="{{ equipment_icon_dir }}/icon_equipment_{{ equipment.equipment_id }}.jpg" alt="">
             {{ equipment.equipment_name }}</h1>
         <hr class="my-4">
-        <p class="lead">{{ equipment.description }}</p>
+        <p class="lead">{{ equipment.description|escape_return|linebreaksbr }}</p>
     </div>
 
     {% if equipment.craft_flg %}
