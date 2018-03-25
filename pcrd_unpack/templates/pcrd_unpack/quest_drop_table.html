@@ -17,6 +17,10 @@
                         <a href="{% url "pcrd_unpack:equipment" r.equipment_id %}"><img class="rounded .img-thumbnail" data-toggle="tooltip" title="{{ r.rate }} %"
                              src="{{ equipment_icon_dir }}/icon_equipment_{{ r.equipment_id }}.jpg" alt=""></a>
                     {% endif %}
+                    {% if r.item_id %}
+                        <a href="{% url "pcrd_unpack:item" r.item_id %}"><img class="rounded .img-thumbnail" data-toggle="tooltip" title="{{ r.rate }} %"
+                                                                                        src="{{ item_icon_dir }}/icon_item_{{ r.item_id }}.jpg" alt=""></a>
+                    {% endif %}
                 {% endfor %}
             </td>
         </tr>
