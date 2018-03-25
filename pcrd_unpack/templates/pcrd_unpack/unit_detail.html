@@ -39,6 +39,12 @@
         #myTabContent img {
             width: 7em;
         }
+
+        .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+            color: #fff !important;
+            background-color: #212529;
+            font-weight: bold;
+        }
     </style>
 {% endblock %}
 
@@ -238,7 +244,7 @@
                         aria-orientation="vertical">
                         {% for upr in unit_promotion %}
                             <li class="nav-item">
-                                <a class="nav-link {% if forloop.last %}active{% endif %}"
+                                <a class="nav-link {% if forloop.last %}active{% endif %}  text-dark"
                                    id="rank-tab-{{ forloop.counter }}" data-toggle="tab"
                                    href="#rank{{ forloop.counter }}"
                                    role="tab" aria-controls="home" aria-selected="true">
