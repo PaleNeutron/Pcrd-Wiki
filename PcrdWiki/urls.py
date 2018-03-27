@@ -15,11 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.contrib.sitemaps.views import sitemap
+from pcrd_unpack.sitemaps import UnitSitemap, EquimpmentSitemap
 
+sitemaps = {
+
+    'unit': UnitSitemap,
+    'equipment': EquimpmentSitemap,
+}
 
 urlpatterns = [
     path("", include("pcrd_unpack.urls")),
     path('admin/', admin.site.urls),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+         name='django.contrib.sitemaps.views.sitemap'),
 ]
 
 handler404 = 'pcrd_unpack.views.handler404'
