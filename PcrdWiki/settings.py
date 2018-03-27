@@ -37,6 +37,9 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'pcrd_unpack.apps.PcrdUnpackConfig',
+    # sitemap
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     # default
     'django.contrib.admin',
     'django.contrib.auth',
@@ -145,3 +148,5 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+SITE_ID = 1
