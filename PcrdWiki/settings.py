@@ -20,6 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# todo load it from disk to avoid secret leak
 SECRET_KEY = '&qqxz@-t^@-wxa#dh^e9gf&v^9sw=^#m4g8r&b9!79(*kyb2rp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -86,7 +87,7 @@ WSGI_APPLICATION = 'PcrdWiki.wsgi.application'
 DATABASES = {
     'pcrd_db': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'pcrd_db/7d2bdcfa272ce3dadad2c2094b496a0ab1176aeb'),
+        'NAME': os.path.join(BASE_DIR, 'pcrd_db/pcrdwiki.db'),
     },
     'pcrd_custom_db': {
         'ENGINE': 'django.db.backends.sqlite3',

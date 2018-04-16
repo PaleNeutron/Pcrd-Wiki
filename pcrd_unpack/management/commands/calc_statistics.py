@@ -3,11 +3,11 @@ import itertools
 import logging
 from django.core.management.base import BaseCommand, CommandError
 from pcrd_unpack.models import QuestRewardDataCustom, QuestData, WaveGroupData, EnemyRewardData, EquipmentData,   \
-    ItemData
+    ItemData, HatsuneQuest, HatsuneQuestRewardDataCustom
 from django.db import transaction
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("django")
 
 class Command(BaseCommand):
     help = 'calculate all statistics'
@@ -18,8 +18,11 @@ class Command(BaseCommand):
     @transaction.atomic
     def calc(self):
         # todo VERY!!!!!! slow, need research
-        QuestRewardDataCustom.objects.all().delete()
+        QuestRewardDataCustom = globals()["QuestRewardDataCustom"]
+        QuestData = globals()["QuestData"]
+
         q_list = []
+        QuestRewardDataCustom.objects.all().delete()
         for qd in QuestData.objects.all():
             print("****quest {}****".format(qd.quest_id))
             wg1 = qd.wave_group_id_1
@@ -49,5 +52,9 @@ class Command(BaseCommand):
 
         QuestRewardDataCustom.objects.bulk_create(q_list)
 
+
+    @transaction.atomic
+    def calc_hatsune(self):
+        pass
 
 
