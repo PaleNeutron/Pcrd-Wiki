@@ -5,7 +5,6 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-from django.utils.functional import cached_property
 
 
 class ActualUnitBackground(models.Model):
@@ -602,6 +601,17 @@ class DailyMissionData(models.Model):
         db_table = 'daily_mission_data'
 
 
+class DjangoMigrations(models.Model):
+    id = models.IntegerField(primary_key=True)  # AutoField?
+    app = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    applied = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'django_migrations'
+
+
 class DungeonAreaData(models.Model):
     dungeon_area_id = models.IntegerField(primary_key=True)
     dungeon_type = models.IntegerField()
@@ -859,6 +869,190 @@ class EventBgData(models.Model):
         db_table = 'event_bg_data'
 
 
+class EventBossTreasureBox(models.Model):
+    event_boss_treasure_box_id = models.IntegerField(primary_key=True)
+    treasure_type_1 = models.IntegerField()
+    event_boss_treasure_content_id_1 = models.IntegerField()
+    each_odds_1 = models.IntegerField()
+    treasure_type_2 = models.IntegerField()
+    event_boss_treasure_content_id_2 = models.IntegerField()
+    each_odds_2 = models.IntegerField()
+    treasure_type_3 = models.IntegerField()
+    event_boss_treasure_content_id_3 = models.IntegerField()
+    each_odds_3 = models.IntegerField()
+    treasure_type_4 = models.IntegerField()
+    event_boss_treasure_content_id_4 = models.IntegerField()
+    each_odds_4 = models.IntegerField()
+    treasure_type_5 = models.IntegerField()
+    event_boss_treasure_content_id_5 = models.IntegerField()
+    each_odds_5 = models.IntegerField()
+    treasure_type_6 = models.IntegerField()
+    event_boss_treasure_content_id_6 = models.IntegerField()
+    each_odds_6 = models.IntegerField()
+    treasure_type_7 = models.IntegerField()
+    event_boss_treasure_content_id_7 = models.IntegerField()
+    each_odds_7 = models.IntegerField()
+    treasure_type_8 = models.IntegerField()
+    event_boss_treasure_content_id_8 = models.IntegerField()
+    each_odds_8 = models.IntegerField()
+    treasure_type_9 = models.IntegerField()
+    event_boss_treasure_content_id_9 = models.IntegerField()
+    each_odds_9 = models.IntegerField()
+    treasure_type_10 = models.IntegerField()
+    event_boss_treasure_content_id_10 = models.IntegerField()
+    each_odds_10 = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'event_boss_treasure_box'
+
+
+class EventBossTreasureContent(models.Model):
+    event_boss_treasure_content_id = models.IntegerField(primary_key=True)
+    reward_type_1 = models.IntegerField()
+    reward_id_1 = models.IntegerField()
+    odds_file_1 = models.TextField()
+    reward_num_1 = models.IntegerField()
+    odds_1 = models.IntegerField()
+    reward_type_2 = models.IntegerField()
+    reward_id_2 = models.IntegerField()
+    odds_file_2 = models.TextField()
+    reward_num_2 = models.IntegerField()
+    odds_2 = models.IntegerField()
+    reward_type_3 = models.IntegerField()
+    reward_id_3 = models.IntegerField()
+    odds_file_3 = models.TextField()
+    reward_num_3 = models.IntegerField()
+    odds_3 = models.IntegerField()
+    reward_type_4 = models.IntegerField()
+    reward_id_4 = models.IntegerField()
+    odds_file_4 = models.TextField()
+    reward_num_4 = models.IntegerField()
+    odds_4 = models.IntegerField()
+    reward_type_5 = models.IntegerField()
+    reward_id_5 = models.IntegerField()
+    odds_file_5 = models.TextField()
+    reward_num_5 = models.IntegerField()
+    odds_5 = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'event_boss_treasure_content'
+
+
+class EventEnemyParameter(models.Model):
+    enemy_id = models.IntegerField(primary_key=True)
+    unit_id = models.IntegerField()
+    level = models.IntegerField()
+    rarity = models.IntegerField()
+    promotion_level = models.IntegerField()
+    hp = models.IntegerField()
+    atk = models.IntegerField()
+    magic_str = models.IntegerField()
+    def_field = models.IntegerField(db_column='def')  # Field renamed because it was a Python reserved word.
+    magic_def = models.IntegerField()
+    physical_critical = models.IntegerField()
+    magic_critical = models.IntegerField()
+    wave_hp_recovery = models.IntegerField()
+    wave_energy_recovery = models.IntegerField()
+    dodge = models.IntegerField()
+    physical_penetrate = models.IntegerField()
+    magic_penetrate = models.IntegerField()
+    life_steal = models.IntegerField()
+    hp_recovery_rate = models.IntegerField()
+    energy_recovery_rate = models.IntegerField()
+    energy_reduce_rate = models.IntegerField()
+    union_burst_level = models.IntegerField()
+    main_skill_lv_1 = models.IntegerField()
+    main_skill_lv_2 = models.IntegerField()
+    main_skill_lv_3 = models.IntegerField()
+    main_skill_lv_4 = models.IntegerField()
+    main_skill_lv_5 = models.IntegerField()
+    main_skill_lv_6 = models.IntegerField()
+    main_skill_lv_7 = models.IntegerField()
+    main_skill_lv_8 = models.IntegerField()
+    main_skill_lv_9 = models.IntegerField()
+    main_skill_lv_10 = models.IntegerField()
+    ex_skill_lv_1 = models.IntegerField()
+    ex_skill_lv_2 = models.IntegerField()
+    ex_skill_lv_3 = models.IntegerField()
+    ex_skill_lv_4 = models.IntegerField()
+    ex_skill_lv_5 = models.IntegerField()
+    resist_status_id = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'event_enemy_parameter'
+
+
+class EventEnemyRewardGroup(models.Model):
+    id = models.IntegerField(primary_key=True)
+    reward_group_id = models.IntegerField()
+    reward_type = models.IntegerField()
+    reward_id = models.IntegerField()
+    reward_num = models.IntegerField()
+    odds = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'event_enemy_reward_group'
+
+
+class EventGachaData(models.Model):
+    gacha_id = models.IntegerField(primary_key=True)
+    event_id = models.IntegerField()
+    gacha_name = models.TextField()
+    item_type = models.IntegerField()
+    item_id = models.IntegerField()
+    cost = models.IntegerField()
+    repeat_step = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'event_gacha_data'
+
+
+class EventIntroduction(models.Model):
+    id = models.IntegerField(primary_key=True)
+    event_id = models.IntegerField()
+    introduction_number = models.IntegerField()
+    start_time = models.TextField()
+    end_time = models.TextField()
+    maximum_chunk_size_1 = models.IntegerField()
+    maximum_chunk_size_loop_1 = models.IntegerField()
+    maximum_chunk_size_2 = models.IntegerField()
+    maximum_chunk_size_loop_2 = models.IntegerField()
+    maximum_chunk_size_3 = models.IntegerField()
+    maximum_chunk_size_loop_3 = models.IntegerField()
+    sheet_id = models.TextField()
+    que_id = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'event_introduction'
+
+
+class EventNaviComment(models.Model):
+    comment_id = models.IntegerField(primary_key=True)
+    where_type = models.IntegerField()
+    character_id = models.IntegerField()
+    face_type = models.IntegerField()
+    character_name = models.TextField()
+    description = models.TextField(blank=True, null=True)
+    voice_id = models.IntegerField()
+    start_time = models.TextField()
+    end_time = models.TextField()
+    pos_x = models.FloatField()
+    pos_y = models.FloatField()
+    change_face_time = models.FloatField()
+    change_face_type = models.IntegerField()
+    event_id = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'event_navi_comment'
+
+
 class EventStoryData(models.Model):
     story_group_id = models.IntegerField(primary_key=True)
     story_type = models.IntegerField()
@@ -872,6 +1066,83 @@ class EventStoryData(models.Model):
     class Meta:
         managed = False
         db_table = 'event_story_data'
+
+
+class EventStoryDetail(models.Model):
+    story_id = models.IntegerField(primary_key=True)
+    story_group_id = models.IntegerField()
+    title = models.TextField()
+    sub_title = models.TextField()
+    visible_type = models.IntegerField()
+    story_end = models.IntegerField()
+    pre_story_id = models.IntegerField()
+    love_level = models.IntegerField()
+    requirement_id = models.IntegerField()
+    unlock_quest_id = models.IntegerField()
+    story_quest_id = models.IntegerField()
+    reward_type_1 = models.IntegerField()
+    reward_id_1 = models.IntegerField()
+    reward_value_1 = models.IntegerField()
+    reward_type_2 = models.IntegerField()
+    reward_id_2 = models.IntegerField()
+    reward_value_2 = models.IntegerField()
+    reward_type_3 = models.IntegerField()
+    reward_id_3 = models.IntegerField()
+    reward_value_3 = models.IntegerField()
+    start_time = models.TextField()
+    end_time = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'event_story_detail'
+
+
+class EventWaveGroupData(models.Model):
+    id = models.IntegerField(primary_key=True)
+    wave_group_id = models.IntegerField()
+    difficulty = models.IntegerField()
+    wave = models.IntegerField()
+    match_lv_min = models.IntegerField()
+    match_lv_max = models.IntegerField()
+    enemy_id_1 = models.IntegerField()
+    enemy_id_2 = models.IntegerField()
+    enemy_id_3 = models.IntegerField()
+    enemy_id_4 = models.IntegerField()
+    enemy_id_5 = models.IntegerField()
+    drop_gold_1 = models.IntegerField()
+    reward_group_id_1 = models.IntegerField()
+    disp_reward_type_1 = models.IntegerField()
+    disp_reward_id_1 = models.IntegerField()
+    reward_lot_count_1 = models.IntegerField()
+    reward_odds_1 = models.IntegerField()
+    drop_gold_2 = models.IntegerField()
+    reward_group_id_2 = models.IntegerField()
+    disp_reward_type_2 = models.IntegerField()
+    disp_reward_id_2 = models.IntegerField()
+    reward_lot_count_2 = models.IntegerField()
+    reward_odds_2 = models.IntegerField()
+    drop_gold_3 = models.IntegerField()
+    reward_group_id_3 = models.IntegerField()
+    disp_reward_type_3 = models.IntegerField()
+    disp_reward_id_3 = models.IntegerField()
+    reward_lot_count_3 = models.IntegerField()
+    reward_odds_3 = models.IntegerField()
+    drop_gold_4 = models.IntegerField()
+    reward_group_id_4 = models.IntegerField()
+    disp_reward_type_4 = models.IntegerField()
+    disp_reward_id_4 = models.IntegerField()
+    reward_lot_count_4 = models.IntegerField()
+    reward_odds_4 = models.IntegerField()
+    drop_gold_5 = models.IntegerField()
+    reward_group_id_5 = models.IntegerField()
+    disp_reward_type_5 = models.IntegerField()
+    disp_reward_id_5 = models.IntegerField()
+    reward_lot_count_5 = models.IntegerField()
+    reward_odds_5 = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'event_wave_group_data'
 
 
 class ExperienceTeam(models.Model):
@@ -1053,6 +1324,272 @@ class Guild(models.Model):
         db_table = 'guild'
 
 
+class HatsuneBoss(models.Model):
+    boss_id = models.IntegerField(primary_key=True)
+    event_id = models.IntegerField()
+    area_id = models.IntegerField()
+    difficulty = models.IntegerField()
+    quest_name = models.TextField()
+    position_x = models.IntegerField()
+    position_y = models.IntegerField()
+    boss_position_x = models.IntegerField()
+    boss_position_y = models.IntegerField()
+    result_boss_position_y = models.IntegerField()
+    icon_id = models.IntegerField()
+    use_ticket_num = models.IntegerField()
+    team_exp = models.IntegerField()
+    unit_exp = models.IntegerField()
+    love = models.IntegerField()
+    limit_time = models.IntegerField()
+    daily_limit = models.IntegerField()
+    clear_reward_group = models.IntegerField()
+    event_boss_treasure_box_id_1 = models.IntegerField()
+    background_1 = models.IntegerField()
+    wave_group_id_1 = models.IntegerField()
+    wave_bgm_sheet_id_1 = models.TextField()
+    wave_bgm_que_id_1 = models.TextField()
+    story_id_wavestart_1 = models.IntegerField()
+    story_id_waveend_1 = models.IntegerField()
+    detail_bg_id = models.IntegerField()
+    detail_bg_position = models.IntegerField()
+    detail_boss_bg_size = models.FloatField()
+    detail_boss_bg_height = models.FloatField()
+    reward_gold_coefficient = models.TextField()
+    reward_gold_limit = models.IntegerField()
+    start_time = models.TextField()
+    end_time = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'hatsune_boss'
+
+
+class HatsuneBossCondition(models.Model):
+    boss_id = models.IntegerField(primary_key=True)
+    event_id = models.IntegerField()
+    condition_quest_id_1 = models.IntegerField()
+    condition_quest_id_2 = models.IntegerField()
+    condition_boss_id_1 = models.IntegerField()
+    condition_boss_id_2 = models.IntegerField()
+    force_unlock_time = models.TextField()
+    release_quest_id_1 = models.IntegerField()
+    release_quest_id_2 = models.IntegerField()
+    release_boss_id_1 = models.IntegerField()
+    release_boss_id_2 = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'hatsune_boss_condition'
+
+
+class HatsuneDailyMissionData(models.Model):
+    daily_mission_id = models.IntegerField(primary_key=True)
+    disp_group = models.IntegerField()
+    category_icon = models.IntegerField()
+    description = models.TextField()
+    mission_condition = models.IntegerField()
+    condition_value_1 = models.IntegerField(blank=True, null=True)
+    condition_value_2 = models.IntegerField(blank=True, null=True)
+    condition_value_3 = models.IntegerField(blank=True, null=True)
+    condition_num = models.IntegerField()
+    mission_reward_id = models.IntegerField()
+    system_id = models.IntegerField(blank=True, null=True)
+    start_time = models.TextField()
+    end_time = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'hatsune_daily_mission_data'
+
+
+class HatsuneDescription(models.Model):
+    id = models.IntegerField(primary_key=True)
+    event_id = models.IntegerField()
+    type = models.IntegerField()
+    description = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'hatsune_description'
+
+
+class HatsuneItem(models.Model):
+    event_id = models.IntegerField(primary_key=True)
+    boss_ticket_id = models.IntegerField()
+    gacha_ticket_id = models.IntegerField()
+    unit_material_id_1 = models.IntegerField()
+    unit_material_id_2 = models.IntegerField()
+    unit_material_id_3 = models.IntegerField()
+    unit_material_id_4 = models.IntegerField()
+    unit_material_id_5 = models.IntegerField()
+    unit_material_id_6 = models.IntegerField()
+    unit_material_id_7 = models.IntegerField()
+    unit_material_id_8 = models.IntegerField()
+    unit_material_id_9 = models.IntegerField()
+    unit_material_id_10 = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'hatsune_item'
+
+
+class HatsuneMap(models.Model):
+    course_id = models.IntegerField(primary_key=True)
+    event_id = models.IntegerField()
+    name = models.TextField()
+    map_id = models.IntegerField()
+    sheet_id = models.TextField()
+    que_id = models.TextField()
+    start_area_id = models.IntegerField()
+    end_area_id = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'hatsune_map'
+
+
+class HatsuneMissionRewardData(models.Model):
+    id = models.IntegerField(primary_key=True)
+    mission_reward_id = models.IntegerField()
+    reward_type = models.IntegerField()
+    reward_id = models.IntegerField(blank=True, null=True)
+    reward_num = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'hatsune_mission_reward_data'
+
+
+class HatsuneQuest(models.Model):
+    quest_id = models.IntegerField(primary_key=True)
+    event_id = models.IntegerField()
+    area_id = models.IntegerField()
+    quest_seq = models.IntegerField()
+    quest_name = models.TextField()
+    position_x = models.IntegerField()
+    position_y = models.IntegerField()
+    icon_id = models.IntegerField()
+    stamina = models.IntegerField()
+    stamina_start = models.IntegerField()
+    team_exp = models.IntegerField()
+    unit_exp = models.IntegerField()
+    love = models.IntegerField()
+    limit_time = models.IntegerField()
+    daily_limit = models.IntegerField()
+    clear_reward_group = models.IntegerField()
+    rank_reward_group = models.IntegerField()
+    drop_reward_type = models.IntegerField()
+    drop_reward_id = models.IntegerField()
+    drop_reward_num = models.IntegerField()
+    drop_reward_odds = models.IntegerField()
+    background_1 = models.IntegerField()
+    wave_bgm_sheet_id_1 = models.TextField()
+    wave_bgm_que_id_1 = models.TextField()
+    story_id_wavestart_1 = models.IntegerField()
+    story_id_waveend_1 = models.IntegerField()
+    background_2 = models.IntegerField()
+    wave_bgm_sheet_id_2 = models.TextField()
+    wave_bgm_que_id_2 = models.TextField()
+    story_id_wavestart_2 = models.IntegerField()
+    story_id_waveend_2 = models.IntegerField()
+    background_3 = models.IntegerField()
+    wave_bgm_sheet_id_3 = models.TextField()
+    wave_bgm_que_id_3 = models.TextField()
+    story_id_wavestart_3 = models.IntegerField()
+    story_id_waveend_3 = models.IntegerField()
+    quest_detail_bg_id = models.IntegerField()
+    quest_detail_bg_position = models.IntegerField()
+    start_time = models.TextField()
+    end_time = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'hatsune_quest'
+
+
+class HatsuneQuestArea(models.Model):
+    area_id = models.IntegerField(primary_key=True)
+    event_id = models.IntegerField()
+    area_name = models.TextField()
+    map_type = models.IntegerField()
+    sheet_id = models.TextField()
+    que_id = models.TextField()
+    start_time = models.TextField()
+    end_time = models.TextField()
+    area_disp = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'hatsune_quest_area'
+
+
+class HatsuneQuestCondition(models.Model):
+    quest_id = models.IntegerField(primary_key=True)
+    event_id = models.IntegerField()
+    condition_quest_id_1 = models.IntegerField()
+    condition_quest_id_2 = models.IntegerField()
+    condition_boss_id_1 = models.IntegerField()
+    condition_boss_id_2 = models.IntegerField()
+    release_quest_id_1 = models.IntegerField()
+    release_quest_id_2 = models.IntegerField()
+    release_boss_id_1 = models.IntegerField()
+    release_boss_id_2 = models.IntegerField()
+    condition_main_quest_id = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'hatsune_quest_condition'
+
+
+class HatsuneSchedule(models.Model):
+    event_id = models.IntegerField(primary_key=True)
+    teaser_time = models.TextField()
+    start_time = models.TextField()
+    end_time = models.TextField()
+    close_time = models.TextField()
+    background = models.IntegerField()
+    sheet_id = models.TextField()
+    que_id = models.TextField()
+    banner_unit_id = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'hatsune_schedule'
+
+
+class HatsuneStationaryMissionData(models.Model):
+    stationary_mission_id = models.IntegerField(primary_key=True)
+    disp_group = models.IntegerField()
+    category_icon = models.IntegerField()
+    description = models.TextField()
+    mission_condition = models.IntegerField()
+    condition_value_1 = models.IntegerField(blank=True, null=True)
+    condition_value_2 = models.IntegerField(blank=True, null=True)
+    condition_value_3 = models.IntegerField(blank=True, null=True)
+    condition_num = models.IntegerField()
+    mission_reward_id = models.IntegerField()
+    system_id = models.IntegerField(blank=True, null=True)
+    start_time = models.TextField()
+    end_time = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'hatsune_stationary_mission_data'
+
+
+class HatsuneUnlockStoryCondition(models.Model):
+    story_id = models.IntegerField(primary_key=True)
+    event_id = models.IntegerField()
+    condition_entry = models.IntegerField()
+    condition_quest_id = models.IntegerField()
+    condition_boss_id = models.IntegerField()
+    condition_mission_id = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'hatsune_unlock_story_condition'
+
+
 class ItemData(models.Model):
     item_id = models.IntegerField(primary_key=True)
     item_name = models.TextField()
@@ -1152,10 +1689,51 @@ class NaviComment(models.Model):
     voice_id = models.IntegerField()
     start_time = models.TextField()
     end_time = models.TextField()
+    pos_x = models.FloatField()
+    pos_y = models.FloatField()
+    change_face_time = models.FloatField()
+    change_face_type = models.IntegerField()
+    event_id = models.IntegerField()
 
     class Meta:
         managed = False
         db_table = 'navi_comment'
+
+
+class OddsNameData(models.Model):
+    id = models.IntegerField(primary_key=True)
+    odds_file = models.TextField()
+    name = models.TextField()
+    icon_type = models.IntegerField()
+    description = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'odds_name_data'
+
+
+class PcrdUnpackHatsunequestrewarddatacustom(models.Model):
+    id = models.IntegerField(primary_key=True)  # AutoField?
+    rate = models.FloatField()
+    equipment_id = models.IntegerField(blank=True, null=True)
+    item_id = models.IntegerField(blank=True, null=True)
+    quest_id = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'pcrd_unpack_hatsunequestrewarddatacustom'
+
+
+class PcrdUnpackQuestrewarddatacustom(models.Model):
+    id = models.IntegerField(primary_key=True)  # AutoField?
+    rate = models.FloatField()
+    equipment_id = models.IntegerField(blank=True, null=True)
+    item_id = models.IntegerField(blank=True, null=True)
+    quest_id = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'pcrd_unpack_questrewarddatacustom'
 
 
 class PositionSetting(models.Model):
@@ -1254,9 +1832,6 @@ class QuestData(models.Model):
         managed = False
         db_table = 'quest_data'
 
-    @cached_property
-    def is_hard(self):
-        return self.area_id > 12000
 
 class QuestDefeatNotice(models.Model):
     id = models.IntegerField(primary_key=True)

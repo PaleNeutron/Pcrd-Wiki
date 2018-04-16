@@ -16,6 +16,13 @@ class QuestRewardDataCustom(CustomBaseModel):
     item = models.ForeignKey(ItemData, default=None , null=True, on_delete=models.CASCADE)
     rate = models.FloatField(default=0)
 
+class HatsuneQuestRewardDataCustom(CustomBaseModel):
+    """docstring for QuestRewardData"""
+    # maybe we need to use a wide table
+    quest = models.ForeignKey(HatsuneQuest , default=None , null=True, on_delete=models.CASCADE)
+    equipment = models.ForeignKey(EquipmentData, default=None , null=True , on_delete=models.CASCADE)
+    item = models.ForeignKey(ItemData, default=None , null=True, on_delete=models.CASCADE)
+    rate = models.FloatField(default=0)
 
 # class QuestRewardDataWide(CustomBaseModel):
 #     """docstring for QuestRewardData"""

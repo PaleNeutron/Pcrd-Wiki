@@ -15,6 +15,8 @@ and should be used only for develop.
   - [ ] monsters page
   - [x] unit character equipment per rank
   - [ ] Beautify all pages
+  - [ ] Gacha Simulator
+  - [ ] International
     
     
  ## For Developers

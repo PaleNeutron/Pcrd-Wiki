@@ -1,5 +1,5 @@
 def main():
-    with open("../models.py") as f:
+    with open("models_gen.py") as f:
         rl = f.readlines()
 
     new_ls = []
@@ -11,7 +11,7 @@ def main():
             print("****"+l)
         new_ls.append(l)
 
-    with open("models.py", "w") as f:
+    with open("./pcrd_unpack/models_gen.py", "w") as f:
         rl = f.writelines(new_ls)
 
 if __name__ == '__main__':

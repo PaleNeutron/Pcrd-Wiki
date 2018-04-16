@@ -11,7 +11,7 @@ from PcrdWiki.settings import BASE_DIR
 #     print i
 
 def get_drop_string():
-    c = sqlite3.connect(os.path.join(BASE_DIR, "pcrd_db", '7d2bdcfa272ce3dadad2c2094b496a0ab1176aeb'))
+    c = sqlite3.connect(os.path.join(BASE_DIR, "pcrd_db", 'pcrdwiki.db'))
 
     def query_group(id):
         t = (id,)
