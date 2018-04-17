@@ -25,6 +25,7 @@ app_name = 'pcrd_unpack'
 
 urlpatterns = [
     path("", views.UnitListView.as_view(), name="index"),
+    path("unit_data/<int:unit_id>", views.UnitJsonView.as_view(), name="unit_json"),
     path("unit/<int:unit_id>", views.UnitDetailView.as_view(), name="unit"),
     path("unit/", views.UnitListView.as_view(), name="unit_list"),
     path("item/<int:item_id>", views.ItemView.as_view(), name="item"),
