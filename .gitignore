@@ -102,7 +102,8 @@ ENV/
 
 .idea/
 unpacked_asset/
-static/
+/static/
+Texture2D/
 pcrd_db/*
 db.sqlite3
 *.ico
