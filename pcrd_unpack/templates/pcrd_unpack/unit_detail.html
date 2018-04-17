@@ -112,6 +112,7 @@
     </div>
 
     <hr/>
+{#    profile table #}
     <div class="container">
         <div class="d-flex flex-wrap ">
             <div class="col-md-3">
@@ -323,11 +324,61 @@
         </div>
     </div>
 
+    <hr/>
+{#data table#}
 
+    <h3>Unit Data</h3>
+    <div class="container">
+        <div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>level</th>
+                    <th>rarity</th>
+                    <th>rank</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr id="parameters">
+                    <td><div id="level">level</div></td>
+                    <td><div id="rarity">rarity</div></td>
+                    <td><div id="rank">rank</div></td>
+                </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>hp</th>
+                        <th>atk</th>
+                        <th>magic str</th>
+                        <th>def</th>
+                        <th>magic def</th>
+                        <th>critical</th>
+                        <th>dodge</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="hp">hp</td>
+                        <td id="atk">atk</td>
+                        <td id="magic_str">magic str</td>
+                        <td id="def_field">def</td>
+                        <td id="magic_def">magic def</td>
+                        <td id="physical_critical">critical</td>
+                        <td id="dodge">dodge</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
 
 {% block scripts %}
     <script>
         $(".table th").addClass("table-dark");
     </script>
+    <script>
+        const tags = ['level', 'rarity', 'rank'];
+        const data_url = "{% url "pcrd_unpack:unit_json" unit_data.unit_id %}";
+    </script>
+    <script type="text/javascript"  src="{% static "pcrd_unpack/scripts/elements/UnitCalc.js" %}"></script>
 {% endblock %}

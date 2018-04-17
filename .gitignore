@@ -106,3 +106,5 @@ static/
 pcrd_db/*
 db.sqlite3
 *.ico
+# temp generated model
+models_gen.py

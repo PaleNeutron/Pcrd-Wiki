@@ -2,9 +2,8 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, View, ListView, DetailView
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.urls import reverse
-from . import coop
 # Create your views here.
-from . import models
+from pcrd_unpack import models
 
 class EquipmentView(TemplateView):
     """docstring for """
