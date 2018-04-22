@@ -1,6 +1,13 @@
 from django.db import models
 from .models_gen import *
+from django.utils.functional import cached_property
 
+
+@cached_property
+def is_hard(self):
+    return self.area_id > 12000
+
+QuestData.is_hard = is_hard
 
 class CustomBaseModel(models.Model):
     """docstring for CustomBaseModel"""
