@@ -1,5 +1,5 @@
 class UnitDataModel {
-    constructor(){
+    constructor() {
         this.level = 0;
         this.rank = 1;
         this.rarity = 1;
@@ -8,7 +8,7 @@ class UnitDataModel {
         this.atk = 0;
         this.magic_str = 0;
         this.def_field = 0;
-        this.magic_def =0;
+        this.magic_def = 0;
         this.physical_critical = 0;
         this.dodge = 0;
 
@@ -18,23 +18,25 @@ class UnitDataModel {
         this.MAX_RANK = 8;
         this.MAX_RARITY = 5;
         this.result_ids = ["hp", 'atk', 'magic_str', 'def_field', 'magic_def', 'physical_critical', 'dodge'];
-
-
     }
 
     get_input() {
-        this.level = parseInt($("#level").text());
-        if (this.level > this.MAX_LEVEL || isNaN(this.level)) {
+        this.level = parseInt($("#level").val());
+        this.rank = parseInt($("#rank").val());
+        this.rarity = parseInt($("#rarity").val());
+
+        if (isNaN(this.level) || isNaN(this.rank) || isNaN(this.rarity)) {
             return false;
         }
-        
-        this.rank = parseInt($("#rank").text());
-        if (this.rank > this.MAX_RANK || isNaN(this.rank)) {
+        if (this.level > this.MAX_LEVEL) {
             return false;
         }
 
-        this.rarity = parseInt($("#rarity").text());
-        if (this.rarity > this.MAX_RARITY || isNaN(this.rarity)) {
+        if (this.rank > this.MAX_RANK) {
+            return false;
+        }
+
+        if (this.rarity > this.MAX_RARITY) {
             return false;
         }
 
@@ -42,8 +44,8 @@ class UnitDataModel {
     }
 
     calc() {
-        if (!(Object.keys(this.unit_parameter).length === 0 && this.unit_parameter.constructor === Object)){
-            if (! this.get_input()) {
+        if (!(Object.keys(this.unit_parameter).length === 0 && this.unit_parameter.constructor === Object)) {
+            if (!this.get_input()) {
                 return false;
             }
             // prepare parameters
@@ -74,21 +76,21 @@ class UnitDataModel {
 
             // get rank data
             let m = this;
-            let current_rank_data = m.unit_parameter["unit_rank_data"][m.rank - 2];
-            console.log(current_rank_data);
-            m.result_ids.forEach(function (s) {
-                m[s] += current_rank_data[s];
-            });
-
+            if (m.rank > 1) {
+                let current_rank_data = m.unit_parameter["unit_rank_data"][m.rank - 2];
+                m.result_ids.forEach(function (s) {
+                    m[s] += current_rank_data[s];
+                });
+            }
             this.set_result();
             return true;
         }
     }
 
-    set_result(){
+    set_result() {
         let m = this;
         this.result_ids.forEach(function (s) {
-            $("#"+s).text(Math.round(m[s]));
+            $("#" + s).text(Math.round(m[s]));
         });
         return true;
     }
@@ -99,12 +101,12 @@ function pcrd_calculate() {
 }
 
 function pcrd_unit_data_init() {
-    $("#level").text(88);
-    $("#rarity").text(5);
-    $("#rank").text(8);
-    unit_parameter = $.getJSON(data_url, success=function (data) {
+    $("#level").val(88);
+    $("#rarity").val(5);
+    $("#rank").val(8);
+    unit_parameter = $.getJSON(data_url, success = function (data) {
         // enable edit after get data
-        tags.forEach(function(element){
+        tags.forEach(function (element) {
             let e = document.getElementById(element);
             e.contentEditable = true;
             e.onclick = function () {
@@ -119,7 +121,7 @@ function pcrd_unit_data_init() {
 }
 
 function parameterChecker() {
-    tags.forEach(function(element){
+    tags.forEach(function (element) {
         let temp = document.getElementById(element);
         if (temp.innerHTML.match(/[^\d]/)) {
             temp.innerHTML = temp.innerHTML.replace(/[^\d]/g, '');
@@ -137,6 +139,7 @@ function pcrd_calculate_main() {
     //     console.log(element.toString()+":"+ r);
     // });
 }
+
 let unit_parameter = {};
 let udm = new UnitDataModel();
 let observer = new MutationObserver(pcrd_calculate_main);
@@ -149,6 +152,10 @@ function startObserve() {
 
 window.onload = function () {
     pcrd_unit_data_init();
-    pcrd_calculate_main();
-    startObserve();
+    // pcrd_calculate_main();
+    // startObserve();
 };
+
+$("#parameters input").on("change paste keyup",
+    pcrd_calculate
+);
