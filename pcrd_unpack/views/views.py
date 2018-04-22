@@ -4,6 +4,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 from django.urls import reverse
 # Create your views here.
 from pcrd_unpack import models
+from collections import OrderedDict
 
 class EquipmentView(TemplateView):
     """docstring for """
@@ -13,9 +14,11 @@ class EquipmentView(TemplateView):
         context = super().get_context_data(**kwargs)
         eq = get_object_or_404(models.EquipmentData, pk=self.kwargs["equipment_id"])
         context['equipment'] = eq
-        drops = eq.questrewarddatacustom_set.all()
+        drops = eq.questrewarddatacustom_set.all().order_by('quest__area_id')
         quests = [i.quest for i in drops]
-        context['drop_info'] = dict(zip(quests, [q.questrewarddatacustom_set.order_by('-rate') for q in quests]))
+        quests.sort(key=lambda x: x.area_id)
+        # before python3.6 dict do not keep order, use OrderedDict
+        context['drop_info'] = OrderedDict(zip(quests, [q.questrewarddatacustom_set.order_by('-rate') for q in quests]))
         if eq.craft_flg:
             cinfo =  get_object_or_404(models.EquipmentCraft, pk=self.kwargs["equipment_id"])
             context["craft_info"] = cinfo
@@ -44,9 +47,9 @@ class ItemView(TemplateView):
         context = super().get_context_data(**kwargs)
         item = get_object_or_404(models.ItemData, pk=self.kwargs["item_id"])
         context['item'] = item
-        drops = item.questrewarddatacustom_set.all()
+        drops = item.questrewarddatacustom_set.all().order_by('quest__area_id')
         quests = [i.quest for i in drops]
-        context['drop_info'] = dict(zip(quests, [q.questrewarddatacustom_set.order_by('-rate') for q in quests]))
+        context['drop_info'] = OrderedDict(zip(quests, [q.questrewarddatacustom_set.order_by('-rate') for q in quests]))
         return context
 
 # class ItemListView(ListView):
