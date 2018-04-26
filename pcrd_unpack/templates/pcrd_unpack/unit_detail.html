@@ -395,54 +395,39 @@
                     Skill Discription
                 </th>
                 <th>
-                    Skill Detail
+                    Effect
                 </th>
-
+                <th>
+                    Effect Growth with Skill Level
+                </th>
+                <th>
+                    Effect Growth with Property
+                </th>
             </tr>
             </thead>
             <tbody>
             {% for unit_skill, skill_actions in unit_skills.items %}
                 <tr>
-                    <td><img class="d-block w-100"
-                             src="{{ skill_icon }}/icon_skill_{{ unit_skill.icon_type }}.jpg"
-                             alt="{{ unit_skill.name }}"></td>
-                    <td>{{ unit_skill.name }}</td>
-                    <td>{{ unit_skill.description }}</td>
-                    <td class="p-0">
-                        <table>
-                        <thead>
-                        <tr>
-                            <th>
-                                Effect
-                            </th>
-                            <th>
-                                Effect Growth with Skill Level
-                            </th>
-                            <th>
-                                Effect Growth with Property
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for skill_action in skill_actions %}
-
+                    <td rowspan="{{ skill_actions|length }}"><img class="d-block w-100"
+                                                                  src="{{ skill_icon }}/icon_skill_{{ unit_skill.icon_type }}.jpg"
+                                                                  alt="{{ unit_skill.name }}"></td>
+                    <td rowspan="{{ skill_actions|length }}">{{ unit_skill.name }}</td>
+                    <td rowspan="{{ skill_actions|length }}">{{ unit_skill.description|escape_return }}</td>
+                    {% for skill_action in skill_actions %}
+                        {% if not forloop.first %}
                             <tr>
-                                <td>
-                                    {{ skill_action.description }}
-                                </td>
-                                <td>
-                                    {{ skill_action.action_value_1 }} + {{ skill_action.action_value_2 }} × N
-                                </td>
-                                <td>
-                                    {{ skill_action.action_value_3 }}
-                                </td>
-                            </tr>
-
-                        {% endfor %}
-                        </tbody>
-                        </table>
+                        {% endif %}
+                    <td>
+                        {{ skill_action.description|default:"Unknown" }}
                     </td>
-                </tr>
+                    <td>
+                        {{ skill_action.action_value_1 }} + {{ skill_action.action_value_2 }} × N
+                    </td>
+                    <td>
+                        {{ skill_action.action_value_3 }}
+                    </td>
+                    </tr>
+                    {% endfor %}
             {% endfor %}
 
             </tbody>
