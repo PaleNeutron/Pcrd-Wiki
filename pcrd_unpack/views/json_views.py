@@ -46,7 +46,37 @@ class UnitJsonView(JSONResponseMixin, TemplateView):
         except models.UnitRarity.DoesNotExist:
             raise Http404("unit not found")
 
+        try:
+            unit_promotion_data_query = models.UnitPromotion.objects.filter(unit_id=unit_id).values()
+            related_equipments = []
+            unit_promotion_data =[]
+            for i in unit_promotion_data_query:
+                temp = []
+                for j in range(1,7):
+                    eq_id = i['equip_slot_{}'.format(j)]
+                    related_equipments.append(eq_id)
+                    temp.append(eq_id)
+                unit_promotion_data.append(temp)
+        except models.UnitRarity.DoesNotExist:
+            raise Http404("unit not found")
+
+        try:
+            equipment_data = models.EquipmentData.objects.filter(equipment_id__in=related_equipments).values()
+            equipment_data = {e["equipment_id"]: e for e in equipment_data}
+        except models.UnitRarity.DoesNotExist:
+            raise Http404("unit not found")
+
+
+        try:
+            equipment_enhance = models.EquipmentEnhanceRate.objects.filter(equipment_id__in=related_equipments).values()
+            equipment_enhance = {e["equipment_id"]: e for e in equipment_enhance}
+        except models.UnitRarity.DoesNotExist:
+            raise Http404("unit not found")
+
         response_context["unit_data"] = list(unit_data)
         response_context["unit_rank_data"] = list(unit_rank_data)
+        response_context["unit_promotion_data"] = unit_promotion_data
+        response_context["equipment_data"] = equipment_data
+        response_context["equipment_enhance"] = equipment_enhance
 
         return JsonResponse(response_context)

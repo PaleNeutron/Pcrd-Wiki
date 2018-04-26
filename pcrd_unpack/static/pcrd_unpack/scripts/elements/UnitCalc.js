@@ -65,11 +65,12 @@ class UnitDataModel {
             let physical_critical = current_param["physical_critical"];
 
             // apply level growth
-            this.atk = atk_growth * this.level + atk;
-            this.hp = hp_growth * this.level + hp;
-            this.magic_str = magic_str_growth * this.level + magic_str;
-            this.def_field = def_field + def_growth * this.level;
-            this.magic_def = magic_def + magic_def_growth * this.level;
+            let l = this.level;
+            this.atk = atk_growth * l + atk;
+            this.hp = hp_growth * l + hp;
+            this.magic_str = magic_str_growth * l + magic_str;
+            this.def_field = def_field + def_growth * l;
+            this.magic_def = magic_def + magic_def_growth * l;
             this.physical_critical = physical_critical;
             this.dodge = dodge;
 
@@ -80,6 +81,17 @@ class UnitDataModel {
                 let current_rank_data = m.unit_parameter["unit_rank_data"][m.rank - 2];
                 m.result_ids.forEach(function (s) {
                     m[s] += current_rank_data[s];
+                });
+            }
+
+            // get equipment data
+            if (m.rank > 1) {
+                let current_equipments_data = m.unit_parameter["unit_promotion_data"][m.rank - 2];
+                current_equipments_data.forEach(function (eq) {
+                    m.result_ids.forEach(function (s) {
+                        m[s] += m.unit_parameter["equipment_data"][eq][s];
+                        m[s] += m.unit_parameter["equipment_enhance"][eq][s] *(1 + m.unit_parameter["equipment_enhance"][eq]["promotion_level"]);
+                    });
                 });
             }
             this.set_result();
@@ -116,6 +128,9 @@ function pcrd_unit_data_init() {
         // console.log(data);
         unit_parameter = data;
         udm.unit_parameter = unit_parameter;
+        $("#parameters input").on("change paste keyup",
+            pcrd_calculate
+        );
         pcrd_calculate_main();
     });
 }
@@ -152,10 +167,4 @@ function startObserve() {
 
 window.onload = function () {
     pcrd_unit_data_init();
-    // pcrd_calculate_main();
-    // startObserve();
 };
-
-$("#parameters input").on("change paste keyup",
-    pcrd_calculate
-);

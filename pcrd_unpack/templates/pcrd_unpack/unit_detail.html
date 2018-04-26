@@ -49,6 +49,11 @@
         #myTab {
             font-size: 2.5vmin;
         }
+
+        #unit_skill_data tbody td img {
+            max-width: 4vw;
+            min-Width: 3em;
+        }
     </style>
 {% endblock %}
 
@@ -60,6 +65,7 @@
     {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/profile" as profile_image %}
     {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/actualprofile" as actualprofile_image %}
     {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/icon" as unit_icon %}
+    {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/icon/skill" as skill_icon %}
 
 
     <div id="carouselExampleIndicators" class="carousel slide  mt-auto" data-ride="carousel">
@@ -112,11 +118,11 @@
     </div>
 
     <hr/>
-{#    profile table #}
+    {#    profile table #}
     <div class="container">
         <div class="d-flex flex-wrap ">
-            <div class="col-md-3">
-                <table class="table">
+            <div class="col-md-3" id="unit_profile">
+                <table class="table table-bordered">
                     <tbody>
                     <tr>
                         <th>
@@ -202,7 +208,7 @@
                                  src="{{ unit_icon }}/icon_unit_{{ unit_data.unit_id|add:30 }}.jpg" alt="">
                         </a>
                     </div>
-                    <div  class="col-6">
+                    <div class="col-6">
                         <a href="{% url "pcrd_unpack:item" unit_data.unit_id|stringformat:"d"|slice:"2:4"|add:"31000" %}">
                             <img class="rounded img-thumbnail w-100"
                                  src="{{ unit_icon }}/icon_unit_{{ unit_data.unit_id|add:10 }}.jpg" alt="">
@@ -210,7 +216,7 @@
                     </div>
 
                 </div>
-                <table class="table">
+                <table class="table table-bordered">
                     <tbody>
                     <tr>
                         <th>
@@ -241,7 +247,7 @@
             </div>
 
 
-            <div class="col-md-6 ml-auto">
+            <div class="col-md-6 ml-auto" id="unit_promotion">
                 <div class=" d-flex flex-wrap">
                     <ul class="nav flex-column nav-pills nav-fill col-4" id="myTab" role="tablist"
                         aria-orientation="vertical">
@@ -261,58 +267,58 @@
                             <div class="tab-pane fade {% if forloop.last %}show active{% endif %}"
                                  id="rank{{ forloop.counter }}" role="tabpanel"
                                  aria-labelledby="rank-tab-{{ forloop.counter }}">
-                            <div class="row">
-                                <div class="col-6">
-                                <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_1 %}">
-                                    <img class="rounded img-thumbnail w-100"
-                                         src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_1 }}.jpg"
-                                         alt="">
-                                </a>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_1 %}">
+                                            <img class="rounded img-thumbnail w-100"
+                                                 src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_1 }}.jpg"
+                                                 alt="">
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_2 %}">
+                                            <img class="rounded img-thumbnail w-100"
+                                                 src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_2 }}.jpg"
+                                                 alt="">
+                                        </a>
+                                    </div>
+
+                                    <div class="w-100"></div>
+
+                                    <div class="col-6">
+                                        <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_3 %}">
+                                            <img class="rounded img-thumbnail w-100"
+                                                 src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_3 }}.jpg"
+                                                 alt="">
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+
+                                        <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_4 %}">
+                                            <img class="rounded img-thumbnail w-100"
+                                                 src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_4 }}.jpg"
+                                                 alt="">
+                                        </a>
+                                    </div>
+
+                                    <div class="w-100"></div>
+
+                                    <div class="col-6">
+                                        <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_5 %}">
+                                            <img class="rounded img-thumbnail w-100"
+                                                 src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_5 }}.jpg"
+                                                 alt="">
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+
+                                        <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_6 %}">
+                                            <img class="rounded img-thumbnail w-100"
+                                                 src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_6 }}.jpg"
+                                                 alt="">
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="col-6">
-                                <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_2 %}">
-                                    <img class="rounded img-thumbnail w-100"
-                                         src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_2 }}.jpg"
-                                         alt="">
-                                </a>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                            <div class="col-6">
-                                <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_3 %}">
-                                    <img class="rounded img-thumbnail w-100"
-                                         src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_3 }}.jpg"
-                                         alt="">
-                                </a>
-                            </div>
-                            <div class="col-6">
-
-                            <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_4 %}">
-                                    <img class="rounded img-thumbnail w-100"
-                                         src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_4 }}.jpg"
-                                         alt="">
-                                </a>
-                            </div>
-                            </div>
-
-                            <div class="row">
-                            <div class="col-6">
-                                <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_5 %}">
-                                    <img class="rounded img-thumbnail w-100"
-                                         src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_5 }}.jpg"
-                                         alt="">
-                                </a>
-                            </div>
-                            <div class="col-6">
-
-                            <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_6 %}">
-                                    <img class="rounded img-thumbnail w-100"
-                                         src="{{ equipment_icon_dir }}/icon_equipment_{{ upr.equip_slot_6 }}.jpg"
-                                         alt="">
-                                </a>
-                            </div>
-                            </div>
 
                             </div>
                             {#            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">content 2</div>#}
@@ -327,27 +333,27 @@
     {#data table#}
     <hr/>
     <div id="unit_data">
-    <div  class="row justify-content-center"><h3 class="col-12 badge-dark text-center">Unit Data</h3></div>
-    <div class="container">
-        <div class="container justify-content-center text-center">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>level</th>
-                    <th>rarity</th>
-                    <th>rank</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr id="parameters">
-                    <td><input id="level" type="number" min="1" max="88" title="level" value="88"></td>
-                    <td><input id="rarity" type="number" min="1" max="5" title="rarity" value="5"></td>
-                    <td><input id="rank" type="number" min="1" max="8" title="rank" value="8"></td>
-                </tr>
-                </tbody>
-            </table>
-            <table class="table">
-                <thead>
+        <div class="row justify-content-center"><h3 class="col-12 badge-dark text-center">Unit Data</h3></div>
+        <div class="container">
+            <div class="container justify-content-center text-center">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>level</th>
+                        <th>rarity</th>
+                        <th>rank</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id="parameters">
+                        <td><input id="level" type="number" min="1" max="88" title="level" value="88"></td>
+                        <td><input id="rarity" type="number" min="1" max="5" title="rarity" value="5"></td>
+                        <td><input id="rank" type="number" min="1" max="8" title="rank" value="8"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered">
+                    <thead>
                     <tr>
                         <th>hp</th>
                         <th>atk</th>
@@ -357,8 +363,8 @@
                         <th>critical</th>
                         <th>dodge</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     <tr>
                         <td id="hp">hp</td>
                         <td id="atk">atk</td>
@@ -368,16 +374,64 @@
                         <td id="physical_critical">critical</td>
                         <td id="dodge">dodge</td>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    </div>
 
-{#    skill data table#}
+    {#    skill data table#}
     <hr/>
-    <div id="unit_skill_data">
-    <div  class="row justify-content-center"><h3 class="col-12 badge-dark text-center">Skill Data</h3></div>
+    <div id="unit_skill_data" class="container justify-content-center">
+        <div class="row"><h3 class="col-12 badge-dark text-center">Skill Data</h3></div>
+        <table class="table table-bordered justify-content-center">
+            <thead>
+            <tr>
+                <th>Sill Icon</th>
+                <th>
+                    Skill Name
+                </th>
+                <th>
+                    Skill Discription
+                </th>
+                <th>
+                    Effect
+                </th>
+                <th>
+                    Effect Growth with Skill Level
+                </th>
+                <th>
+                    Effect Growth with Property
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for unit_skill, skill_actions in unit_skills.items %}
+                <tr>
+                    <td rowspan="{{ skill_actions|length }}"><img class="d-block w-100"
+                                                                  src="{{ skill_icon }}/icon_skill_{{ unit_skill.icon_type }}.jpg"
+                                                                  alt="{{ unit_skill.name }}"></td>
+                    <td rowspan="{{ skill_actions|length }}">{{ unit_skill.name }}</td>
+                    <td rowspan="{{ skill_actions|length }}">{{ unit_skill.description|escape_return }}</td>
+                    {% for skill_action in skill_actions %}
+                        {% if not forloop.first %}
+                            <tr>
+                        {% endif %}
+                    <td>
+                        {{ skill_action.description|default:"Unknown" }}
+                    </td>
+                    <td>
+                        {{ skill_action.action_value_1 }} + {{ skill_action.action_value_2 }} × N
+                    </td>
+                    <td>
+                        {{ skill_action.action_value_3 }}
+                    </td>
+                    </tr>
+                    {% endfor %}
+            {% endfor %}
+
+            </tbody>
+        </table>
     </div>
 
 
@@ -391,5 +445,5 @@
         const tags = ['level', 'rarity', 'rank'];
         const data_url = "{% url "pcrd_unpack:unit_json" unit_data.unit_id %}";
     </script>
-    <script type="text/javascript"  src="{% static "pcrd_unpack/scripts/elements/UnitCalc.js" %}"></script>
+    <script type="text/javascript" src="{% static "pcrd_unpack/scripts/elements/UnitCalc.js" %}"></script>
 {% endblock %}
