@@ -6,6 +6,7 @@ from django.urls import reverse
 from pcrd_unpack import models
 from collections import OrderedDict
 
+
 class EquipmentView(TemplateView):
     """docstring for """
     template_name = "pcrd_unpack/equipment.html"
@@ -20,7 +21,7 @@ class EquipmentView(TemplateView):
         # before python3.6 dict do not keep order, use OrderedDict
         context['drop_info'] = OrderedDict(zip(quests, [q.questrewarddatacustom_set.order_by('-rate') for q in quests]))
         if eq.craft_flg:
-            cinfo =  get_object_or_404(models.EquipmentCraft, pk=self.kwargs["equipment_id"])
+            cinfo = get_object_or_404(models.EquipmentCraft, pk=self.kwargs["equipment_id"])
             context["craft_info"] = cinfo
             components = {}
             for i in range(1, 11):
@@ -31,13 +32,16 @@ class EquipmentView(TemplateView):
             context["components"] = components
         return context
 
+
 class EquipmentListView(ListView):
     """docstring for Equi"""
     template_name = "pcrd_unpack/equipment_list.html"
+
     # model = models.EquipmentData
 
     def get_queryset(self):
         return models.EquipmentData.objects.order_by("-promotion_level")
+
 
 class ItemView(TemplateView):
     """docstring for """
@@ -52,6 +56,7 @@ class ItemView(TemplateView):
         context['drop_info'] = OrderedDict(zip(quests, [q.questrewarddatacustom_set.order_by('-rate') for q in quests]))
         return context
 
+
 # class ItemListView(ListView):
 #     """docstring for Equi"""
 #     template_name = "pcrd_unpack/item_list.html"
@@ -65,6 +70,7 @@ class QuestAreaListView(ListView):
     """docstring for QuestAreaListView"""
     template_name = "pcrd_unpack/quests_list.html"
     model = models.QuestAreaData
+
 
 class QuestAreaDetailView(TemplateView):
     """docstring for QuestAreaDetailView"""
@@ -82,6 +88,7 @@ class QuestAreaDetailView(TemplateView):
             context["quest_reward"][q] = q.questrewarddatacustom_set.order_by('-rate')
         return context
 
+
 class UnitListView(ListView):
     """docstring for UnitListView"""
     template_name = "pcrd_unpack/unit_list.html"
@@ -91,10 +98,10 @@ class UnitListView(ListView):
         return self.model.objects.exclude(comment__isnull=True).order_by("-rarity")
 
 
-
 class UnitDetailView(TemplateView):
     """docstring for UnitDetailView"""
     template_name = "pcrd_unpack/unit_detail.html"
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         unit_id = kwargs["unit_id"]
@@ -102,13 +109,31 @@ class UnitDetailView(TemplateView):
         unit_data.comment = unit_data.comment.replace("\\n", "\n")
         unit_profile = get_object_or_404(models.UnitProfile, pk=unit_id)
         unit_promotion = get_list_or_404(models.UnitPromotion, pk=unit_id)
+        unit_skill = get_object_or_404(models.UnitSkillData, pk=unit_id)
+        skills = [
+            get_object_or_404(models.SkillData, skill_id=getattr(unit_skill, f.name))
+            for f in type(unit_skill)._meta.get_fields()
+            if (not f.primary_key and getattr(unit_skill, f.name) != 0)
+        ]
+        unit_skills = {skill: self.get_skill_actions(skill) for skill in skills}
         context["unit_data"] = unit_data
         context["unit_profile"] = unit_profile
         context["unit_promotion"] = unit_promotion
+        context["unit_skills"] = unit_skills
+
         return context
 
-
-
+    def get_skill_actions(self, skill: models.SkillData):
+        actions = [get_object_or_404(models.SkillAction, action_id=getattr(skill, f.name))
+                   for f in type(skill)._meta.get_fields()
+                   if not f.primary_key and f.name.startswith("action") and getattr(skill, f.name) != 0]
+        for a in actions:
+            if a.action_type in [90, 26]:
+                a.action_value_1 = a.action_value_2
+                a.action_value_2 = a.action_value_3
+                a.action_value_3 = 0
+                a.action_value_4 = 0
+        return actions
 
 def handler404(request, exception):
     return render(request, 'pcrd_unpack/errors/404.html', locals())

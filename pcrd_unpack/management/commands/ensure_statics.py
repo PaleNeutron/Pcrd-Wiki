@@ -15,6 +15,7 @@ class Command(BaseCommand):
         self.get_img([
             "Texture2D/assets/_elementsresources/resources/icon/equipment/",
             "Texture2D/assets/_elementsresources/resources/icon/item/",
+            "Texture2D/assets/_elementsresources/resources/icon/skill/",
             "Texture2D/assets/_elementsresources/resources/icon/unitplate/",
             "Texture2D/assets/_elementsresources/resources/unit/icon/",
         ])
