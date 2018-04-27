@@ -17,7 +17,7 @@ class UnitDataModel {
         this.MAX_LEVEL = 88;
         this.MAX_RANK = 8;
         this.MAX_RARITY = 5;
-        this.result_ids = ["hp", 'atk', 'magic_str', 'def_field', 'magic_def', 'physical_critical', 'dodge'];
+        this.result_ids = data_tags;
     }
 
     get_input() {
@@ -48,35 +48,49 @@ class UnitDataModel {
             if (!this.get_input()) {
                 return false;
             }
+            let m = this;
+
             // prepare parameters
             let current_param = this.unit_parameter["unit_data"][this.rarity - 1];
-            let atk = current_param["atk"];
-            let atk_growth = current_param["atk_growth"];
-            let def_field = current_param["def_field"];
-            let def_growth = current_param["def_growth"];
-            let dodge = current_param["dodge"];
-            let hp_growth = current_param["hp_growth"];
-            let hp = current_param["hp"];
-            let magic_def = current_param["magic_def"];
-            let magic_def_growth = current_param["magic_def_growth"];
-            let unit_material_id = current_param["unit_material_id"];
-            let magic_str = current_param["magic_str"];
-            let magic_str_growth = current_param["magic_str_growth"];
-            let physical_critical = current_param["physical_critical"];
+            let l = this.level;
 
             // apply level growth
-            let l = this.level;
-            this.atk = atk_growth * l + atk;
-            this.hp = hp_growth * l + hp;
-            this.magic_str = magic_str_growth * l + magic_str;
-            this.def_field = def_field + def_growth * l;
-            this.magic_def = magic_def + magic_def_growth * l;
-            this.physical_critical = physical_critical;
-            this.dodge = dodge;
+            this.result_ids.forEach(function (tag) {
+                if (tag in current_param){
+                    let base = current_param[tag];
+                    // since def is escaped to def_field but def_growth not escaped to def_field_growth
+                    let growth_tag = (tag + "_growth").replace("_field", "");
+                    let growth = 0;
+                    if (growth_tag in current_param){
+                        growth = current_param[growth_tag];
+                    }
+                    m[tag] = base + growth * l;
+                }
+            });
+            // let atk = current_param["atk"];
+            // let atk_growth = current_param["atk_growth"];
+            // let def_field = current_param["def_field"];
+            // let def_growth = current_param["def_growth"];
+            // let dodge = current_param["dodge"];
+            // let hp_growth = current_param["hp_growth"];
+            // let hp = current_param["hp"];
+            // let magic_def = current_param["magic_def"];
+            // let magic_def_growth = current_param["magic_def_growth"];
+            // let unit_material_id = current_param["unit_material_id"];
+            // let magic_str = current_param["magic_str"];
+            // let magic_str_growth = current_param["magic_str_growth"];
+            // let physical_critical = current_param["physical_critical"];
+            //
+            // this.atk = atk_growth * l + atk;
+            // this.hp = hp_growth * l + hp;
+            // this.magic_str = magic_str_growth * l + magic_str;
+            // this.def_field = def_field + def_growth * l;
+            // this.magic_def = magic_def + magic_def_growth * l;
+            // this.physical_critical = physical_critical;
+            // this.dodge = dodge;
 
 
             // get rank data
-            let m = this;
             if (m.rank > 1) {
                 let current_rank_data = m.unit_parameter["unit_rank_data"][m.rank - 2];
                 m.result_ids.forEach(function (s) {
