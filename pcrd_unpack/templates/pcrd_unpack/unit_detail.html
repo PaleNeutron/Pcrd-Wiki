@@ -335,8 +335,8 @@
     <div id="unit_data">
         <div class="row justify-content-center"><h3 class="col-12 badge-dark text-center">Unit Data</h3></div>
         <div class="container">
-            <div class="container justify-content-center text-center">
-                <table class="table table-bordered">
+            <div class="row justify-content-center text-center">
+                <table class="col-9 table table-bordered" id="parameters">
                     <thead>
                     <tr>
                         <th>level</th>
@@ -345,39 +345,51 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr id="parameters">
-                        <td><input id="level" type="number" min="1" max="88" title="level" value="88"></td>
-                        <td><input id="rarity" type="number" min="1" max="5" title="rarity" value="5"></td>
-                        <td><input id="rank" type="number" min="1" max="8" title="rank" value="8"></td>
-                    </tr>
-                    </tbody>
-                </table>
-                <table class="table table-bordered">
-                    <thead>
                     <tr>
-                        <th>hp</th>
-                        <th>atk</th>
-                        <th>magic str</th>
-                        <th>def</th>
-                        <th>magic def</th>
-                        <th>critical</th>
-                        <th>dodge</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td id="hp">hp</td>
-                        <td id="atk">atk</td>
-                        <td id="magic_str">magic str</td>
-                        <td id="def_field">def</td>
-                        <td id="magic_def">magic def</td>
-                        <td id="physical_critical">critical</td>
-                        <td id="dodge">dodge</td>
+                    <td><input id="level" type="number" min="1" max="88" title="level" value="88"></td>
+                    <td><input id="rarity" type="number" min="1" max="5" title="rarity" value="5"></td>
+                    <td><input id="rank" type="number" min="1" max="8" title="rank" value="8"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+                <div class="justify-content-center">
+                    <table class="col-10  table table-bordered">
+                        <tbody>
+                        {% for data_tags_one_line in table_data_tags %}
+                            <tr>
+                            {% for data_tag in data_tags_one_line %}
+                                {% if data_tag %}
+                                    <th>{{data_tag}}</th> <td id="{{data_tag}}">{{data_tag}}</td>
+                                {% endif %}
+                            {% endfor %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
         </div>
+    </div>
+
+    {#    unit pattern table#}
+    <hr/>
+    <div id="unit_pattern" class="container justify-content-center">
+    <div class="row"><h3 class="col-12 badge-dark text-center">Attack Pattern</h3></div>
+    <table class="table table-bordered">
+        <tr>
+            <th>Loop Start</th>
+            {% for up in unit_patterns.patterns %}
+                <th>{{ forloop.counter }}</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td>{{ unit_patterns.loop_start }}</td>
+            {% for up in unit_patterns.patterns %}
+                <td>{{ up }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
     </div>
 
     {#    skill data table#}
@@ -398,10 +410,7 @@
                     Effect
                 </th>
                 <th>
-                    Effect Growth with Skill Level
-                </th>
-                <th>
-                    Effect Growth with Property
+                    Effect Value
                 </th>
             </tr>
             </thead>
@@ -421,10 +430,11 @@
                         {{ skill_action.description|default:"Unknown" }}
                     </td>
                     <td>
-                        {{ skill_action.action_value_1 }} + {{ skill_action.action_value_2 }} × N
-                    </td>
-                    <td>
-                        {{ skill_action.action_value_3 }}
+                        {% if skill_action.result %}
+                            {{ skill_action.result }}
+                        {% else %}
+                            Unknown Skill Type: {{ skill_action.action_type }}
+                        {% endif %}
                     </td>
                     </tr>
                     {% endfor %}
@@ -444,6 +454,7 @@
     <script>
         const tags = ['level', 'rarity', 'rank'];
         const data_url = "{% url "pcrd_unpack:unit_json" unit_data.unit_id %}";
+        const data_tags = {{ data_tags|safe}};
     </script>
     <script type="text/javascript" src="{% static "pcrd_unpack/scripts/elements/UnitCalc.js" %}"></script>
 {% endblock %}
