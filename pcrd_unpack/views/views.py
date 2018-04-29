@@ -143,8 +143,9 @@ class UnitDetailView(TemplateView):
         for i in range(unit_pattern.loop_end):
             p = getattr(unit_pattern, 'atk_pattern_{}'.format(i+1))
             if p not in [0, 1]:
-                skill_pattern = int(unit_pattern.unit_id / 100) * 1000 + p - 1000 + 1
-                p = get_object_or_404(models.SkillData, skill_id=skill_pattern).name
+                # skill_pattern = int(unit_pattern.unit_id / 100) * 1000 + p - 1000 + 1
+                # p = get_object_or_404(models.SkillData, skill_id=skill_pattern).name
+                p = "Skill {}".format(p-1000)
             patterns.append(p)
 
         context['unit_patterns'] = {
@@ -195,6 +196,13 @@ class UnitDetailView(TemplateView):
             elif a.action_type == 3:
                 a.description = 'Push'
                 factor_static = a.action_value_3
+            elif a.action_type in [10, 12]:
+                # I don't know why, but
+                # type 10 is self-buff
+                # type 12 is de-buff
+                # which not affected by atk
+                factor_atk = 0
+                factor_atk_level = 0
 
 
             a.result = ""
