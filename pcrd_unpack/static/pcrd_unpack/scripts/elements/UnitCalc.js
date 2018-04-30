@@ -160,25 +160,12 @@ function parameterChecker() {
 }
 
 function pcrd_calculate_main() {
-    observer.disconnect();
     parameterChecker();
-    startObserve();
     pcrd_calculate();
-    // tags.forEach(function (element) {
-    //     let r = parseInt(document.getElementById(element).innerHTML);
-    //     console.log(element.toString()+":"+ r);
-    // });
 }
 
 let unit_parameter = {};
 let udm = new UnitDataModel();
-let observer = new MutationObserver(pcrd_calculate_main);
-let observer_config = {characterData: true, subtree: true, childList: true};
-
-function startObserve() {
-    let targetNode = document.getElementById('parameters');
-    observer.observe(targetNode, observer_config);
-}
 
 window.onload = function () {
     pcrd_unit_data_init();
