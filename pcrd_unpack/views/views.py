@@ -96,7 +96,7 @@ class UnitListView(ListView):
     model = models.UnitData
 
     def get_queryset(self, **hints):
-        return self.model.objects.exclude(comment__isnull=True).order_by("-rarity")
+        return self.model.objects.exclude(comment__exact="").order_by("-rarity")
 
 
 class UnitDetailView(TemplateView):
@@ -121,17 +121,17 @@ class UnitDetailView(TemplateView):
         context["unit_profile"] = unit_profile
         context["unit_promotion"] = unit_promotion
         context["unit_skills"] = unit_skills
-        ur = models.UnitRarity
-        properties = [
-            ur.hp, ur.hp_recovery_rate, ur.wave_hp_recovery,
-            ur.energy_recovery_rate, ur.wave_energy_recovery,
-            ur.atk, ur.magic_str,
-            ur.def_field, ur.magic_def,
-            ur.physical_critical, ur.magic_critical,
-            ur.dodge,
-            ur.life_steal,
-        ]
-        context["data_tags"] = [property.field_name for property in properties]
+        ur = models.UnitSummary
+        # properties = [
+        #     ur.hp, ur.hp_recovery_rate, ur.wave_hp_recovery,
+        #     ur.energy_recovery_rate, ur.wave_energy_recovery,
+        #     ur.atk, ur.magic_str,
+        #     ur.def_field, ur.magic_def,
+        #     ur.physical_critical, ur.magic_critical,
+        #     ur.dodge,
+        #     ur.life_steal,
+        # ]
+        context["data_tags"] = ur.data_tags()
         context["table_data_tags"] = zip_longest(*[iter(context["data_tags"])] * 3, fillvalue=None)
         unit_pattern = get_object_or_404(models.UnitAttackPattern, unit_id=unit_id)
         # patterns = [
@@ -214,10 +214,22 @@ class UnitDetailView(TemplateView):
                 a.result += " + ({} + {} × skill_level) × atk".format(factor_atk, factor_atk_level)
             elif factor_atk:
                 a.result += " + {} × atk".format(factor_atk)
-
-
-
         return actions
+
+
+class UnitSummaryView(TemplateView):
+    template_name = "pcrd_unpack/unit_summary.html"
+
+    def get_context_data(self, **kwargs):
+        uss = models.UnitSummary.objects.all()
+        context = {}
+        context["data_tags"] = models.UnitSummary.data_tags()
+        context["unit_summary_data"] = {us:[int(getattr(us, p)) for p in us.data_tags()]
+                                        for us in uss}
+        return context
+
+class IndexView(TemplateView):
+    template_name = "pcrd_unpack/index.html"
 
 
 def handler404(request, exception):

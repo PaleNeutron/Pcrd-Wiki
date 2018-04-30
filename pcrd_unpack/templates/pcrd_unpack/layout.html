@@ -14,9 +14,9 @@
     {% static 'pcrd_unpack/Texture2D/assets/_elementsresources/resources/icon/item' as item_icon_dir %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/bootstrap.min.css' %}" />
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.0/bootstrap-table.min.css">
-
+{#    <!-- Latest compiled and minified CSS -->#}
+{#    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.0/bootstrap-table.min.css">#}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.16/datatables.min.css"/>
     {#    my css#}
     <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/site.css' %}" />
     {% block style_sheet %}
@@ -27,6 +27,7 @@
 </head>
 
 <body>
+<header>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="{% url 'pcrd_unpack:index' %}">Princess Connect Re:Dive Wiki</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,6 +44,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'pcrd_unpack:unit_list' %}">Characters</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'pcrd_unpack:unit_summary' %}">Summary</a>
             </li>
 {#            <li class="nav-item">#}
 {#                <a class="nav-link" href="{% url 'pcrd_unpack:item_list' %}">Items</a>#}
@@ -72,11 +76,15 @@
         {% include 'pcrd_unpack/loginpartial.html' %}
     </div>
 </nav>
+</header>
+
     <div class="d-block d-sm-none" id="xs-nav-spacer"></div>
-    <div class="container body-content">
+    <div  class="container body-content">
+
     {% block content %}
 
     {% endblock %}
+
         <hr/>
         <footer>
             <p>&copy; {{ year }} - Princess Connect Re:Dive Wiki</p>
@@ -87,18 +95,15 @@
     <script src="{% static 'pcrd_unpack/scripts/bootstrap.bundle.js' %}"></script>
     <script src="{% static 'pcrd_unpack/scripts/respond.js' %}"></script>
     <!-- Latest compiled and minified JavaScript -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.0/bootstrap-table.min.js"></script>
+{#    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.0/bootstrap-table.min.js"></script>#}
 
     <!-- Latest compiled and minified Locales -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.0/locale/bootstrap-table-zh-CN.min.js"></script>
+{#    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.0/locale/bootstrap-table-zh-CN.min.js"></script>#}
 
 {#    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>#}
 {#    use bootstrap tooltip#}
-    <script type="text/javascript">
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.16/datatables.min.js"></script>
+
 {% block scripts %}
 
 {% endblock %}
