@@ -11,7 +11,7 @@ def main():
             print("****"+l)
         new_ls.append(l)
 
-    with open("./pcrd_unpack/models_gen.py", "w") as f:
+    with open("./pcrd_unpack/models_gen.py", "w", newline="\n") as f:
         rl = f.writelines(new_ls)
 
 if __name__ == '__main__':
