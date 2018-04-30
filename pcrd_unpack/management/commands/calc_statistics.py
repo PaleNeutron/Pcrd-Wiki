@@ -1,19 +1,49 @@
 import os
 import itertools
 import logging
+import dukpy
 from django.core.management.base import BaseCommand, CommandError
+from django.contrib.staticfiles import finders
+
 from pcrd_unpack.models import QuestRewardDataCustom, QuestData, WaveGroupData, EnemyRewardData, EquipmentData,   \
-    ItemData, HatsuneQuest, HatsuneQuestRewardDataCustom
+    ItemData, HatsuneQuest, HatsuneQuestRewardDataCustom, UnitData, UnitSummary
 from django.db import transaction
+from pcrd_unpack.views import UnitJsonView, UnitDetailView, UnitListView
 
-
-logger = logging.getLogger("django")
+logger = logging.getLogger("main")
 
 class Command(BaseCommand):
     help = 'calculate all statistics'
 
     def handle(self, *args, **options):
         self.calc()
+        self.calcUnit()
+
+    @transaction.atomic
+    def calcUnit(self):
+        UnitSummary.objects.all().delete()
+        js_path = finders.find("pcrd_unpack/scripts/elements/UnitDataModel.js")
+        with open(js_path) as f:
+            es6js = f.read()
+        es5js = dukpy.babel_compile(es6js)["code"]
+        jsi = dukpy.JSInterpreter()
+
+        for u in UnitListView().get_queryset():
+            unit_id = u.unit_id
+            data = UnitJsonView().get_unit_data(unit_id=unit_id)
+            context_data = UnitDetailView().get_context_data(unit_id=unit_id)
+
+            # new an instant once of one calc, due to the dukpy bug
+            r = jsi.evaljs([es5js,
+                            "var udm = new UnitDataModel()",
+                            "udm.unit_parameter = dukpy['value']",
+                            "udm.result_ids = dukpy['data_tags']",
+                            "udm.calc(88,8,5)",
+                            "udm;"], value=data, data_tags=context_data["data_tags"])
+            us = UnitSummary(unit_id=unit_id)
+            for p in context_data["data_tags"]:
+                setattr(us, p, r[p])
+            us.save()
 
     @transaction.atomic
     def calc(self):

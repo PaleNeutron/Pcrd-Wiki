@@ -375,19 +375,25 @@
     <hr/>
     <div id="unit_pattern" class="container justify-content-center">
     <div class="row"><h3 class="col-12 badge-dark text-center">Attack Pattern</h3></div>
-    <table class="table table-bordered">
+    <table class="table table-bordered un_colored">
+    <thead>
         <tr>
-            <th>Loop Start</th>
+            <th colspan="{{ unit_patterns.loop_start|add:"-1" }}" class="table-danger">Once</th>
+            <th colspan="{{ unit_patterns.patterns|length|add:"1"}}" class="table-success">Loop</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
             {% for up in unit_patterns.patterns %}
-                <th>{{ forloop.counter }}</th>
+                <th class="table-active">{{ forloop.counter }}</th>
             {% endfor %}
         </tr>
         <tr>
-            <td>{{ unit_patterns.loop_start }}</td>
             {% for up in unit_patterns.patterns %}
                 <td>{{ up }}</td>
             {% endfor %}
         </tr>
+    </tbody>
     </table>
 
     </div>
@@ -449,12 +455,13 @@
 
 {% block scripts %}
     <script>
-        $(".table th").addClass("table-dark");
+        $(".table th:not(.un_colored th)").addClass("table-dark");
     </script>
     <script>
         const tags = ['level', 'rarity', 'rank'];
         const data_url = "{% url "pcrd_unpack:unit_json" unit_data.unit_id %}";
         const data_tags = {{ data_tags|safe}};
     </script>
+    <script type="text/javascript" src="{% static "pcrd_unpack/scripts/elements/UnitDataModel.js" %}"></script>
     <script type="text/javascript" src="{% static "pcrd_unpack/scripts/elements/UnitCalc.js" %}"></script>
 {% endblock %}

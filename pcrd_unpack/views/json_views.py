@@ -33,9 +33,11 @@ class JSONResponseMixin:
 class UnitJsonView(JSONResponseMixin, TemplateView):
     """docstring for UnitJsonView"""
     def render_to_response(self, context, **response_kwargs):
+        response_context = self.get_unit_data(context["unit_id"])
+        return JsonResponse(response_context)
 
+    def get_unit_data(self, unit_id=0):
         response_context = {}
-        unit_id = context["unit_id"]
         try:
             unit_data = models.UnitRarity.objects.filter(unit_id=unit_id).values()
         except models.UnitRarity.DoesNotExist:
@@ -78,5 +80,4 @@ class UnitJsonView(JSONResponseMixin, TemplateView):
         response_context["unit_promotion_data"] = unit_promotion_data
         response_context["equipment_data"] = equipment_data
         response_context["equipment_enhance"] = equipment_enhance
-
-        return JsonResponse(response_context)
+        return response_context
