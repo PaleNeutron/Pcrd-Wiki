@@ -420,7 +420,7 @@
                     <td rowspan="{{ skill_actions|length }}"><img class="d-block w-100"
                                                                   src="{{ skill_icon }}/icon_skill_{{ unit_skill.icon_type }}.jpg"
                                                                   alt="{{ unit_skill.name }}"></td>
-                    <td rowspan="{{ skill_actions|length }}">{{ unit_skill.name }}</td>
+                    <td rowspan="{{ skill_actions|length }}" nowrap>{{ unit_skill.name }}</td>
                     <td rowspan="{{ skill_actions|length }}">{{ unit_skill.description|escape_return }}</td>
                     {% for skill_action in skill_actions %}
                         {% if not forloop.first %}
@@ -429,7 +429,7 @@
                     <td>
                         {{ skill_action.description|default:"Unknown" }}
                     </td>
-                    <td>
+                    <td nowrap>
                         {% if skill_action.result %}
                             {{ skill_action.result }}
                         {% else %}
