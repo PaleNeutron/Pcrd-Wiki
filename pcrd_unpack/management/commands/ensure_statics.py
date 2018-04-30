@@ -1,3 +1,7 @@
+"""
+get all static resource from the unpack dir
+`force` means replace the file exist in project, note: file in different size will be automatically replaced
+"""
 from django.core.management.base import BaseCommand, CommandError
 import os
 import shutil
@@ -29,10 +33,14 @@ class Command(BaseCommand):
             os.makedirs(os.path.join(new_dir, ""), exist_ok=True)
             # distutils.dir_util.copy_tree(d, new_dir)
             for f in os.listdir(d):
+                input_file = os.path.join(d,f)
                 outfile = os.path.join(new_dir, f.replace("png", "jpg"))
-                if os.path.exists(outfile) and not force:
-                    continue
-                im = Image.open(os.path.join(d,f))
+                if os.path.exists(outfile) and not force :
+                    # check if size are the same
+                    if os.stat(outfile).st_size == os.stat(input_file).st_size:
+                        continue
+
+                im = Image.open(input_file)
                 im.convert("RGB")
 
                 if im.mode in ('RGBA', 'LA'):

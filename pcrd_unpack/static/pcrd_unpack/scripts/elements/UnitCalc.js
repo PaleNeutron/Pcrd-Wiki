@@ -52,7 +52,7 @@ class UnitDataModel {
 
             // prepare parameters
             let current_param = this.unit_parameter["unit_data"][this.rarity - 1];
-            let l = this.level;
+            let l = this.level + this.rank;
 
             // apply level growth
             this.result_ids.forEach(function (tag) {
