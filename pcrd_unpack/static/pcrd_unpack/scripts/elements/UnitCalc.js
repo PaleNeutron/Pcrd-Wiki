@@ -100,9 +100,10 @@ class UnitDataModel {
 
             // get equipment data
             if (m.rank > 1) {
-                let current_equipments_data = m.unit_parameter["unit_promotion_data"][m.rank - 2];
+                let current_equipments_data = m.unit_parameter["unit_promotion_data"][m.rank - 1];
                 current_equipments_data.forEach(function (eq) {
                     m.result_ids.forEach(function (s) {
+                        if (eq === 999999) return;
                         m[s] += m.unit_parameter["equipment_data"][eq][s];
                         m[s] += m.unit_parameter["equipment_enhance"][eq][s] *(1 + m.unit_parameter["equipment_enhance"][eq]["promotion_level"]);
                     });
