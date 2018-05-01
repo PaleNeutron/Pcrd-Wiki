@@ -17,21 +17,22 @@ class UnitDataModel {
         this.result_ids = [];
     }
 
-    get_input(level, rank, rarity) {
+    get_input(level, rank, rarity, love) {
         this.level = level;
         this.rank = rank;
         this.rarity = rarity;
+        this.love = love;
 
-        if (isNaN(this.level) || isNaN(this.rank) || isNaN(this.rarity)) {
+        if (isNaN(this.level) || isNaN(this.rank) || isNaN(this.rarity) || isNaN(this.love)) {
             return false;
         }
 
         return true;
     }
 
-    calc(level, rank, rarity) {
+    calc(level, rank, rarity, love) {
         if (!(Object.keys(this.unit_parameter).length === 0 && this.unit_parameter.constructor === Object)) {
-            if (!this.get_input(level, rank, rarity)) {
+            if (!this.get_input(level, rank, rarity, love)) {
                 return false;
             }
             let m = this;
@@ -53,34 +54,13 @@ class UnitDataModel {
                     m[tag] = base + growth * l;
                 }
             });
-            // let atk = current_param["atk"];
-            // let atk_growth = current_param["atk_growth"];
-            // let def_field = current_param["def_field"];
-            // let def_growth = current_param["def_growth"];
-            // let dodge = current_param["dodge"];
-            // let hp_growth = current_param["hp_growth"];
-            // let hp = current_param["hp"];
-            // let magic_def = current_param["magic_def"];
-            // let magic_def_growth = current_param["magic_def_growth"];
-            // let unit_material_id = current_param["unit_material_id"];
-            // let magic_str = current_param["magic_str"];
-            // let magic_str_growth = current_param["magic_str_growth"];
-            // let physical_critical = current_param["physical_critical"];
-            //
-            // this.atk = atk_growth * l + atk;
-            // this.hp = hp_growth * l + hp;
-            // this.magic_str = magic_str_growth * l + magic_str;
-            // this.def_field = def_field + def_growth * l;
-            // this.magic_def = magic_def + magic_def_growth * l;
-            // this.physical_critical = physical_critical;
-            // this.dodge = dodge;
 
 
             // get rank data
             if (m.rank > 1) {
                 let current_rank_data = m.unit_parameter["unit_rank_data"][m.rank - 2];
                 m.result_ids.forEach(function (s) {
-                    m[s] += current_rank_data[s];
+                    m[s] = Math.round(current_rank_data[s] + m[s]);
                 });
             }
 
@@ -88,12 +68,25 @@ class UnitDataModel {
             if (m.rank > 1) {
                 let current_equipments_data = m.unit_parameter["unit_promotion_data"][m.rank - 1];
                 current_equipments_data.forEach(function (eq) {
+                    if (eq === 999999) return;
+                    let pl = m.unit_parameter["equipment_enhance"][eq]["promotion_level"];
+                    let et = m.unit_parameter["enhance_table"][pl];
                     m.result_ids.forEach(function (s) {
-                        if (eq === 999999) return;
-                        m[s] += m.unit_parameter["equipment_data"][eq][s];
-                        m[s] += m.unit_parameter["equipment_enhance"][eq][s] *(1 + m.unit_parameter["equipment_enhance"][eq]["promotion_level"]);
+                        m[s] += Math.ceil(m.unit_parameter["equipment_data"][eq][s]
+                            + m.unit_parameter["equipment_enhance"][eq][s]
+                            *et);
                     });
                 });
+            }
+
+            // apply love status
+            if (m.love > 1) {
+                for (let i=2; i <= m.love; i++) {
+                    let love_status = m.unit_parameter["love_table"][i - 2];
+                    Object.keys(love_status).forEach(function (s) {
+                        m[s] += love_status[s];
+                    });
+                }
             }
             return true;
         }

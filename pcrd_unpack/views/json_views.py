@@ -5,6 +5,8 @@ from django.urls import reverse
 # Create your views here.
 from pcrd_unpack import models
 from django.http import JsonResponse, HttpResponse, Http404
+from django.db.models import Max, QuerySet
+
 from django.core import serializers
 
 class JSONResponseMixin:
@@ -75,9 +77,27 @@ class UnitJsonView(JSONResponseMixin, TemplateView):
         except models.UnitRarity.DoesNotExist:
             raise Http404("unit not found")
 
+        # enhance_table
+        max_enhance = models.EquipmentEnhanceData.objects.aggregate(Max('promotion_level'))["promotion_level__max"]
+        enhance_table = {i: models.EquipmentEnhanceData.objects.filter(promotion_level__exact=i).aggregate(Max('equipment_enhance_level'))["equipment_enhance_level__max"]
+                         for i in range(2, max_enhance +1 )}
+
+        # get love status bonus
+        ls = models.CharaStoryStatus.objects.filter(chara_id_1__exact=int(unit_id / 100)).order_by('story_id')
+        love_table = [self.reverse_love_status(l) for l in ls]
         response_context["unit_data"] = list(unit_data)
         response_context["unit_rank_data"] = list(unit_rank_data)
         response_context["unit_promotion_data"] = unit_promotion_data
         response_context["equipment_data"] = equipment_data
         response_context["equipment_enhance"] = equipment_enhance
+        response_context["enhance_table"] = enhance_table
+        response_context["love_table"] = love_table
         return response_context
+
+    def reverse_love_status(self, love_status):
+        ls_talbe = {}
+        for i in range(1, 6):
+            st = getattr(love_status, "status_type_{}".format(i))
+            if st != 0:
+                ls_talbe[models.GlobalStatus.love_status_map[st]] = getattr(love_status, "status_rate_{}".format(i))
+        return ls_talbe

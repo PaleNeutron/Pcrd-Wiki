@@ -46,70 +46,71 @@
 </head>
 
 <body>
-<header>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="{% url 'pcrd_unpack:index' %}">Princess Connect Re:Dive Wiki</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="{% url 'pcrd_unpack:index' %}">Princess Connect Re:Dive Wiki</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'pcrd_unpack:area' %}">Quest Areas <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'pcrd_unpack:equipment_list' %}">Equipments</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'pcrd_unpack:unit_list' %}">Characters</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'pcrd_unpack:unit_summary' %}">Summary</a>
-            </li>
-{#            <li class="nav-item">#}
-{#                <a class="nav-link" href="{% url 'pcrd_unpack:item_list' %}">Items</a>#}
-{#            </li>#}
-{#            <li class="nav-item">#}
-{#                <a class="nav-link" href="{% url 'pcrd_unpack:contact' %}">Contact</a>#}
-{#            </li>#}
-{#            <li class="nav-item dropdown">#}
-{#                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-{#                    Dropdown#}
-{#                </a>#}
-{#                <div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
-{#                    <a class="dropdown-item" href="#">Action</a>#}
-{#                    <a class="dropdown-item" href="#">Another action</a>#}
-{#                    <div class="dropdown-divider"></div>#}
-{#                    <a class="dropdown-item" href="#">Something else here</a>#}
-{#                </div>#}
-{#            </li>#}
-{#            <li class="nav-item">#}
-{#                <a class="nav-link disabled" href="#">Disabled</a>#}
-{#            </li>#}
-        </ul>
-{#        <form class="form-inline my-2 my-lg-0">#}
-{#            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">#}
-{#            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
-{#        </form>#}
-        {% include 'pcrd_unpack/loginpartial.html' %}
-    </div>
-</nav>
-</header>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'pcrd_unpack:area' %}">Quest Areas <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'pcrd_unpack:equipment_list' %}">Equipments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'pcrd_unpack:unit_list' %}">Characters</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'pcrd_unpack:unit_summary' %}">Summary</a>
+                </li>
+    {#            <li class="nav-item">#}
+    {#                <a class="nav-link" href="{% url 'pcrd_unpack:item_list' %}">Items</a>#}
+    {#            </li>#}
+    {#            <li class="nav-item">#}
+    {#                <a class="nav-link" href="{% url 'pcrd_unpack:contact' %}">Contact</a>#}
+    {#            </li>#}
+    {#            <li class="nav-item dropdown">#}
+    {#                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+    {#                    Dropdown#}
+    {#                </a>#}
+    {#                <div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
+    {#                    <a class="dropdown-item" href="#">Action</a>#}
+    {#                    <a class="dropdown-item" href="#">Another action</a>#}
+    {#                    <div class="dropdown-divider"></div>#}
+    {#                    <a class="dropdown-item" href="#">Something else here</a>#}
+    {#                </div>#}
+    {#            </li>#}
+    {#            <li class="nav-item">#}
+    {#                <a class="nav-link disabled" href="#">Disabled</a>#}
+    {#            </li>#}
+            </ul>
+    {#        <form class="form-inline my-2 my-lg-0">#}
+    {#            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">#}
+    {#            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
+    {#        </form>#}
+            {% include 'pcrd_unpack/loginpartial.html' %}
+        </div>
+    </nav>
+    </header>
+    <main>
+        <div class="d-block d-sm-none" id="xs-nav-spacer"></div>
+        <div  class="container body-content">
 
-    <div class="d-block d-sm-none" id="xs-nav-spacer"></div>
-    <div  class="container body-content">
+        {% block content %}
 
-    {% block content %}
+        {% endblock %}
 
-    {% endblock %}
+            <hr/>
 
-        <hr/>
-        <footer>
-            <p>&copy; {{ year }} - Princess Connect Re:Dive Wiki</p>
-        </footer>
-    </div>
-
+        </div>
+    </main>
+    <footer class="footer px-5">
+        <p class="mb-0">&copy; {{ year }} - Princess Connect Re:Dive Wiki</p>
+    </footer>
     <script src="{% static 'pcrd_unpack/scripts/jquery-1.10.2.js' %}"></script>
     <script src="{% static 'pcrd_unpack/scripts/bootstrap.bundle.js' %}"></script>
     <script src="{% static 'pcrd_unpack/scripts/respond.js' %}"></script>

@@ -132,6 +132,10 @@ class UnitDetailView(TemplateView):
         #     ur.life_steal,
         # ]
         context["data_tags"] = ur.data_tags()
+        # make 1d data tags to
+        # 1 2 3
+        # 4 5 6
+        # 7
         context["table_data_tags"] = zip_longest(*[iter(context["data_tags"])] * 3, fillvalue=None)
         unit_pattern = get_object_or_404(models.UnitAttackPattern, unit_id=unit_id)
         # patterns = [
@@ -238,6 +242,7 @@ def add_max_info(context:dict):
     context["max_level"] = models.UnitSummary.max_level()
     context["max_rank"] = models.UnitSummary.max_rank()
     context["max_rarity"] = models.UnitSummary.max_rarity()
+    context["max_love"] = models.UnitSummary.max_love()
     return context
 
 

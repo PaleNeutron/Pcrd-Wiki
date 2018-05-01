@@ -339,16 +339,18 @@
                 <table class="col-9 table table-bordered" id="parameters">
                     <thead>
                     <tr>
-                        <th>level</th>
-                        <th>rarity</th>
-                        <th>rank</th>
+                        <th>Level</th>
+                        <th>Rarity</th>
+                        <th>Rank</th>
+                        <th>Love</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                    <td><input id="level" type="number" min="1" max="{{ max_level }}" title="level" value="{{ max_level }}"></td>
-                    <td><input id="rarity" type="number" min="1" max="{{ max_rarity }}" title="rarity" value="{{ max_rarity }}"></td>
-                    <td><input id="rank" type="number" min="1" max="{{ max_rank }}" title="rank" value="{{ max_rank }}"></td>
+                    <tr id="input_tags">
+                        <td><input id="level" type="number" min="1" max="{{ max_level }}" title="level" value="{{ max_level }}"></td>
+                        <td><input id="rarity" type="number" min="1" max="{{ max_rarity }}" title="rarity" value="{{ max_rarity }}"></td>
+                        <td><input id="rank" type="number" min="1" max="{{ max_rank }}" title="rank" value="{{ max_rank }}"></td>
+                        <td><input id="love" type="number" min="1" max="{{ max_love }}" title="love" value="{{ max_love }}"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -458,9 +460,12 @@
         $(".table th:not(.un_colored th)").addClass("table-dark");
     </script>
     <script>
-        const tags = ['level', 'rarity', 'rank'];
+        {#const tags = ['level', 'rarity', 'rank', 'love'];#}
         const data_url = "{% url "pcrd_unpack:unit_json" unit_data.unit_id %}";
         const data_tags = {{ data_tags|safe}};
+    </script>
+    <script>
+
     </script>
     <script type="text/javascript" src="{% static "pcrd_unpack/scripts/elements/UnitDataModel.js" %}"></script>
     <script type="text/javascript" src="{% static "pcrd_unpack/scripts/elements/UnitCalc.js" %}"></script>

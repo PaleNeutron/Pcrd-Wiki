@@ -8,10 +8,13 @@ from django.db.models import Max
 def is_hard(self):
     return self.area_id > 12000
 
+
 QuestData.is_hard = is_hard
+
 
 class CustomBaseModel(models.Model):
     """docstring for CustomBaseModel"""
+
     class Meta:
         abstract = True
 
@@ -19,21 +22,23 @@ class CustomBaseModel(models.Model):
 class QuestRewardDataCustom(CustomBaseModel):
     """docstring for QuestRewardData"""
     # maybe we need to use a wide table
-    quest = models.ForeignKey(QuestData , default=None , null=True, on_delete=models.CASCADE)
-    equipment = models.ForeignKey(EquipmentData, default=None , null=True , on_delete=models.CASCADE)
-    item = models.ForeignKey(ItemData, default=None , null=True, on_delete=models.CASCADE)
+    quest = models.ForeignKey(QuestData, default=None, null=True, on_delete=models.CASCADE)
+    equipment = models.ForeignKey(EquipmentData, default=None, null=True, on_delete=models.CASCADE)
+    item = models.ForeignKey(ItemData, default=None, null=True, on_delete=models.CASCADE)
     rate = models.FloatField(default=0)
+
 
 class HatsuneQuestRewardDataCustom(CustomBaseModel):
     """docstring for QuestRewardData"""
     # maybe we need to use a wide table
-    quest = models.ForeignKey(HatsuneQuest , default=None , null=True, on_delete=models.CASCADE)
-    equipment = models.ForeignKey(EquipmentData, default=None , null=True , on_delete=models.CASCADE)
-    item = models.ForeignKey(ItemData, default=None , null=True, on_delete=models.CASCADE)
+    quest = models.ForeignKey(HatsuneQuest, default=None, null=True, on_delete=models.CASCADE)
+    equipment = models.ForeignKey(EquipmentData, default=None, null=True, on_delete=models.CASCADE)
+    item = models.ForeignKey(ItemData, default=None, null=True, on_delete=models.CASCADE)
     rate = models.FloatField(default=0)
 
+
 class UnitSummary(CustomBaseModel):
-    unit = models.OneToOneField(UnitData , primary_key=True, on_delete=models.CASCADE)
+    unit = models.OneToOneField(UnitData, primary_key=True, on_delete=models.CASCADE)
     hp = models.FloatField(default=0)
     atk = models.FloatField(default=0)
     magic_str = models.FloatField(default=0)
@@ -65,3 +70,22 @@ class UnitSummary(CustomBaseModel):
     @classmethod
     def max_rarity(cls):
         return 5
+
+    @classmethod
+    def max_love(cls):
+        return 8
+
+class GlobalStatus(object):
+    love_status_map = {
+        1: 'hp',
+        2: 'atk',
+        3: 'def_field',
+        4: 'magic_str',
+        5: 'magic_def',
+        6: 'physical_critical',
+        7: 'magic_critical',
+        8: 'dodge',
+        9: 'life_steal',
+        10: 'hp_recovery_rate',
+        11: 'energy_recovery_rate',
+    }
