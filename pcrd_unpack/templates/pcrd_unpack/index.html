@@ -1,179 +1,89 @@
 {% extends "pcrd_unpack/layout.html" %}
 {% load static %}
 {% block style_sheet %}
-    <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/album.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/album.css' %}"/>
+    <style>
+        a.custom-card,
+        a.custom-card:hover {
+            color: inherit;
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%; width: 100%;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
 
-<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-    <div class="masthead mb-auto">
-    </div>
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+        <div class="masthead mb-auto">
+        </div>
         <div role="main" class="inner cover text-center">
             <h1 class="cover-heading">Princess Connect Re:Dive Wiki</h1>
             <p class="lead text-muted">A wiki site provide Both Characters and Equipments data <br>
-                However, this site is still under develop, connect me on Github if you find something wrong</p>
-            <p>
-            <p class="lead">
-                <a class="btn btn-primary my-2" href="{% url 'pcrd_unpack:area' %}">Quest Areas</a>
+                However, this site is still under develop, connect me on <a href="https://github.com/PaleNeutron/Pcrd-Wiki">Github</a> if you find something wrong</p>
 
-                <a class="btn btn-primary my-2" href="{% url 'pcrd_unpack:equipment_list' %}">Equipments</a>
+            <div class="card-deck">
+                <div class="card bg-success">
+                    <a class="custom-card" href="{% url 'pcrd_unpack:area' %}">
+                    </a>
+                    <img class="card-img-top" src="{% static "pcrd_unpack/icon_map.png" %}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Quest Areas</h5>
+                        <p class="card-text">Quest maps with drop items and drop rates</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-white">Hidden Drops Included</small>
+                    </div>
+                </div>
 
-                <a class="btn btn-primary my-2" href="{% url 'pcrd_unpack:unit_list' %}">Characters</a>
+                <div class="card bg-info">
+                    <a class="custom-card" href="{% url 'pcrd_unpack:unit_list' %}">
+                    </a>
 
-                <a class="btn btn-primary my-2" href="{% url 'pcrd_unpack:unit_summary' %}">Characters Table</a>
+                    <img class="card-img-top img-thumbnail" src="{% static "pcrd_unpack/icon_unit.png" %}"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Characters</h5>
+                        <p class="card-text">Profile, Properties, Action Line, Sills, Equipments<br>
+                            Get all you want to know with a character</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-white">Enjoy & Analyse</small>
+                    </div>
+                </div>
 
-                <a href="https://github.com/PaleNeutron/Pcrd-Wiki" class="btn btn-secondary my-2">Repo on Github</a>
-            </p>
+                <div class="card bg-secondary">
+                    <a class="custom-card" href="{% url 'pcrd_unpack:equipment_list' %}">
+                    </a>
+
+                    <img class="card-img-top" src="{% static "pcrd_unpack/icon_equipment.png" %}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Equitments</h5>
+                        <p class="card-text">List all Equipments here, You can find recipes and where to get them</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-white">Review By-product in a Glances</small>
+                    </div>
+                </div>
+            </div>
+
+
+            {#            <div class="lead">#}
+            {#                <a class="btn btn-primary my-2" href="{% url 'pcrd_unpack:area' %}">Quest Areas</a>#}
+            {##}
+            {#                <a class="btn btn-primary my-2" href="{% url 'pcrd_unpack:equipment_list' %}">Equipments</a>#}
+            {##}
+            {#                <a class="btn btn-primary my-2" href="{% url 'pcrd_unpack:unit_list' %}">Characters</a>#}
+            {##}
+            {#                <a class="btn btn-primary my-2" href="{% url 'pcrd_unpack:unit_summary' %}">Characters Table</a>#}
+            {##}
+            {#                <a href="https://github.com/PaleNeutron/Pcrd-Wiki" class="btn btn-secondary my-2">Repo on Github</a>#}
+            {#            </div>#}
         </div>
-    <div class="masthead mb-auto">
+        <div class="masthead mb-auto">
+        </div>
     </div>
-</div>
-{##}
-{#    <div class="album py-5 bg-light">#}
-{#        <div class="container">#}
-{##}
-{#            <div class="row">#}
-{#                <div class="col-md-4">#}
-{#                    <div class="card mb-4 box-shadow">#}
-{#                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">#}
-{#                        <div class="card-body">#}
-{#                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>#}
-{#                            <div class="d-flex justify-content-between align-items-center">#}
-{#                                <div class="btn-group">#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>#}
-{#                                </div>#}
-{#                                <small class="text-muted">9 mins</small>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-md-4">#}
-{#                    <div class="card mb-4 box-shadow">#}
-{#                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">#}
-{#                        <div class="card-body">#}
-{#                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>#}
-{#                            <div class="d-flex justify-content-between align-items-center">#}
-{#                                <div class="btn-group">#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>#}
-{#                                </div>#}
-{#                                <small class="text-muted">9 mins</small>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-md-4">#}
-{#                    <div class="card mb-4 box-shadow">#}
-{#                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">#}
-{#                        <div class="card-body">#}
-{#                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>#}
-{#                            <div class="d-flex justify-content-between align-items-center">#}
-{#                                <div class="btn-group">#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>#}
-{#                                </div>#}
-{#                                <small class="text-muted">9 mins</small>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                <div class="col-md-4">#}
-{#                    <div class="card mb-4 box-shadow">#}
-{#                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">#}
-{#                        <div class="card-body">#}
-{#                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>#}
-{#                            <div class="d-flex justify-content-between align-items-center">#}
-{#                                <div class="btn-group">#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>#}
-{#                                </div>#}
-{#                                <small class="text-muted">9 mins</small>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-md-4">#}
-{#                    <div class="card mb-4 box-shadow">#}
-{#                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">#}
-{#                        <div class="card-body">#}
-{#                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>#}
-{#                            <div class="d-flex justify-content-between align-items-center">#}
-{#                                <div class="btn-group">#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>#}
-{#                                </div>#}
-{#                                <small class="text-muted">9 mins</small>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-md-4">#}
-{#                    <div class="card mb-4 box-shadow">#}
-{#                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">#}
-{#                        <div class="card-body">#}
-{#                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>#}
-{#                            <div class="d-flex justify-content-between align-items-center">#}
-{#                                <div class="btn-group">#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>#}
-{#                                </div>#}
-{#                                <small class="text-muted">9 mins</small>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                <div class="col-md-4">#}
-{#                    <div class="card mb-4 box-shadow">#}
-{#                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">#}
-{#                        <div class="card-body">#}
-{#                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>#}
-{#                            <div class="d-flex justify-content-between align-items-center">#}
-{#                                <div class="btn-group">#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>#}
-{#                                </div>#}
-{#                                <small class="text-muted">9 mins</small>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-md-4">#}
-{#                    <div class="card mb-4 box-shadow">#}
-{#                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">#}
-{#                        <div class="card-body">#}
-{#                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>#}
-{#                            <div class="d-flex justify-content-between align-items-center">#}
-{#                                <div class="btn-group">#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>#}
-{#                                </div>#}
-{#                                <small class="text-muted">9 mins</small>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-md-4">#}
-{#                    <div class="card mb-4 box-shadow">#}
-{#                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">#}
-{#                        <div class="card-body">#}
-{#                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>#}
-{#                            <div class="d-flex justify-content-between align-items-center">#}
-{#                                <div class="btn-group">#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>#}
-{#                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>#}
-{#                                </div>#}
-{#                                <small class="text-muted">9 mins</small>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
 
 {% endblock %}
 
