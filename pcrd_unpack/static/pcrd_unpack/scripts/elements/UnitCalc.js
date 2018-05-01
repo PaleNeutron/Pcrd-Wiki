@@ -2,7 +2,7 @@
 function set_result(udm) {
     let m = udm;
     udm.result_ids.forEach(function (s) {
-        $("#" + s).text(Math.round(m[s]));
+        $("#" + s).text(m[s]);
     });
     return true;
 }
@@ -10,16 +10,23 @@ function set_result(udm) {
 function pcrd_calculate() {
     parameterChecker();
     udm.result_ids = data_tags;
-    udm.calc(parseInt($("#level").val()),
-             parseInt($("#rank").val()),
-             parseInt($("#rarity").val()));
+    udm.calc(
+        parseInt($("#level").val()),
+        parseInt($("#rank").val()),
+        parseInt($("#rarity").val()),
+        parseInt($("#love").val()),
+    );
     set_result(udm);
 }
 
+let tags = [];
 function pcrd_unit_data_init() {
     unit_parameter = $.getJSON(data_url, success = function (data) {
         unit_parameter = data;
         udm.unit_parameter = unit_parameter;
+        tags = $("#input_tags input").map(function(){
+            return this.id
+        }).get();
         tags.forEach(function (tag) {
             udm["max_"+tag] = parseInt($("#" + tag).val());
         });
