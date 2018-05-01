@@ -18,7 +18,10 @@
         <h1 class="display-4">
             Unit List</h1>
         <hr class="my-4">
-        <p class="lead">You can find all units here</p>
+        <p>Or if you want a data table view, go to summary page</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{% url "pcrd_unpack:unit_summary" %}" role="button">Summary Table</a>
+        </p>
     </div>
 
     <div class="d-flex flex-wrap justify-content-center" id="unitdata_list">
