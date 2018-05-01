@@ -25,6 +25,17 @@ class UnitDataModel {
         if (isNaN(this.level) || isNaN(this.rank) || isNaN(this.rarity)) {
             return false;
         }
+        if (this.level > this.MAX_LEVEL) {
+            return false;
+        }
+
+        if (this.rank > this.MAX_RANK) {
+            return false;
+        }
+
+        if (this.rarity > this.MAX_RARITY) {
+            return false;
+        }
 
         return true;
     }
@@ -88,10 +99,13 @@ class UnitDataModel {
             if (m.rank > 1) {
                 let current_equipments_data = m.unit_parameter["unit_promotion_data"][m.rank - 1];
                 current_equipments_data.forEach(function (eq) {
+                    if (eq === 999999) return;
+                    let pl = m.unit_parameter["equipment_enhance"][eq]["promotion_level"];
+                    let et = m.unit_parameter["enhance_table"][pl];
                     m.result_ids.forEach(function (s) {
-                        if (eq === 999999) return;
-                        m[s] += m.unit_parameter["equipment_data"][eq][s];
-                        m[s] += m.unit_parameter["equipment_enhance"][eq][s] *(1 + m.unit_parameter["equipment_enhance"][eq]["promotion_level"]);
+                        m[s] += Math.floor(m.unit_parameter["equipment_data"][eq][s]
+                            + m.unit_parameter["equipment_enhance"][eq][s]
+                            *et);
                     });
                 });
             }

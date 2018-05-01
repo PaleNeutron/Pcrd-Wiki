@@ -8,6 +8,7 @@ function set_result(udm) {
 }
 
 function pcrd_calculate() {
+    parameterChecker();
     udm.result_ids = data_tags;
     udm.calc(parseInt($("#level").val()),
              parseInt($("#rank").val()),
@@ -17,17 +18,12 @@ function pcrd_calculate() {
 
 function pcrd_unit_data_init() {
     unit_parameter = $.getJSON(data_url, success = function (data) {
-        // enable edit after get data
-        tags.forEach(function (element) {
-            let e = document.getElementById(element);
-            e.contentEditable = true;
-            e.onclick = function () {
-                window.getSelection().selectAllChildren(this)
-            };
-        });
-        // console.log(data);
         unit_parameter = data;
         udm.unit_parameter = unit_parameter;
+        tags.forEach(function (tag) {
+            udm["max_"+tag] = parseInt($("#" + tag).val());
+        });
+
         $("#parameters input").on("change paste keyup",
             pcrd_calculate
         );
@@ -38,14 +34,17 @@ function pcrd_unit_data_init() {
 function parameterChecker() {
     tags.forEach(function (element) {
         let temp = document.getElementById(element);
-        if (temp.innerHTML.match(/[^\d]/)) {
-            temp.innerHTML = temp.innerHTML.replace(/[^\d]/g, '');
+        if (temp.value > udm["max_" + element]) {
+            temp.value = udm["max_" + element];
+        }
+        else if (temp.value < 1) {
+            temp.value = 1;
         }
     });
 }
 
 function pcrd_calculate_main() {
-    parameterChecker();
+
     pcrd_calculate();
 }
 

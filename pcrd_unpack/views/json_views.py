@@ -5,6 +5,8 @@ from django.urls import reverse
 # Create your views here.
 from pcrd_unpack import models
 from django.http import JsonResponse, HttpResponse, Http404
+from django.db.models import Max
+
 from django.core import serializers
 
 class JSONResponseMixin:
@@ -75,9 +77,14 @@ class UnitJsonView(JSONResponseMixin, TemplateView):
         except models.UnitRarity.DoesNotExist:
             raise Http404("unit not found")
 
+        # enhance_table = {}
+        max_enhance = models.EquipmentEnhanceData.objects.aggregate(Max('promotion_level'))["promotion_level__max"]
+        enhance_table = {i: models.EquipmentEnhanceData.objects.filter(promotion_level__exact=i).aggregate(Max('equipment_enhance_level'))["equipment_enhance_level__max"]
+                         for i in range(2, max_enhance +1 )}
         response_context["unit_data"] = list(unit_data)
         response_context["unit_rank_data"] = list(unit_rank_data)
         response_context["unit_promotion_data"] = unit_promotion_data
         response_context["equipment_data"] = equipment_data
         response_context["equipment_enhance"] = equipment_enhance
+        response_context["enhance_table"] = enhance_table
         return response_context
