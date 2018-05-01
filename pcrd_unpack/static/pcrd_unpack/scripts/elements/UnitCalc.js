@@ -16,9 +16,6 @@ function pcrd_calculate() {
 }
 
 function pcrd_unit_data_init() {
-    $("#level").val(88);
-    $("#rarity").val(5);
-    $("#rank").val(8);
     unit_parameter = $.getJSON(data_url, success = function (data) {
         // enable edit after get data
         tags.forEach(function (element) {

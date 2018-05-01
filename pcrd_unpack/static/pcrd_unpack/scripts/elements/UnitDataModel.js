@@ -14,9 +14,6 @@ class UnitDataModel {
 
         this.unit_parameter = {};
 
-        this.MAX_LEVEL = 88;
-        this.MAX_RANK = 8;
-        this.MAX_RARITY = 5;
         this.result_ids = [];
     }
 
@@ -26,17 +23,6 @@ class UnitDataModel {
         this.rarity = rarity;
 
         if (isNaN(this.level) || isNaN(this.rank) || isNaN(this.rarity)) {
-            return false;
-        }
-        if (this.level > this.MAX_LEVEL) {
-            return false;
-        }
-
-        if (this.rank > this.MAX_RANK) {
-            return false;
-        }
-
-        if (this.rarity > this.MAX_RARITY) {
             return false;
         }
 
