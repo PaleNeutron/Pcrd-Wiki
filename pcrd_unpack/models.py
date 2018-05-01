@@ -1,6 +1,7 @@
 from django.db import models
 from .models_gen import *
 from django.utils.functional import cached_property
+from django.db.models import Max
 
 
 @cached_property
@@ -50,3 +51,17 @@ class UnitSummary(CustomBaseModel):
     @classmethod
     def data_tags(cls):
         return [f.name for f in cls._meta.get_fields() if not f.primary_key]
+
+    @classmethod
+    def max_level(cls):
+        """this method calc the max level each time called, should be store the value somewhere instead of calc"""
+        return ExperienceUnit.objects.aggregate(Max("unit_level"))["unit_level__max"]
+
+    @classmethod
+    def max_rank(cls):
+        """this method calc the max level each time called, should be store the value somewhere instead of calc"""
+        return UnitPromotion.objects.aggregate(Max("promotion_level"))["promotion_level__max"]
+
+    @classmethod
+    def max_rarity(cls):
+        return 5
