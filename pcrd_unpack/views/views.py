@@ -196,11 +196,12 @@ class UnitDetailView(TemplateView):
             elif a.action_type == 3:
                 a.description = 'Push'
                 factor_static = a.action_value_3
-            elif a.action_type in [10, 12]:
+            elif a.action_type in [9, 10, 12]:
                 # I don't know why, but
+                # type 9 is dot
                 # type 10 is self-buff
                 # type 12 is de-buff
-                # which not affected by atk
+                # which are not affected by atk
                 factor_atk = 0
                 factor_atk_level = 0
 
