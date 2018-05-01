@@ -86,6 +86,7 @@ class GlobalStatus(object):
         7: 'magic_critical',
         8: 'dodge',
         9: 'life_steal',
-        10: 'hp_recovery_rate',
-        11: 'energy_recovery_rate',
+        10: 'wave_hp_recovery',
+        11: 'wave_energy_recovery',
+        15: 'hp_recovery_rate',
     }
