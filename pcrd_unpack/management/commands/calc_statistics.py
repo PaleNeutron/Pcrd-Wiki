@@ -26,6 +26,7 @@ class Command(BaseCommand):
         max_level = UnitSummary.max_level()
         max_rank = UnitSummary.max_rank()
         max_rarity = UnitSummary.max_rarity()
+        max_love = UnitSummary.max_love()
 
         js_path = finders.find("pcrd_unpack/scripts/elements/UnitDataModel.js")
         with open(js_path) as f:
@@ -43,8 +44,8 @@ class Command(BaseCommand):
                             "var udm = new UnitDataModel()",
                             "udm.unit_parameter = dukpy['value']",
                             "udm.result_ids = dukpy['data_tags']",
-                            "udm.calc(dukpy['max_level'],dukpy['max_rank'],dukpy['max_rarity'])",
-                            "udm;"], max_level=max_level, max_rank=max_rank, max_rarity=max_rarity,
+                            "udm.calc(dukpy['max_level'],dukpy['max_rank'],dukpy['max_rarity'],dukpy['max_love'])",
+                            "udm;"], max_level=max_level, max_rank=max_rank, max_rarity=max_rarity, max_love=max_love,
                            value=data, data_tags=context_data["data_tags"])
             us = UnitSummary(unit_id=unit_id)
             for p in context_data["data_tags"]:
@@ -60,7 +61,7 @@ class Command(BaseCommand):
         q_list = []
         QuestRewardDataCustom.objects.all().delete()
         for qd in QuestData.objects.all():
-            print("****quest {}****".format(qd.quest_id))
+            logger.debug("****quest {}****".format(qd.quest_id))
             wg1 = qd.wave_group_id_1
             wg2 = qd.wave_group_id_2
             wg3 = qd.wave_group_id_3
@@ -83,7 +84,7 @@ class Command(BaseCommand):
                                                   rate=r_rate)
                     else:
                         continue
-                    print("reward: {}, rate: {}".format(r_id, r_rate))
+                    logger.debug("reward: {}, rate: {}".format(r_id, r_rate))
                     q_list.append(q)
 
         QuestRewardDataCustom.objects.bulk_create(q_list)
