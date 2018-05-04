@@ -229,7 +229,9 @@ class UnitSummaryView(TemplateView):
         uss = models.UnitSummary.objects.all()
         context = {}
         context["data_tags"] = models.UnitSummary.data_tags()
-        context["unit_summary_data"] = {us:[int(getattr(us, p)) for p in us.data_tags()]
+        context["data_tags"].insert(1, 'position')
+
+        context["unit_summary_data"] = {us:[int(getattr(us, p)) for p in context["data_tags"]]
                                         for us in uss}
         add_max_info(context)
         return context

@@ -75,6 +75,10 @@ class UnitSummary(CustomBaseModel):
     def max_love(cls):
         return 8
 
+    @cached_property
+    def position(self):
+        return self.unit.search_area_width
+
 class GlobalStatus(object):
     love_status_map = {
         1: 'hp',
