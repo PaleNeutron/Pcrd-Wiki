@@ -16,7 +16,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/bootstrap.min.css' %}" />
 {#    <!-- Latest compiled and minified CSS -->#}
 {#    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.0/bootstrap-table.min.css">#}
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.16/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.16/fc-3.2.4/sc-1.4.4/datatables.min.css"/>
+
     {#    my css#}
     <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/site.css' %}" />
     {% block style_sheet %}
@@ -47,7 +48,7 @@
 
 <body>
     <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="top_nav">
         <a class="navbar-brand" href="{% url 'pcrd_unpack:index' %}">Princess Connect Re:Dive Wiki</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -122,7 +123,7 @@
 
 {#    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>#}
 {#    use bootstrap tooltip#}
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.16/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.16/fc-3.2.4/sc-1.4.4/datatables.min.js"></script>
 
 {% block scripts %}
 

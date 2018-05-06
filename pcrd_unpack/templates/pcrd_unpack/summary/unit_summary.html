@@ -1,0 +1,186 @@
+{% extends "pcrd_unpack/layout.html" %}
+{% load static %}
+
+{% block style_sheet %}
+    <style>
+    {#show table after init#}
+    #unit_summary_list {
+        visibility: hidden;
+    }
+
+    #unit_summary_list_wrapper #unit_summary_list{
+        visibility: visible;
+    }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/icon" as unit_icon %}
+{#    {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/icon/unitplate/" as unitplate %}#}
+
+    <div class="jumbotron-fluid h-100">
+        <h1 class="display-4">
+            Summary Data</h1>
+    </div>
+
+    <hr>
+    <div class="col justify-content-center">
+        <h2 class="text-center">Unit Maxim Data</h2>
+        <hr class="my-4">
+        <p class="lead">Units Data at Level {{ max_level }}, Rank {{ max_rank }},
+            Star {{ max_rarity }}, Love Level {{ max_level }}
+            with fully enhanced equipments</p>
+    </div>
+    <div class="row">
+        <table class="table table-sm table-bordered table-hover"  id="unit_summary_list">
+        <thead class="thead-dark">
+        <tr>
+            <th>PIC</th>
+            <th>Name</th>
+            {% for data_tag in data_tags %}
+                <th>{{ data_tag }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+            {% for unitsummary, unit_summary_data in unit_summary_data.items %}
+                <tr>
+                    <th>
+                        <a href="{% url "pcrd_unpack:unit" unitsummary.unit_id %}">
+                            <img class="rounded d-block w-100"
+                                 src="{{ unit_icon }}/icon_unit_{% if unitsummary.unit.rarity == 3 %}{{ unitsummary.unit.unit_id|add:"30" }}{% else %}{{ unitsummary.unit.unit_id|add:"10" }}{% endif %}.jpg" alt="">
+                        </a>
+                    </th>
+                    <td>
+                        {{ unitsummary.unit.unit_name }}
+                    </td>
+                        {% for unit_summary_datum in unit_summary_data %}
+                            <td>
+                            {{ unit_summary_datum}}
+                            </td>
+                        {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+
+    <hr>
+    <div class="row justify-content-center">
+    <h2> Experience Analyse</h2>
+    </div>
+    <div class="container d-flex">
+        <div class="container col-md-5 col-sm-12">
+            <canvas id="exp_chart" width="400" height="400"></canvas>
+        </div>
+        <div class="container col-md-5 col-sm-12">
+            <canvas id="exp_compare_chart" width="400" height="400"></canvas>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#unit_summary_list').DataTable({
+                "order": [[ 3, "asc" ]],
+                scrollY:        500,
+                scrollX:        true,
+                {#scrollCollapse: true,#}
+                paging:         false,
+                fixedColumns: {
+                    leftColumns: 2
+                }
+            });
+        } );
+
+
+        var ctx = document.getElementById("exp_chart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{ chart_datas.team.labels }},
+                datasets: [
+                    {
+                        label: "{{ chart_datas.team.title }}",
+                        data: {{ chart_datas.team.data }},
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+
+                        ],
+                        borderWidth: 1
+                    },
+                    {
+                        label: "{{ chart_datas.unit.title }}",
+                        data: {{ chart_datas.unit.data }},
+                        backgroundColor: [
+                            'rgba(75, 148, 218, 0.2)',
+
+                        ],
+                        borderColor: [
+                            'rgba(75,148,218,1)',
+
+                        ],
+                        borderWidth: 1
+                    },
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        },
+                        scaleLabel:{
+                            display: true,
+                            labelString: 'experience'
+                        }
+                    }]
+                }
+            }
+        });
+
+        var exp_compare_chart_ctx = document.getElementById("exp_compare_chart").getContext('2d');
+        var exp_compare_chart = new Chart(exp_compare_chart_ctx, {
+            type: 'line',
+            data: {
+                labels: {{ chart_datas.compare.labels }},
+                datasets: [
+                    {
+                        label: "{{ chart_datas.compare.title }}",
+                        data: {{ chart_datas.compare.data }},
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+
+                        ],
+                        borderWidth: 1
+                    },
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        },
+                        scaleLabel:{
+                            display: true,
+                            labelString: 'experience'
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+{% endblock %}

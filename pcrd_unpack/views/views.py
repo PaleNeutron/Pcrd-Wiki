@@ -101,7 +101,7 @@ class UnitListView(ListView):
 
 class UnitDetailView(TemplateView):
     """docstring for UnitDetailView"""
-    template_name = "pcrd_unpack/unit_detail.html"
+    template_name = "pcrd_unpack/unit_detail/unit_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -171,10 +171,10 @@ class UnitDetailView(TemplateView):
                 factor_atk = a.action_value_3
                 factor_atk_level = a.action_value_4
             elif a.action_type in [4, 10, 24, 29, 31, 34,]:
-                factor_static = a.action_value_2
+                factor_static = a.action_value_1 + a.action_value_2
                 factor_level = a.action_value_3
-                factor_atk = a.action_value_4
-                factor_atk_level = a.action_value_5
+                factor_atk = 0
+                factor_atk_level = 0
             elif a.action_type in [5, 6, 14, 16, 17, 18, 19, 20, 21, 33, 46, ]:
                 factor_static = a.action_value_1
                 factor_level = a.action_value_2
@@ -200,11 +200,12 @@ class UnitDetailView(TemplateView):
             elif a.action_type == 3:
                 a.description = 'Push'
                 factor_static = a.action_value_3
-            elif a.action_type in [9, 10, 12]:
+            elif a.action_type in [9, 12]:
                 # I don't know why, but
-                # type 9 is dot
+                # type 9 is DOT
                 # type 10 is self-buff
                 # type 12 is de-buff
+                # type 34 is accumulated self-buff or buff forever
                 # which are not affected by atk
                 factor_atk = 0
                 factor_atk_level = 0
@@ -223,14 +224,36 @@ class UnitDetailView(TemplateView):
 
 
 class UnitSummaryView(TemplateView):
-    template_name = "pcrd_unpack/unit_summary.html"
+    template_name = "pcrd_unpack/summary/unit_summary.html"
 
     def get_context_data(self, **kwargs):
         uss = models.UnitSummary.objects.all()
         context = {}
         context["data_tags"] = models.UnitSummary.data_tags()
-        context["unit_summary_data"] = {us:[int(getattr(us, p)) for p in us.data_tags()]
+        context["data_tags"].insert(1, 'position')
+
+        context["unit_summary_data"] = {us:[int(getattr(us, p)) for p in context["data_tags"]]
                                         for us in uss}
+
+        exp_team = models.ExperienceTeam.objects.all()
+        exp_unit = models.ExperienceUnit.objects.all()
+        context["chart_datas"] = {
+            'team' : {
+                'title' : 'Player Experience',
+                'labels': [i.team_level for i in exp_team],
+                'data' : [i.total_exp for i in exp_team],
+            },
+            'unit' : {
+                'title': 'Character Experience',
+                'labels': [i.unit_level for i in exp_unit],
+                'data': [i.total_exp for i in exp_unit],
+            },
+            'compare': {
+                'title': 'Experience Food per Player Exp',
+                'labels': [i.unit_level for i in exp_unit],
+                'data': [exp_unit[i].total_exp/exp_team[i].total_exp for i in range(1, len(exp_unit))],
+            },
+        }
         add_max_info(context)
         return context
 

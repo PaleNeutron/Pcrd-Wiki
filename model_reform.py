@@ -6,7 +6,7 @@ def main():
     for i, l in enumerate(rl[1:]):
         print(rl[i])
 
-        if "models.Model" in rl[i] and "id" in l:
+        if "models.Model" in rl[i]:
             l = l.replace("()", "(primary_key=True)")
             print("****"+l)
         new_ls.append(l)

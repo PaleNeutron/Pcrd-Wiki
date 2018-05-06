@@ -601,17 +601,6 @@ class DailyMissionData(models.Model):
         db_table = 'daily_mission_data'
 
 
-class DjangoMigrations(models.Model):
-    id = models.IntegerField(primary_key=True)  # AutoField?
-    app = models.CharField(max_length=255)
-    name = models.CharField(max_length=255)
-    applied = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'django_migrations'
-
-
 class DungeonAreaData(models.Model):
     dungeon_area_id = models.IntegerField(primary_key=True)
     dungeon_type = models.IntegerField()
@@ -809,7 +798,7 @@ class EquipmentData(models.Model):
 
 
 class EquipmentDonation(models.Model):
-    team_level = models.IntegerField()
+    team_level = models.IntegerField(primary_key=True)
     donation_num_once = models.IntegerField()
     donation_num_daily = models.IntegerField()
     request_num_once = models.IntegerField()
@@ -820,7 +809,7 @@ class EquipmentDonation(models.Model):
 
 
 class EquipmentEnhanceData(models.Model):
-    promotion_level = models.IntegerField()
+    promotion_level = models.IntegerField(primary_key=True)
     equipment_enhance_level = models.IntegerField()
     needed_point = models.IntegerField()
     total_point = models.IntegerField()
@@ -1146,7 +1135,7 @@ class EventWaveGroupData(models.Model):
 
 
 class ExperienceTeam(models.Model):
-    team_level = models.IntegerField()
+    team_level = models.IntegerField(primary_key=True)
     total_exp = models.IntegerField()
     max_stamina = models.IntegerField()
     over_limit_stamina = models.IntegerField()
@@ -1158,7 +1147,7 @@ class ExperienceTeam(models.Model):
 
 
 class ExperienceUnit(models.Model):
-    unit_level = models.IntegerField()
+    unit_level = models.IntegerField(primary_key=True)
     total_exp = models.IntegerField()
 
     class Meta:
@@ -1645,7 +1634,7 @@ class LoginBonusDetail(models.Model):
 
 
 class LoveChara(models.Model):
-    love_level = models.IntegerField()
+    love_level = models.IntegerField(primary_key=True)
     total_love = models.IntegerField()
     unlocked_class = models.IntegerField()
     rarity = models.IntegerField()
@@ -1710,30 +1699,6 @@ class OddsNameData(models.Model):
     class Meta:
         managed = False
         db_table = 'odds_name_data'
-
-
-class PcrdUnpackHatsunequestrewarddatacustom(models.Model):
-    id = models.IntegerField(primary_key=True)  # AutoField?
-    rate = models.FloatField()
-    equipment_id = models.IntegerField(blank=True, null=True)
-    item_id = models.IntegerField(blank=True, null=True)
-    quest_id = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'pcrd_unpack_hatsunequestrewarddatacustom'
-
-
-class PcrdUnpackQuestrewarddatacustom(models.Model):
-    id = models.IntegerField(primary_key=True)  # AutoField?
-    rate = models.FloatField()
-    equipment_id = models.IntegerField(blank=True, null=True)
-    item_id = models.IntegerField(blank=True, null=True)
-    quest_id = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'pcrd_unpack_questrewarddatacustom'
 
 
 class PositionSetting(models.Model):
@@ -2168,7 +2133,7 @@ class SkillAction(models.Model):
 
 
 class SkillCost(models.Model):
-    target_level = models.IntegerField()
+    target_level = models.IntegerField(primary_key=True)
     cost = models.IntegerField()
 
     class Meta:
@@ -2723,7 +2688,7 @@ class UnitStatusCoefficient(models.Model):
 
 
 class UnlockSkillData(models.Model):
-    promotion_level = models.IntegerField()
+    promotion_level = models.IntegerField(primary_key=True)
     unlock_skill = models.IntegerField()
 
     class Meta:
