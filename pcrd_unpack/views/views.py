@@ -240,18 +240,20 @@ class UnitSummaryView(TemplateView):
         context["chart_datas"] = {
             'team' : {
                 'title' : 'Player Experience',
-                'labels': [i.team_level for i in exp_team],
-                'data' : [i.total_exp for i in exp_team],
+                'labels': [exp_team[i].team_level for i in range(1, len(exp_team))],
+                'data' : [exp_team[i].total_exp - exp_team[i-1].total_exp for i in range(1, len(exp_team))],
             },
             'unit' : {
                 'title': 'Character Experience',
-                'labels': [i.unit_level for i in exp_unit],
-                'data': [i.total_exp for i in exp_unit],
+                'labels': [exp_unit[i].unit_level for i in range(1, len(exp_unit))],
+                'data' : [exp_unit[i].total_exp - exp_unit[i-1].total_exp for i in range(1, len(exp_unit))],
             },
             'compare': {
                 'title': 'Experience Food per Player Exp',
                 'labels': [i.unit_level for i in exp_unit],
-                'data': [exp_unit[i].total_exp/exp_team[i].total_exp for i in range(1, len(exp_unit))],
+                'data': [(exp_unit[i].total_exp - exp_unit[i-1].total_exp) \
+                         /(exp_team[i].total_exp - exp_team[i-1].total_exp)
+                         for i in range(1, len(exp_unit))],
             },
         }
         add_max_info(context)
