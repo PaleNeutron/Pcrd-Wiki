@@ -28,7 +28,7 @@
         <h2 class="text-center">Unit Maxim Data</h2>
         <hr class="my-4">
         <p class="lead">Units Data at Level {{ max_level }}, Rank {{ max_rank }},
-            Star {{ max_rarity }}, Love Level {{ max_level }}
+            Star {{ max_rarity }}, Love Level {{ max_love }}
             with fully enhanced equipments</p>
     </div>
     <div class="row">
@@ -76,14 +76,37 @@
         <div class="container col-md-5 col-sm-12">
             <canvas id="exp_compare_chart" width="400" height="400"></canvas>
         </div>
+
+    </div>
+    <div class="row justify-content-center">
+        <h2> Mana Analyse</h2>
+    </div>
+    <div class="container row d-flex">
+        <div class="container col-md-5 col-sm-12">
+            <canvas id="skill_mana_chart" width="400" height="400"></canvas>
+        </div>
+        <div class="container col-md-5 col-sm-12">
+            <canvas id="skill_compare_chart" width="400" height="400"></canvas>
+        </div>
     </div>
 {% endblock %}
 
 
 {% block scripts %}
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    <script type="text/javascript" src="{% static 'pcrd_unpack/scripts/palette.js' %}"></script>
 
     <script>
+    function get_color(offset, border=false){
+        var len = 8;
+        offset = offset % len;
+        return palette('mpn65', len).map(function(hex) {
+            if (border){
+                return '#' + hex;
+            }
+            return '#' + hex + "30";
+        })[offset]
+    }
         $(document).ready(function() {
             $('#unit_summary_list').DataTable({
                 "order": [[ 3, "asc" ]],
@@ -107,27 +130,15 @@
                     {
                         label: "{{ chart_datas.team.title }}",
                         data: {{ chart_datas.team.data }},
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-
-                        ],
-                        borderColor: [
-                            'rgba(255,99,132,1)',
-
-                        ],
+                        backgroundColor: get_color(1),
+                        borderColor: get_color(1, true),
                         borderWidth: 1
                     },
                     {
                         label: "{{ chart_datas.unit.title }}",
                         data: {{ chart_datas.unit.data }},
-                        backgroundColor: [
-                            'rgba(75, 148, 218, 0.2)',
-
-                        ],
-                        borderColor: [
-                            'rgba(75,148,218,1)',
-
-                        ],
+                        backgroundColor: get_color(2),
+                        borderColor: get_color(2, true),
                         borderWidth: 1
                     },
                 ]
@@ -156,14 +167,8 @@
                     {
                         label: "{{ chart_datas.compare.title }}",
                         data: {{ chart_datas.compare.data }},
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-
-                        ],
-                        borderColor: [
-                            'rgba(255,99,132,1)',
-
-                        ],
+                        backgroundColor: get_color(3),
+                        borderColor: get_color(3, true),
                         borderWidth: 1
                     },
                 ]
@@ -182,5 +187,68 @@
                 }
             }
         });
+
+        var skill_compare_chart_ctx = document.getElementById("skill_compare_chart").getContext('2d');
+        var skill_compare_chart = new Chart(skill_compare_chart_ctx, {
+            type: 'line',
+            data: {
+                labels: {{ chart_datas.skill_compare.labels }},
+                datasets: [
+                    {
+                        label: "{{ chart_datas.skill_compare.title|title }}",
+                        data: {{ chart_datas.skill_compare.data }},
+                        backgroundColor: get_color(4),
+                        borderColor: get_color(4, true),
+                        borderWidth: 1
+                    },
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        },
+                        scaleLabel:{
+                            display: true,
+                            labelString: 'ratio'
+                        }
+                    }]
+                }
+            }
+        });
+
+        {% with chart_tag="skill_mana" %}
+
+            var {{ chart_tag }}_chart_ctx = document.getElementById("{{ chart_tag }}_chart").getContext('2d');
+            var {{ chart_tag }}_chart = new Chart({{ chart_tag }}_chart_ctx, {
+                type: 'line',
+                data: {
+                    labels: {{ chart_datas.skill_mana.labels }},
+                    datasets: [
+                        {
+                            label: "{{ chart_datas.skill_mana.title|title }}",
+                            data: {{ chart_datas.skill_mana.data }},
+                            backgroundColor: get_color(5),
+                            borderColor: get_color(5, true),
+                            borderWidth: 1
+                        },
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            },
+                            scaleLabel:{
+                                display: true,
+                                labelString: 'ratio'
+                            }
+                        }]
+                    }
+                }
+            });
+        {% endwith %}
     </script>
 {% endblock %}

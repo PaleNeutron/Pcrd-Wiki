@@ -237,6 +237,7 @@ class UnitSummaryView(TemplateView):
 
         exp_team = models.ExperienceTeam.objects.all()
         exp_unit = models.ExperienceUnit.objects.all()
+        skill_cost = models.SkillCost.objects.all()
         context["chart_datas"] = {
             'team' : {
                 'title' : 'Player Experience',
@@ -254,6 +255,19 @@ class UnitSummaryView(TemplateView):
                 'data': [(exp_unit[i].total_exp - exp_unit[i-1].total_exp) \
                          /(exp_team[i].total_exp - exp_team[i-1].total_exp)
                          for i in range(1, len(exp_unit))],
+            },
+            'skill_mana': {
+                'title': 'skill mana per level',
+                'labels': [i.target_level for i in skill_cost],
+                'data': [skill_cost[i].cost
+                         for i in range(1, len(skill_cost))],
+            },
+            'skill_compare': {
+                'title': 'skill mana per player exp',
+                'labels': [i.unit_level for i in exp_unit],
+                'data': [(skill_cost[i].cost) \
+                         / (exp_team[i].total_exp - exp_team[i - 1].total_exp)
+                         for i in range(1, len(skill_cost))],
             },
         }
         add_max_info(context)
