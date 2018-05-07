@@ -97,16 +97,34 @@
     <script type="text/javascript" src="{% static 'pcrd_unpack/scripts/palette.js' %}"></script>
 
     <script>
-    function get_color(offset, border=false){
-        var len = 8;
-        offset = offset % len;
-        return palette('mpn65', len).map(function(hex) {
-            if (border){
-                return '#' + hex;
+        function hexToRgbA(hex){
+            var c;
+            if(/^#([A-Fa-f0-9]){6,8}$/.test(hex)){
+                c= hex.substring(1).split('');
+                if(c.length=== 3){
+                    c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+                }
+                c= '0x'+c.join('');
+                if (c.length === 10) {
+                    return 'rgba('+[(c>>24)&255, (c>>16)&255, (c>>8)&255, (c&255)/255].join(',')+')';
+                }
+                return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',1)';
             }
-            return '#' + hex + "30";
-        })[offset]
-    }
+            throw new Error('Bad Hex');
+        }
+        function get_color(offset, border=false){
+            var len = 8;
+            offset = offset % len;
+            var result = "";
+            return palette('mpn65', len).map(function(hex) {
+                if (border){
+                    result =  '#' + hex;
+                } else {
+                result =  '#' + hex + "30";
+                }
+                return hexToRgbA(result)
+            })[offset]
+        }
         $(document).ready(function() {
             $('#unit_summary_list').DataTable({
                 "order": [[ 3, "asc" ]],
