@@ -1,6 +1,7 @@
 {% extends "pcrd_unpack/layout.html" %}
 {% load static %}
 {% load custom_tags %}
+{% load i18n %}
 {% block style_sheet %}
     {#    <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/junbotron_bg.css' %}" />#}
     <style type="text/css">
@@ -58,7 +59,7 @@
 {% endblock %}
 
 {% block title %}
-    {{ unit_data.unit_name }} - Princess Connect Re:Dive Wiki
+    {{ unit_data.unit_name }} - {% trans "Princess Connect Re:Dive Wiki" %}
 {% endblock %}
 
 {% block content %}

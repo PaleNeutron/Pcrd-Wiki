@@ -151,6 +151,29 @@ class BgData(models.Model):
         db_table = 'bg_data'
 
 
+class CampaignFreegacha(models.Model):
+    id = models.IntegerField(primary_key=True)
+    campaign_id = models.IntegerField()
+    freegacha_1 = models.IntegerField()
+    freegacha_10 = models.IntegerField()
+    start_time = models.TextField()
+    end_time = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'campaign_freegacha'
+
+
+class CampaignFreegachaData(models.Model):
+    id = models.IntegerField(primary_key=True)
+    campaign_id = models.IntegerField()
+    gacha_id = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'campaign_freegacha_data'
+
+
 class CampaignSchedule(models.Model):
     id = models.IntegerField(primary_key=True)
     campaign_category = models.IntegerField()
@@ -1594,16 +1617,6 @@ class ItemData(models.Model):
     class Meta:
         managed = False
         db_table = 'item_data'
-
-
-class Lipsync(models.Model):
-    voice_id = models.TextField(unique=True)
-    time = models.TextField()
-    is_enable = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'lipsync'
 
 
 class LoginBonusData(models.Model):
