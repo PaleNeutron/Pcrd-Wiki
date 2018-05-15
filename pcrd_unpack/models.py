@@ -60,7 +60,7 @@ class UnitSummary(CustomBaseModel):
     @classmethod
     def max_level(cls):
         """this method calc the max level each time called, should be store the value somewhere instead of calc"""
-        return ExperienceUnit.objects.aggregate(Max("unit_level"))["unit_level__max"]
+        return ExperienceUnit.objects.aggregate(Max("unit_level"))["unit_level__max"] - 1
 
     @classmethod
     def max_rank(cls):
