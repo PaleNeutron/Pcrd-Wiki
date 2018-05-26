@@ -27,10 +27,7 @@ SECRET_KEY = '&qqxz@-t^@-wxa#dh^e9gf&v^9sw=^#m4g8r&b9!79(*kyb2rp'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'pcrd.azurewebsites.net',
-    'pcrdwiki.xyz',
-    'www.pcrdwiki.xyz',
+    '*',
 ]
 
 
