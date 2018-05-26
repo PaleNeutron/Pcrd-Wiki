@@ -38,6 +38,8 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'pcrd_unpack.apps.PcrdUnpackConfig',
+    # robots
+    'robots',
     # sitemap
     'django.contrib.sites',
     'django.contrib.sitemaps',

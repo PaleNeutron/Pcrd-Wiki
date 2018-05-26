@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.contrib.sitemaps.views import sitemap
 from pcrd_unpack.sitemaps import UnitSitemap, EquimpmentSitemap
 
@@ -29,6 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap'),
+    re_path(r'^robots\.txt', include('robots.urls')),
 ]
 
 handler404 = 'pcrd_unpack.views.handler404'
