@@ -34,6 +34,7 @@ urlpatterns = [
     path("area/", views.QuestAreaListView.as_view(), name="area"),
     path("area/<int:area_id>", views.QuestAreaDetailView.as_view(), name="area_detail"),
     path("equipment/<int:equipment_id>", views.EquipmentView.as_view(), name="equipment"),
+    path("solution/create", views.CreateSolutionView.as_view(), name="create_solution"),
     path('login/',
          django.contrib.auth.views.login,
          {

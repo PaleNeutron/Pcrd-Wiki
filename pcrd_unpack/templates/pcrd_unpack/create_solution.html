@@ -1,0 +1,164 @@
+{% extends "pcrd_unpack/layout.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Create Solution" %} - {% trans "Princess Connect Re:Dive Wiki" %}
+{% endblock %}
+
+{% block style_sheet %}
+    <style>
+        .dropdown-menu {
+            height: auto;
+            max-height: 200px;
+            overflow-x: hidden;
+        }
+
+        .card-group{
+            overflow-x: hidden;
+        }
+
+        hr {
+            margin: 2px;
+        }
+        .card-body{
+            padding: 5px;
+        }
+
+        img.card-img-top{
+            object-fit: contain;
+        }
+        @media (max-width: 576px) {
+            body .btn{
+                font-size: 10px;
+                padding: 0;
+            }
+            body .form-control{
+                font-size: 10px;
+                padding: 0;
+            }
+            .card{
+                max-width: 70px;
+            }
+            hr {
+                margin: 0px;
+            }
+            .card-body{
+                padding: 1px;
+            }
+        }
+
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/icon" as unit_icon %}
+    <div class="container">
+        <div class="row justify-content-center team-container">
+            <div class="card-group flex-row">
+                {% for u in left %}
+                    <div class="card bg-light">
+                        <div hidden class="storage"></div>
+                        <a class="custom-card" href="{% url 'pcrd_unpack:area' %}">
+                        </a>
+                        <img class="card-img-top img-thumbnail" id="unit_img_left_{{ forloop.revcounter }}"
+                             src="{% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/icon/icon_unit_unknown.jpg" %}"
+                             alt="Card image cap">
+                        <hr>
+
+                        <div class="card-body">
+                            {#                    <select id="unit_select_left_{{ forloop.counter }}" class="form-control unit_selector">#}
+                            {#                        {% for unit in units %}#}
+                            {#                            <option value="{{ unit.unit_id }}">{{unit.unit_name}}</option>#}
+                            {#                        {% endfor %}#}
+                            {#                    </select>#}
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle  w-100" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    Unit {{ forloop.revcounter }}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                     id="unit_select_left_{{ forloop.revcounter }}">
+                                    {% for unit in units %}
+                                        <a class="dropdown-item" href="#"><span hidden
+                                                                                class="storage">{{ unit.unit_id }}</span><img
+                                                class="img-thumbnail w-50 h-50" src="{{ unit_icon }}/icon_unit_{% if unit.rarity == 3 %}{{ unit.unit_id|add:"30" }}{% else %}{{ unit.unit_id|add:"10" }}{% endif %}.jpg"
+                                                alt="">{{ unit.unit_name }}</a>
+                                    {% endfor %}
+                                </div>
+                                <div>
+                                    <select class="form-control unit_rarity_selector" id="unit_rarity_select_left_{{ forloop.revcounter }}">
+                                        {% for r in rarity_set %}
+                                            <option value="{{ r }}">{% for x in ""|ljust:r %}★{% endfor %}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        {#                <div class="card-footer">#}
+                        {#                    <small class="text-white">Hidden Drops Included</small>#}
+                        {#                </div>#}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row justify-content-center m-3">
+            <h2>VS</h2>
+        </div>
+        <div class="row justify-content-center team-container">
+            <div class="card-group  flex-row">
+                {% for u in right %}
+                    <div class="card bg-light">
+                        <div hidden class="storage"></div>
+                        <a class="custom-card" href="{% url 'pcrd_unpack:area' %}">
+                        </a>
+                        <img class="card-img-top img-thumbnail" id="unit_img_right_{{ forloop.revcounter }}"
+                             src="{% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/icon/icon_unit_unknown.jpg" %}"
+                             alt="Card image cap">
+                        <hr>
+
+                        <div class="card-body">
+                            {#                    <select id="unit_select_right_{{ forloop.counter }}" class="form-control unit_selector">#}
+                            {#                        {% for unit in units %}#}
+                            {#                            <option value="{{ unit.unit_id }}">{{unit.unit_name}}</option>#}
+                            {#                        {% endfor %}#}
+                            {#                    </select>#}
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle  w-100" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    Unit {{ forloop.revcounter }}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                     id="unit_select_right_{{ forloop.revcounter }}">
+                                    {% for unit in units %}
+                                        <a class="dropdown-item" href="#"><span hidden
+                                                                                class="storage">{{ unit.unit_id }}</span><img
+                                                class="img-thumbnail w-50 h-50" src="{{ unit_icon }}/icon_unit_{% if unit.rarity == 3 %}{{ unit.unit_id|add:"30" }}{% else %}{{ unit.unit_id|add:"10" }}{% endif %}.jpg"
+                                                alt="">{{ unit.unit_name }}</a>
+                                    {% endfor %}
+                                </div>
+                                <div>
+                                    <select class="form-control unit_rarity_selector" id="unit_rarity_select_right_{{ forloop.revcounter }}">
+                                        {% for r in rarity_set %}
+                                            <option value="{{ r }}">{% for x in ""|ljust:r %}★{% endfor %}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        {#                <div class="card-footer">#}
+                        {#                    <small class="text-white">Hidden Drops Included</small>#}
+                        {#                </div>#}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static "pcrd_unpack/scripts/elements/UnitSelector.js" %}"></script>
+{% endblock %}

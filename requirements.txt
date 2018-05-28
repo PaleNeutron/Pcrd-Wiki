@@ -2,4 +2,4 @@ Django==2.0.3
 pytz==2018.3
 dukpy
 # django-robots
--e git+https://github.com/jazzband/django-robots.git@3.1.0#egg=robots
+django-robots -e git+https://github.com/jazzband/django-robots.git@3.1.0#egg=robots
