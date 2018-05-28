@@ -82,7 +82,7 @@
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
                                      id="unit_select_left_{{ forloop.revcounter }}">
                                     {% for unit in units %}
-                                        <a class="dropdown-item" href="#"><span hidden
+                                        <a class="dropdown-item"><span hidden
                                                                                 class="storage">{{ unit.unit_id }}</span><img
                                                 class="img-thumbnail w-50 h-50" src="{{ unit_icon }}/icon_unit_{% if unit.rarity == 3 %}{{ unit.unit_id|add:"30" }}{% else %}{{ unit.unit_id|add:"10" }}{% endif %}.jpg"
                                                 alt="">{{ unit.unit_name }}</a>
@@ -134,7 +134,7 @@
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
                                      id="unit_select_right_{{ forloop.revcounter }}">
                                     {% for unit in units %}
-                                        <a class="dropdown-item" href="#"><span hidden
+                                        <a class="dropdown-item"><span hidden
                                                                                 class="storage">{{ unit.unit_id }}</span><img
                                                 class="img-thumbnail w-50 h-50" src="{{ unit_icon }}/icon_unit_{% if unit.rarity == 3 %}{{ unit.unit_id|add:"30" }}{% else %}{{ unit.unit_id|add:"10" }}{% endif %}.jpg"
                                                 alt="">{{ unit.unit_name }}</a>
