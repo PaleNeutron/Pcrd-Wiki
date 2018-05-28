@@ -23,7 +23,7 @@
     {% block style_sheet %}
     {% endblock %}
 
-    <link rel="icon" type="image/png" sizes="96x96" href="{%  static "favicon-96x96.png" %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{%  static "favicon.png" %}">
 {#    <script src="{% static 'pcrd_unpack/scripts/modernizr-2.6.2.js' %}"></script>#}
 </head>
 
@@ -48,6 +48,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'pcrd_unpack:unit_summary' %}">Summary</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'pcrd_unpack:create_solution' %}">Solutions</a>
                 </li>
     {#            <li class="nav-item">#}
     {#                <a class="nav-link" href="{% url 'pcrd_unpack:item_list' %}">Items</a>#}
