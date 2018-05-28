@@ -1,5 +1,6 @@
 {% extends "pcrd_unpack/layout.html" %}
 {% load static %}
+{% load i18n %}
 {% block style_sheet %}
     <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/album.css' %}"/>
     <style>
@@ -20,7 +21,7 @@
         <div class="masthead mb-auto">
         </div>
         <div role="main" class="inner cover text-center">
-            <h1 class="cover-heading">Princess Connect Re:Dive Wiki</h1>
+            <h1 class="cover-heading">{% trans "Princess Connect Re:Dive Wiki" %}</h1>
             <p class="lead text-muted">A wiki site provide Both Characters and Equipments data <br>
                 However, this site is still under develop, connect me on <a href="https://github.com/PaleNeutron/Pcrd-Wiki">Github</a> if you find something wrong</p>
 
@@ -30,11 +31,11 @@
                     </a>
                     <img class="card-img-top" src="{% static "pcrd_unpack/Texture2D/icon_map.png" %}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Quest Areas</h5>
-                        <p class="card-text">Quest maps with drop items and drop rates</p>
+                        <h5 class="card-title">{% trans "Quest Areas" %}</h5>
+                        <p class="card-text">{% trans "Quest maps with drop items and drop rates" %}</p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-white">Hidden Drops Included</small>
+                        <small class="text-white">{% trans "Hidden Drops Included" %}</small>
                     </div>
                 </div>
 
@@ -45,12 +46,12 @@
                     <img class="card-img-top" src="{% static "pcrd_unpack/Texture2D/icon_unit.png" %}"
                          alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Characters</h5>
-                        <p class="card-text">Profile, Properties, Action Line, Sills, Equipments<br>
-                            Get all you want to know with a character</p>
+                        <h5 class="card-title">{% trans "Characters" %}</h5>
+                        <p class="card-text">{% trans "Profile, Properties, Action Line, Sills, Equipments" %}<br>
+                            {% trans "Get all you want to know with a character" %}</p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-white">Enjoy & Analyse</small>
+                        <small class="text-white">{% trans "Enjoy & Analyse" %}</small>
                     </div>
                 </div>
 
@@ -60,11 +61,11 @@
 
                     <img class="card-img-top" src="{% static "pcrd_unpack/Texture2D/icon_equipment.png" %}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Equitments</h5>
-                        <p class="card-text">List all Equipments here, You can find recipes and where to get them</p>
+                        <h5 class="card-title">{% trans "Equipments" %}</h5>
+                        <p class="card-text">{% trans "List all Equipments here, You can find recipes and where to get them" %}</p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-white">Review By-product in a Glances</small>
+                        <small class="text-white">{% trans "Review By-product in a Glances" %}</small>
                     </div>
                 </div>
             </div>

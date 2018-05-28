@@ -1,6 +1,11 @@
 {% extends "pcrd_unpack/layout.html" %}
 {% load static %}
+{% load i18n %}
 
+
+{% block title %}
+    {%  trans "Summary"%}-{%  trans "Princess Connect Re:Dive Wiki"%}
+{% endblock %}
 {% block style_sheet %}
     <style>
     {#show table after init#}

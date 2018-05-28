@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-10 20:44+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\forms.py:15
+msgid "Password"
+msgstr "密码"
+
+#: .\templates\pcrd_unpack\index.html:24
+#: .\templates\pcrd_unpack\layout.html:34
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:62
+msgid "Princess Connect Re:Dive Wiki"
+msgstr "公主链接 Re:Dive Wiki"
+
+#: .\templates\pcrd_unpack\index.html:34
+#: .\templates\pcrd_unpack\layout.html:42
+msgid "Quest Areas"
+msgstr "地图"
+
+#: .\templates\pcrd_unpack\index.html:35
+msgid "Quest maps with drop items and drop rates"
+msgstr "包含掉落信息和掉落概率的地图"
+
+#: .\templates\pcrd_unpack\index.html:38
+msgid "Hidden Drops Included"
+msgstr "内含隐藏掉落"
+
+#: .\templates\pcrd_unpack\index.html:49
+#: .\templates\pcrd_unpack\layout.html:48
+msgid "Characters"
+msgstr "人物"
+
+#: .\templates\pcrd_unpack\index.html:50
+msgid "Profile, Properties, Action Line, Sills, Equipments"
+msgstr "人物信息, 属性计算器, 动作时间轴, 技能数据, 装备列表"
+
+#: .\templates\pcrd_unpack\index.html:51
+msgid "Get all you want to know with a character"
+msgstr "所有你想知道的人物信息尽在此处"
+
+#: .\templates\pcrd_unpack\index.html:54
+msgid "Enjoy & Analyse"
+msgstr "享受分析的快乐"
+
+#: .\templates\pcrd_unpack\index.html:64
+#: .\templates\pcrd_unpack\layout.html:45
+msgid "Equipments"
+msgstr "装备"
+
+#: .\templates\pcrd_unpack\index.html:65
+msgid "List all Equipments here, You can find recipes and where to get them"
+msgstr "全装备列表, 最直观的掉落位置信息"
+
+#: .\templates\pcrd_unpack\index.html:68
+msgid "Review By-product in a Glances"
+msgstr "副产物一网打尽"
+
+#: .\templates\pcrd_unpack\layout.html:51
+msgid "Summary"
+msgstr "全人物数据总结"
+
