@@ -1,31 +1,4 @@
-// using jQuery
-function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = jQuery.trim(cookies[i]);
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-var csrftoken = getCookie('csrftoken');
-function csrfSafeMethod(method) {
-    // these HTTP methods do not require CSRF protection
-    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-}
-$.ajaxSetup({
-    beforeSend: function(xhr, settings) {
-        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-        }
-    }
-});
+
 
 function share_btn_bind () {
     $("#share_btn").click(function (e) {
@@ -55,6 +28,49 @@ function share_btn_bind () {
 }
 
 
+var btn_up = $("#up_vote_btn");
+function up_vote() {
+    btn_up.click(function () {
+
+        $(this).attr('aria-disabled', true);
+        $(this).attr('disabled', true);
+        $(this).addClass('btn-secondary');
+        $.ajax({
+            url: vote_url,
+            type: 'GET',
+            data: {"method": "up_vote"},
+            success: function () {
+                var l = btn_up.text().split(" ");
+                var pre_fix = l[0];
+                var i = parseInt(l[1]);
+                btn_up.text(pre_fix + " " + (i + 1));
+            },
+        });
+
+    });
+}
+
+var btn_down = $("#down_vote_btn");
+function down_vote() {
+    btn_down.click(function () {
+
+        $(this).attr('aria-disabled', true);
+        $(this).attr('disabled', true);
+        $(this).addClass('btn-secondary');
+        $.ajax({
+            url: vote_url,
+            type: 'GET',
+            data: {"method": "down_vote"},
+            success: function () {
+                var l = btn_down.text().split(" ");
+                var pre_fix = l[0];
+                var i = parseInt(l[1]);
+                btn_up.text(pre_fix + " " + (i + 1));
+            },
+        });
+    });
+}
+
 function check_list_valid(team_list) {
-    return team_list.length ===5 && !team_list.includes(undefined)
+    return team_list.length ===5 && !team_list.includes(undefined) && !team_list.includes("")
 }

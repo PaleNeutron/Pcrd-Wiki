@@ -50,7 +50,7 @@
                     <a class="nav-link" href="{% url 'pcrd_unpack:unit_summary' %}">Summary</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'pcrd_unpack:create_solution' %}">Solutions</a>
+                    <a class="nav-link" href="{% url 'pcrd_unpack:solution_index' %}">Solutions</a>
                 </li>
     {#            <li class="nav-item">#}
     {#                <a class="nav-link" href="{% url 'pcrd_unpack:item_list' %}">Items</a>#}
@@ -82,6 +82,7 @@
     </nav>
     </header>
     <main>
+
         <div class="d-block d-sm-none" id="xs-nav-spacer"></div>
         <div  class="container body-content">
 
@@ -112,7 +113,7 @@
 {#    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>#}
 {#    use bootstrap tooltip#}
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.16/fc-3.2.4/sc-1.4.4/datatables.min.js"></script>
-
+    <script type="text/javascript" src="{% static "pcrd_unpack/scripts/csrf_base_set.js" %}"></script>
 {% block scripts %}
 
 {% endblock %}

@@ -8,7 +8,7 @@
     overflow-x: hidden;
 }
 
-hr {
+.card hr {
     margin: 2px;
 }
 .card-body{

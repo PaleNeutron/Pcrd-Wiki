@@ -1,6 +1,6 @@
 import json
 
-from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidden
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidden, request
 from django.shortcuts import render
 from django.views.generic import TemplateView, View, ListView, DetailView
 from django.shortcuts import get_list_or_404, get_object_or_404
@@ -9,9 +9,16 @@ from django.urls import reverse
 # Create your views here.
 from pcrd_unpack import models
 from collections import OrderedDict
+import base64
 
 class SolutionView(TemplateView):
     template_name = "pcrd_unpack/solution/create_solution.html"
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs, uri = request.build_absolute_uri())
+
+        return self.render_to_response(context)
+
     def get_context_data(self, **kwargs):
         solution_id = kwargs["solution_id"]
         solution = get_object_or_404(models.Solution, id=solution_id)
@@ -22,6 +29,8 @@ class SolutionView(TemplateView):
             "left_rarity": solution.left_team.rarity_list,
             "right_team":solution.right_team.team_list,
             "right_rarity": solution.right_team.rarity_list,
+            "share_link": kwargs["uri"],
+            "solution": solution,
         }
         return context
 
@@ -32,9 +41,9 @@ class CreateSolutionView(TemplateView):
         #          models.UnitData.objects.get(unit_id=100102),]
         context = {
             'units': models.UnitData.objects.order_by('search_area_width').exclude(comment__exact="").exclude(unit_id__gt=200000),
-            "left_team":[],
+            "left_team":[""]*models.Team.UNITS_NUM,
             "left_rarity": [models.UnitSummary.max_rarity()]*models.Team.UNITS_NUM,
-            "right_team":[],
+            "right_team":[""]*models.Team.UNITS_NUM,
             "right_rarity": [models.UnitSummary.max_rarity()]*models.Team.UNITS_NUM,
             "rarity_set": range(models.UnitSummary.max_rarity(), 0, -1),
         }
@@ -58,17 +67,27 @@ def create_solution_handler(request):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         # check whether it's valid:
-        if True:
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            data = json.loads(request.body.decode())
-            for i in data:
-                if len(i) != models.Team.UNITS_NUM or None in i:
-                     return HttpResponseForbidden()
-            create_solution(data["left_team"], data["left_rarity"], data["right_team"], data["right_rarity"])
-            r = reverse("pcrd_unpack:index")
-            return HttpResponse(str(r))
+
+        data = json.loads(request.body.decode())
+        for key, value in data.items():
+            if len(value) != models.Team.UNITS_NUM or None in value:
+                 return HttpResponseForbidden()
+        sid = create_solution(data["left_team"], data["left_rarity"], data["right_team"], data["right_rarity"])
+        r = reverse("pcrd_unpack:solution", kwargs={"solution_id":sid})
+        return HttpResponse(r)
+
+def vote(request):
+    if request.method == 'GET':
+        target = request.META["HTTP_REFERER"].split("/")[-1]
+        method = request.GET["method"]
+        solution = get_object_or_404(models.Solution, id=target)
+        if method == "up_vote":
+            solution.up_vote += 1
+        elif method == "down_vote":
+            solution.down_vote += 1
+        solution.save()
+        return HttpResponse()
+
 
 def create_solution(left_team:list, left_rarity:list, right_team:list, right_rarity:list):
     lt, created = models.Team.get_team(left_team, left_rarity)
