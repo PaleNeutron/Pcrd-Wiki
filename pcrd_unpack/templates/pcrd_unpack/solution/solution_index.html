@@ -5,23 +5,33 @@
 
 {% block style_sheet %}
     <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/team_deck.css' %}" />
+    <style>
+    body .btn h2{
+        font-size: 3vw;
+    }
+    @media (max-width: 576px) {
+        #nav-spacer {
+
+        }
+    }
+    </style>
 {% endblock %}
 
 {% block content %}
     <div class="container justify-content-between">
-        <div class="row justify-content-center m-5">
+        <div class="row justify-content-center m-3">
             <h1>Solutions</h1>
         </div>
         <div class="row">
-            <div class="col-3 pr-5" id="search_area">
+            <div class="col-sm-12 col-md-3 pr-5" id="search_area">
                 <div id="nav-pane" class="sticky-top d-flex flex-column">
-                    <div class="my-5"></div>
+                    <div class="my-5 d-none d-md-block" id="nav_spacer"></div>
 
                     <div class="mb-auto"><a class="btn btn-primary btn-lg btn-block" href="{% url "pcrd_unpack:create_solution" %}"><h2>Create</h2></a></div>
                     <div class="my-5"><a class="btn btn-secondary btn-lg btn-block disabled"  href="#"><h2>Search</h2></a></div>
                 </div>
             </div>
-            <div class="col-9">
+            <div class="col-sm-12 col-md-9">
                 <div class="row justify-content-center m-2">
                     <h2>Top Voted</h2>
                 </div>
