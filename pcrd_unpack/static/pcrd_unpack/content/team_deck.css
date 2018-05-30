@@ -18,6 +18,11 @@
 img.card-img-top{
     object-fit: contain;
 }
+
+.card-body div{
+    font-size: 1vw;
+}
+
 @media (max-width: 576px) {
     body .btn{
         font-size: 10px;
@@ -29,6 +34,7 @@ img.card-img-top{
     }
     .card{
         max-width: 70px;
+        margin-bottom: 2px  !important;
     }
     hr {
         margin: 0;
