@@ -1,0 +1,42 @@
+{% extends "pcrd_unpack/layout.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Create Solution" %} - {% trans "Princess Connect Re:Dive Wiki" %}
+{% endblock %}
+
+{% block style_sheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/team_deck.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        {% include "pcrd_unpack/solution/team_deck.html" with team="left" team_num=""|ljust:"5" %}
+        <div class="row justify-content-center m-3">
+            <h2>VS</h2>
+        </div>
+        {% include "pcrd_unpack/solution/team_deck.html" with team="right" team_num=""|ljust:"5" %}
+    <div class="row justify-content-end">
+        <button type="button" class="btn btn-primary btn-lg active" id="share_btn" aria-disabled="false">Create Share Link</button>
+    </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/icon" as unit_icon %}
+    <script>
+        {% autoescape off %}
+            var left_team = {{ left_team }};
+            var left_rarity = {{ left_rarity }};
+            var right_team = {{ left_team }};
+            var right_rarity = {{ right_rarity }};
+            var unit_icon_path = "{{ unit_icon }}";
+        {% endautoescape %}
+        var add_solution_url = "{% url "pcrd_unpack:add_solution" %}";
+    </script>
+    <script type="text/javascript" src="{% static "pcrd_unpack/scripts/elements/ShareSolution.js" %}"></script>
+    <script type="text/javascript" src="{% static "pcrd_unpack/scripts/elements/UnitSelector.js" %}"></script>
+{% endblock %}

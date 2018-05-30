@@ -1,0 +1,23 @@
+{% extends "pcrd_unpack/layout.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block style_sheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/team_deck.css' %}" />
+{% endblock %}
+
+{% block content %}
+    <div class="container justify-content-between">
+        <div class="row">
+            <div class="col-3" id="search_area"></div>
+            <div class="col-9">
+                {% for s in solution %}
+                    <div class="row">
+                        {% include "pcrd_unpack/solution/team_deck.html" with team_num=5 team_num=""|ljust:"5"  %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
