@@ -18,6 +18,7 @@
 {% endblock %}
 
 {% block content %}
+
     <div class="container justify-content-between">
         <div class="row justify-content-center m-3">
             <h1>Solutions</h1>
@@ -36,30 +37,36 @@
                     <h2>Top Voted</h2>
                 </div>
                 {% for s in solution %}
-                    <div class="col bg-light">
-                        <div class="row">
-                            <div class="col-5">
-                                {% include "pcrd_unpack/solution/team_deck.html" with team_num=s.left_team.team_list rarities=s.left_team.rarity_list disabled=True %}
+
+                        <div class="col btn-light btn" type="button">
+                            <a class="d-block w-100 h-100 " href="{% url "pcrd_unpack:solution" s.id %}"></a>
+
+                            <div class="row">
+                                <div class="col-5">
+                                    {% include "pcrd_unpack/solution/team_deck.html" with team_num=s.left_team.team_list rarities=s.left_team.rarity_list disabled=True %}
+                                </div>
+                                <div class="col-2 row align-items-center">
+                                    <div class="col text text-dark text-center font-weight-bold" style="font-size: 2vw">V.S.</div>
+                                </div>
+                                <div class="col-5">
+                                    {% include "pcrd_unpack/solution/team_deck.html" with team_num=s.right_team.team_list rarities=s.right_team.rarity_list disabled=True %}
+                                </div>
                             </div>
-                            <div class="col-2 row align-items-center">
-                                <div class="col text text-dark text-center font-weight-bold" style="font-size: 2vw">V.S.</div>
-                            </div>
-                            <div class="col-5">
-                                {% include "pcrd_unpack/solution/team_deck.html" with team_num=s.right_team.team_list rarities=s.right_team.rarity_list disabled=True %}
+                            <div class="row justify-content-center ">
+                                <div class="row col-8">
+                                    <div class="mr-3">
+                                        <button type="button" class="btn btn-success " disabled>▲ {{ s.up_vote }}</button>
+                                    </div>
+                                    <div class="mr-auto">
+                                        <button type="button" class="btn btn-warning  mr-auto" disabled>▼ {{ s.down_vote }}</button>
+                                    </div>
+                                    <button type="button" class="btn btn-secondary " disabled>Edit it</button>
+
+                                </div>
                             </div>
                         </div>
-                        <div class="row justify-content-center ">
-                            <div class="row col-8">
-                                <div class="mr-3">
-                                    <button type="button" class="btn btn-success active">▲ {{ s.up_vote }}</button>
-                                </div>
-                                <div class="mr-auto">
-                                    <button type="button" class="btn btn-warning  active mr-auto">▼ {{ s.down_vote }}</button>
-                                </div>
-                                <a href="{% url "pcrd_unpack:solution" s.id %}"><button type="button" class="btn btn-secondary  active" aria-disabled="false">Edit it</button></a>
-                            </div>
-                        </div>
-                    </div>
+
+
                     {% if not forloop.last %}
                         <hr>
                     {% endif %}

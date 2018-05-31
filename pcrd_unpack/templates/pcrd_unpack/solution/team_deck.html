@@ -4,8 +4,7 @@
 {#use disabled to make it not editable#}
 
 {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/icon" as unit_icon %}
-{{ team_num.reverse }}
-{{ rarities.reverse }}
+<div class="d-none">{{ team_num.reverse }}{{ rarities.reverse }}</div>
 <div class="row justify-content-center team-container">
     <div class="card-group flex-row">
         {% for unit_id in team_num %}
