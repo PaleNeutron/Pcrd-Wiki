@@ -42,4 +42,7 @@ img.card-img-top{
     .card-body{
         padding: 1px;
     }
+    .card-body div{
+        font-size: 10px;
+    }
 }
