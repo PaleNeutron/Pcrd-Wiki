@@ -102,13 +102,15 @@
     </header>
     <main>
 
-        <div class="d-block d-sm-none" id="xs-nav-spacer"></div>
+        {% block body %}
+
+
         <div  class="container body-content">
 
         {% block content %}
 
         {% endblock %}
-
+        {% endblock %}
             <hr/>
 
         </div>
