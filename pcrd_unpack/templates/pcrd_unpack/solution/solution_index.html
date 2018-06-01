@@ -9,7 +9,9 @@
     body .btn h2{
         font-size: 3vw;
     }
-
+    #search_area .nav{
+        padding-top: 200px;
+    }
     body .solution_item{
         overflow: hidden;
     }
@@ -34,13 +36,12 @@
 {#            <div class="mb-auto"><a class="btn btn-primary btn-lg btn-block" href="{% url "pcrd_unpack:create_solution" %}"><h2>Create</h2></a></div>#}
 {#            <div class="my-1 my-md-5"><a class="btn btn-secondary btn-lg btn-block disabled"  href="#"><h2>Search</h2></a></div>#}
 {#        #}
-            <div class="py-5"></div>
             <ul class="nav flex-column  nav-pills sticky-top">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url "pcrd_unpack:create_solution" %}">Create</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Search</a>
+                    <a class="nav-link disabled" href="" disabled>Search</a>
                 </li>
             </ul>
     </div>
