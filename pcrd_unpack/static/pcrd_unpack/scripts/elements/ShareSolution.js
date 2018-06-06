@@ -65,12 +65,14 @@ function down_vote() {
                 var l = btn_down.text().split(" ");
                 var pre_fix = l[0];
                 var i = parseInt(l[1]);
-                btn_up.text(pre_fix + " " + (i + 1));
+                btn_down.text(pre_fix + " " + (i + 1));
             },
         });
     });
 }
 
-function check_list_valid(team_list) {
-    return team_list.length ===5 && !team_list.includes(undefined) && !team_list.includes("")
-}
+$(document).ready(function () {
+    share_btn_bind();
+    up_vote();
+    down_vote();
+});

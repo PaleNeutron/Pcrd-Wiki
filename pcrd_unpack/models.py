@@ -2,7 +2,7 @@ from django.db import models
 from .models_gen import *
 from django.utils.functional import cached_property
 from django.db.models import Max
-
+from django.contrib.auth.models import User
 
 @cached_property
 def is_hard(self):
@@ -133,13 +133,18 @@ class Solution(CustomBaseModel):
     right_team = models.ForeignKey(Team, default=None, null=True, on_delete=models.CASCADE, related_name="right_team")
     up_vote = models.IntegerField(default=0)
     down_vote = models.IntegerField(default=0)
+    pub_data = models.DateField(auto_now=True)
 
     def __str__(self):
-        return str(self.left_team) + "  V.S.  " + str(self.right_team)
+        return "Solution {}".format(str(self.id))
 
 class SolutionComment(CustomBaseModel):
     comment = models.TextField(max_length=1000)
+    user = models.IntegerField(default=1)
     solution = models.ForeignKey(Solution, on_delete=models.CASCADE)
+
+    def get_user(self):
+        return User.objects.get(id=self.user)
 
 class GlobalStatus(object):
     love_status_map = {

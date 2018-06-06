@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from django.views.generic import TemplateView, View, ListView, DetailView
 from django.shortcuts import get_list_or_404, get_object_or_404
 from itertools import zip_longest
+from django.http import HttpResponseNotFound
 from django.urls import reverse
 # Create your views here.
 from pcrd_unpack import models
@@ -286,5 +288,5 @@ def add_max_info(context:dict):
 
 
 
-def handler404(request, exception):
-    return render(request, 'pcrd_unpack/errors/404.html', locals())
+def handler404(request, exception=None):
+    return HttpResponseNotFound(render_to_string('pcrd_unpack/errors/404.html', locals(), request))

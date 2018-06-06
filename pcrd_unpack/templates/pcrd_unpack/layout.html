@@ -49,9 +49,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'pcrd_unpack:unit_summary' %}">Summary</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'pcrd_unpack:solution_index' %}">Solutions</a>
-                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'pcrd_unpack:solution_index' %}">Solutions</a>
+                    </li>
+                {% endif %}
+
     {#            <li class="nav-item">#}
     {#                <a class="nav-link" href="{% url 'pcrd_unpack:item_list' %}">Items</a>#}
     {#            </li>#}
@@ -92,7 +95,6 @@
 
         {% endblock %}
         {% endblock %}
-            <hr/>
 
         </div>
     </main>

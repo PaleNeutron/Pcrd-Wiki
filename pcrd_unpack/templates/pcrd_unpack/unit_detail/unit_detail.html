@@ -33,6 +33,10 @@
         {#z-index: 0;#}
         }
 
+        .d-flex .col-6{
+            margin: auto;
+        }
+
         .carousel-inner {
             background-color: white;
         }
@@ -254,7 +258,7 @@
                         aria-orientation="vertical">
                         {% for upr in unit_promotion %}
                             <li class="nav-item">
-                                <a class="nav-link {% if forloop.last %}active{% endif %}  text-dark"
+                                <a class="nav-link text-nowrap {% if forloop.last %}active{% endif %}  text-dark"
                                    id="rank-tab-{{ forloop.counter }}" data-toggle="tab"
                                    href="#rank{{ forloop.counter }}"
                                    role="tab" aria-controls="home" aria-selected="true">
@@ -263,12 +267,12 @@
                         {% endfor %}
                     </ul>
 
-                    <div class="tab-content col-8" id="myTabContent">
+                    <div class="tab-content col-8 " id="myTabContent">
                         {% for upr in unit_promotion %}
                             <div class="tab-pane fade {% if forloop.last %}show active{% endif %}"
                                  id="rank{{ forloop.counter }}" role="tabpanel"
                                  aria-labelledby="rank-tab-{{ forloop.counter }}">
-                                <div class="row">
+                                <div class="d-flex flex-row flex-wrap justify-content-between">
                                     <div class="col-6">
                                         <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_1 %}">
                                             <img class="rounded img-thumbnail w-100"
@@ -284,7 +288,7 @@
                                         </a>
                                     </div>
 
-                                    <div class="w-100"></div>
+{#                                    <div class="w-100"></div>#}
 
                                     <div class="col-6">
                                         <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_3 %}">
@@ -302,7 +306,7 @@
                                         </a>
                                     </div>
 
-                                    <div class="w-100"></div>
+{#                                    <div class="w-100"></div>#}
 
                                     <div class="col-6">
                                         <a href="{% url "pcrd_unpack:equipment" upr.equip_slot_5 %}">

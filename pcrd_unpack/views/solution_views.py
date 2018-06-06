@@ -11,6 +11,13 @@ from pcrd_unpack import models
 from collections import OrderedDict
 import base64
 
+def team_base_context():
+    context = {
+        'units': models.UnitData.objects.order_by('search_area_width').exclude(comment__exact="").exclude(unit_id__gt=200000),
+        "rarity_set": range(models.UnitSummary.max_rarity(), 0, -1),
+    }
+    return context
+
 class SolutionView(TemplateView):
     template_name = "pcrd_unpack/solution/create_solution.html"
 
@@ -23,14 +30,15 @@ class SolutionView(TemplateView):
         solution_id = kwargs["solution_id"]
         solution = get_object_or_404(models.Solution, id=solution_id)
         context = {
-            'units': models.UnitData.objects.order_by('search_area_width').exclude(comment__exact="").exclude(unit_id__gt=200000),
-            "rarity_set": range(models.UnitSummary.max_rarity(), 0, -1),
-            "left_team":solution.left_team.team_list,
-            "left_rarity": solution.left_team.rarity_list,
-            "right_team":solution.right_team.team_list,
-            "right_rarity": solution.right_team.rarity_list,
-            "share_link": kwargs["uri"],
-            "solution": solution,
+            **team_base_context(),
+            **{
+                "left_team":solution.left_team.team_list,
+                "left_rarity": solution.left_team.rarity_list,
+                "right_team":solution.right_team.team_list,
+                "right_rarity": solution.right_team.rarity_list,
+                "share_link": kwargs["uri"],
+                "solution": solution,
+            },
         }
         return context
 
@@ -40,12 +48,13 @@ class CreateSolutionView(TemplateView):
         # units = [models.UnitData.objects.get(unit_id=100101),
         #          models.UnitData.objects.get(unit_id=100102),]
         context = {
-            'units': models.UnitData.objects.order_by('search_area_width').exclude(comment__exact="").exclude(unit_id__gt=200000),
-            "left_team":[""]*models.Team.UNITS_NUM,
-            "left_rarity": [models.UnitSummary.max_rarity()]*models.Team.UNITS_NUM,
-            "right_team":[""]*models.Team.UNITS_NUM,
-            "right_rarity": [models.UnitSummary.max_rarity()]*models.Team.UNITS_NUM,
-            "rarity_set": range(models.UnitSummary.max_rarity(), 0, -1),
+            **team_base_context(),
+            **{
+                "left_team":[""]*models.Team.UNITS_NUM,
+                "left_rarity": [models.UnitSummary.max_rarity()]*models.Team.UNITS_NUM,
+                "right_team":[""]*models.Team.UNITS_NUM,
+                "right_rarity": [models.UnitSummary.max_rarity()]*models.Team.UNITS_NUM,
+            },
         }
         return context
 
@@ -55,10 +64,39 @@ class SolutionIndexView(TemplateView):
     def get_context_data(self, **kwargs):
         s_to_show = models.Solution.objects.order_by("-up_vote", "down_vote")[:5]
         context = {
-            'units': models.UnitData.objects.order_by('search_area_width').exclude(comment__exact="").exclude(
-                unit_id__gt=200000),
-            "rarity_set": range(models.UnitSummary.max_rarity(), 0, -1),
-            "solution": s_to_show
+                **team_base_context(),
+                **{
+                "solution": s_to_show
+            },
+        }
+        return context
+
+class SolutionSearchView(TemplateView):
+    template_name = "pcrd_unpack/solution/solution_search.html"
+    def post(self, request, *args, **kwargs):
+        if request.body:
+            data = json.loads(request.body.decode())
+            context = self.get_context_data(**kwargs, data = data)
+        else:
+            context = self.get_context_data(**kwargs)
+
+        return self.render_to_response(context)
+
+    def get_context_data(self, **kwargs):
+        s_to_show = []
+        if 'data' in kwargs:
+            team = kwargs["data"]["team"]
+            team_dict = {"right_team__unit_{}".format(i+1): u for i, u in enumerate(team) if u != ""}
+
+            if team_dict:
+                s_to_show = models.Solution.objects.filter(**team_dict).order_by("-up_vote", "down_vote")[:5]
+        context = {
+            **team_base_context(),
+            **{
+                "left_team":[""]*models.Team.UNITS_NUM,
+                "left_rarity": [models.UnitSummary.max_rarity()]*models.Team.UNITS_NUM,
+                "solution": s_to_show
+            },
         }
         return context
 
