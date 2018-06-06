@@ -104,6 +104,56 @@ class UnitListView(ListView):
 class UnitDetailView(TemplateView):
     """docstring for UnitDetailView"""
     template_name = "pcrd_unpack/unit_detail/unit_detail.html"
+    skill_type_table = {
+        2:"MOVE",
+        3:"KNOCK",
+        4:"HEAL",
+        5:"CURE",
+        6:"BARRIER",
+        7:"REFLEXIVE",
+        8:"CHANGE_SPEED",
+        9:"SLIP_DAMAGE",
+        10:"BUFF_",
+        11:"CHARM",
+        12:"BLIND",
+        13:"SILENCE",
+        14:"MODE_CHANGE",
+        15:"SUMMON",
+        16:"CHARGE_ENERGY",
+        17:"TRIGER",
+        18:"DAMAGE_CHARGE",
+        19:"CHARGE",
+        20:"DECOY",
+        21:"NO_DAMAGE",
+        22:"CHANGE_PATTERN",
+        23:"IF_FOR_CHILDREN",
+        24:"REVIVAL",
+        25:"CONTINUOUS_ATTACK",
+        26:"GIVE_VALUE_AS_ADDITIVE",
+        27:"GIVE_VALUE_AS_MULTIPLE",
+        28:"IF_FOR_ALL",
+        29:"SEARCH_AREA_CHANGE",
+        30:"DESTROY",
+        31:"CONTINUOUS_ATTACK_NEARBY",
+        32:"ENCHANT_LIFE_STEAL",
+        33:"ENCHANT_STRIKE_BACK",
+        34:"ACCUMULATIVE_DAMAGE",
+        35:"SEAL",
+        36:"ATTACK_FIELD",
+        37:"HEAL_FIELD",
+        38:"CHANGE_PARAMETER_FIELD",
+        39:"SLIP_DAMAGE_FIELD",
+        40:"CHANGE_SPEED_FIELD",
+        41:"UB_CHANGE_TIME",
+        42:"LOOP_TRIGGER",
+        43:"IF_HAS_TARGET",
+        44:"WAVE_START_IDLE",
+        45:"SKILL_EXEC_COUNT",
+        46:"RATIO_DAMAGE",
+        47:"UPPER_LIMIT_ATTACK",
+        48:"REGENERATION",
+        49:"PASSIVE"
+    }
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -196,11 +246,9 @@ class UnitDetailView(TemplateView):
 
             # manual patches
             if a.action_type == 2:
-                a.description = 'Move'
                 factor_static = a.action_value_1
 
             elif a.action_type == 3:
-                a.description = 'Push'
                 factor_static = a.action_value_3
             elif a.action_type in [9, 12]:
                 # I don't know why, but
@@ -222,6 +270,9 @@ class UnitDetailView(TemplateView):
                 a.result += " + ({} + {} × skill_level) × atk".format(factor_atk, factor_atk_level)
             elif factor_atk:
                 a.result += " + {} × atk".format(factor_atk)
+
+            if a.action_type in self.skill_type_table:
+                a.action_code = self.skill_type_table[a.action_type]
         return actions
 
 
