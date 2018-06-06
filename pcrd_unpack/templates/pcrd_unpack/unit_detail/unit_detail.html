@@ -440,13 +440,17 @@
                             <tr>
                         {% endif %}
                     <td>
-                        {{ skill_action.description|default:"Unknown" }}
+                        {% if skill_action.description %}
+                            {{ skill_action.description|default:"Unknown" }}
+                        {% else %}
+                            {{ skill_action.action_code }}<br>
+                        {% endif %}
                     </td>
                     <td nowrap>
                         {% if skill_action.result %}
                             {{ skill_action.result }}
                         {% else %}
-                            Unknown Skill Type: {{ skill_action.action_type }}
+                            None
                         {% endif %}
                     </td>
                     </tr>
