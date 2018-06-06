@@ -1,0 +1,40 @@
+{% extends "pcrd_unpack/layout.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block style_sheet %}
+<link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/team_deck.css' %}" />
+{% endblock %}
+
+{% block content %}
+    <div class="row mb-md-5"></div>
+    {% include "pcrd_unpack/solution/team_deck.html" with team="left" team_num=left_team rarities=left_rarity %}
+    <div class="row col-10 justify-content-end my-3">
+            <button type="submit" class="btn btn-lg btn-primary" id="btn_search" value="submit_value">Search</button>
+
+    </div>
+    <div  id="solution_search_result">
+    {% if solution %}
+        <hr>
+        <div class="row justify-content-center"><h2>Search Result</h2></div>
+        {% include "pcrd_unpack/solution/solutions_table.html" %}
+
+    {% endif %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/icon" as unit_icon %}
+    <script>
+        {% autoescape off %}
+            var left_team = {{ left_team }};
+            var left_rarity = {{ left_rarity }};
+            var unit_icon_path = "{{ unit_icon }}";
+        {% endautoescape %}
+        var search_url = "{% url "pcrd_unpack:search_solution" %}";
+    </script>
+
+    <script type="text/javascript" src="{% static "pcrd_unpack/scripts/elements/SearchSolution.js" %}"></script>
+    <script type="text/javascript" src="{% static "pcrd_unpack/scripts/elements/ShareSolution.js" %}"></script>
+    <script type="text/javascript" src="{% static "pcrd_unpack/scripts/elements/UnitSelector.js" %}"></script>
+{% endblock %}

@@ -51,7 +51,8 @@ class DatabaseCustomRouter(object):
     #             return db == self.db_name
     #     return None
 
-
+# 可以用app_label控制使用哪个database, 但是不同database中的表无法建立关系
+# 放弃使用多个database
 class DatabaseUnpackedRouter(object):
     db_name = 'pcrd_db'
     app_label = 'pcrd_unpack'

@@ -36,9 +36,11 @@ urlpatterns = [
     path("equipment/<int:equipment_id>", views.EquipmentView.as_view(), name="equipment"),
     path("solution/create", views.CreateSolutionView.as_view(),name="create_solution"),
     path("solution/add", views.create_solution_handler, name="add_solution"),
-    path("solution/<str:solution_id>", views.SolutionView.as_view(), name="solution"),
+    path("solution/search", views.SolutionSearchView.as_view(), name="search_solution"),
+    path("solution/view/<str:solution_id>", views.SolutionView.as_view(), name="solution"),
     path("solution", views.SolutionIndexView.as_view(), name="solution_index"),
     path("vote", views.vote, name="vote"),
+    # path("404", views.handler404),
     path('login/',
          django.contrib.auth.views.login,
          {

@@ -22,9 +22,10 @@ class Command(BaseCommand):
             "Texture2D/assets/_elementsresources/resources/icon/skill/",
             "Texture2D/assets/_elementsresources/resources/icon/unitplate/",
             "Texture2D/assets/_elementsresources/resources/unit/icon/",
+            "Texture2D/assets/_elementsresources/resources/comic/"
         ])
         self.get_img([r"Texture2D\assets\_elementsresources\resources\unit\profile/"], force43=True)
-        self.get_img([r"Texture2D\assets\_elementsresources\resources\unit\actualprofile/"], force43=True)
+        self.get_img([r"Texture2D\assets\_elementsresources\resources\unit\actualprofile"], force43=True)
 
     def get_img(self, img_dirs, force43=False, fill_color="#fff", force=False):
         for d_rel in img_dirs:
