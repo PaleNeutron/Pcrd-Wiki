@@ -33,15 +33,11 @@ msgid "Princess Connect Re:Dive Wiki"
 msgstr "公主链接 Re:Dive Wiki"
 
 #: .\templates\pcrd_unpack\equipment.html:32
-#, fuzzy
-#| msgid "Equipments"
 msgid "Equipment Craft Info"
-msgstr "装备"
+msgstr "装备合成配方"
 
 #: .\templates\pcrd_unpack\equipment_list.html:5
 #: .\templates\pcrd_unpack\equipment_list.html:11
-#, fuzzy
-#| msgid "Equipments"
 msgid "Equipment"
 msgstr "装备"
 
@@ -124,10 +120,8 @@ msgid "Log off"
 msgstr "注销"
 
 #: .\templates\pcrd_unpack\quest_drop_table.html:8
-#, fuzzy
-#| msgid "Quest Areas"
 msgid "Quest Name"
-msgstr "地图"
+msgstr "地图名"
 
 #: .\templates\pcrd_unpack\quest_drop_table.html:9
 msgid "Droped Rewards"
