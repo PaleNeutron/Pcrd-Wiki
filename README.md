@@ -28,13 +28,6 @@ and should be used **only** for develop.
 
 ## For Developers
 
-```python
-def create_solution(left_team:list, left_rarity:list, right_team:list, right_rarity:list):
-    s = models.Solutions(left_team=",".join(left_team), left_rarity=",".join(left_rarity),
-                         right_team=','.join(right_team), right_rarity=','.join(right_rarity))
-    s.save()
-    return True
-```
 Database and static files are not contained in this repo, you should grab and plce it by yourself.
 
 #### Database
