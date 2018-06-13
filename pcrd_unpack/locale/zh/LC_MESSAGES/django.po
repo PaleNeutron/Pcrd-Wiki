@@ -1,0 +1,293 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-13 14:44+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\forms.py:15 .\templates\pcrd_unpack\login.html:21
+msgid "Password"
+msgstr "密码"
+
+#: .\templates\pcrd_unpack\equipment.html:14
+#: .\templates\pcrd_unpack\equipment_list.html:5
+#: .\templates\pcrd_unpack\index.html:24 .\templates\pcrd_unpack\item.html:12
+#: .\templates\pcrd_unpack\layout.html:34
+#: .\templates\pcrd_unpack\layout.html:103
+#: .\templates\pcrd_unpack\solution\create_solution.html:6
+#: .\templates\pcrd_unpack\summary\unit_summary.html:7
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:70
+msgid "Princess Connect Re:Dive Wiki"
+msgstr "公主链接 Re:Dive Wiki"
+
+#: .\templates\pcrd_unpack\equipment.html:32
+#, fuzzy
+#| msgid "Equipments"
+msgid "Equipment Craft Info"
+msgstr "装备"
+
+#: .\templates\pcrd_unpack\equipment_list.html:5
+#: .\templates\pcrd_unpack\equipment_list.html:11
+#, fuzzy
+#| msgid "Equipments"
+msgid "Equipment"
+msgstr "装备"
+
+#: .\templates\pcrd_unpack\equipment_list.html:11
+#: .\templates\pcrd_unpack\unit_list.html:20
+msgid "List"
+msgstr "列表"
+
+#: .\templates\pcrd_unpack\equipment_list.html:13
+msgid "Click Icons and check dropped Quests"
+msgstr "单击图标即可查看掉落位置"
+
+#: .\templates\pcrd_unpack\index.html:34
+#: .\templates\pcrd_unpack\layout.html:42
+#: .\templates\pcrd_unpack\quests_list.html:6
+msgid "Quest Areas"
+msgstr "地图"
+
+#: .\templates\pcrd_unpack\index.html:35
+msgid "Quest maps with drop items and drop rates"
+msgstr "包含掉落信息和掉落概率的地图"
+
+#: .\templates\pcrd_unpack\index.html:38
+msgid "Hidden Drops Included"
+msgstr "内含隐藏掉落"
+
+#: .\templates\pcrd_unpack\index.html:49
+#: .\templates\pcrd_unpack\layout.html:48
+msgid "Characters"
+msgstr "人物"
+
+#: .\templates\pcrd_unpack\index.html:50
+msgid "Profile, Properties, Action Line, Sills, Equipments"
+msgstr "人物信息, 属性计算器, 动作时间轴, 技能数据, 装备列表"
+
+#: .\templates\pcrd_unpack\index.html:51
+msgid "Get all you want to know with a character"
+msgstr "所有你想知道的人物信息尽在此处"
+
+#: .\templates\pcrd_unpack\index.html:54
+msgid "Enjoy & Analyse"
+msgstr "享受分析的快乐"
+
+#: .\templates\pcrd_unpack\index.html:64
+#: .\templates\pcrd_unpack\layout.html:45
+msgid "Equipments"
+msgstr "装备"
+
+#: .\templates\pcrd_unpack\index.html:65
+msgid "List all Equipments here, You can find recipes and where to get them"
+msgstr "全装备列表, 最直观的掉落位置信息"
+
+#: .\templates\pcrd_unpack\index.html:68
+msgid "Review By-product in a Glances"
+msgstr "副产物一网打尽"
+
+#: .\templates\pcrd_unpack\layout.html:51
+#: .\templates\pcrd_unpack\summary\unit_summary.html:7
+msgid "Summary"
+msgstr "数据总结"
+
+#: .\templates\pcrd_unpack\layout.html:55
+msgid "Solutions"
+msgstr "PVP阵容"
+
+#: .\templates\pcrd_unpack\login.html:12
+msgid "Use a local account to log in."
+msgstr "使用账户登录"
+
+#: .\templates\pcrd_unpack\login.html:15
+msgid "User name"
+msgstr "用户名"
+
+#: .\templates\pcrd_unpack\login.html:33
+msgid "Please enter a correct user name and password."
+msgstr "请输入合法的用户名和密码"
+
+#: .\templates\pcrd_unpack\loginpartial.html:7
+msgid "Log off"
+msgstr "注销"
+
+#: .\templates\pcrd_unpack\quest_drop_table.html:8
+#, fuzzy
+#| msgid "Quest Areas"
+msgid "Quest Name"
+msgstr "地图"
+
+#: .\templates\pcrd_unpack\quest_drop_table.html:9
+msgid "Droped Rewards"
+msgstr "掉落"
+
+#: .\templates\pcrd_unpack\quests_list.html:8
+msgid "Map list, click to see droped items in this Area"
+msgstr "地图列表, 单击查看在这个区域中所有的掉落信息"
+
+#: .\templates\pcrd_unpack\quests_list.html:14
+msgid "Normal"
+msgstr "普通难度"
+
+#: .\templates\pcrd_unpack\quests_list.html:17
+msgid "Hard"
+msgstr "困难难度"
+
+#: .\templates\pcrd_unpack\solution\create_solution.html:6
+msgid "Create Solution"
+msgstr "创建对战阵容"
+
+#: .\templates\pcrd_unpack\summary\unit_summary.html:28
+msgid "Summary Data"
+msgstr "数据总结"
+
+#: .\templates\pcrd_unpack\summary\unit_summary.html:33
+msgid "Unit Maxim Data"
+msgstr "人物极限属性"
+
+#: .\templates\pcrd_unpack\summary\unit_summary.html:35
+msgid "Units Data at"
+msgstr "处于满状态的人物属性:"
+
+#: .\templates\pcrd_unpack\summary\unit_summary.html:35
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:353
+msgid "Level"
+msgstr "等级"
+
+#: .\templates\pcrd_unpack\summary\unit_summary.html:35
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:355
+msgid "Rank"
+msgstr ""
+
+#: .\templates\pcrd_unpack\summary\unit_summary.html:36
+msgid "Star"
+msgstr "星级"
+
+#: .\templates\pcrd_unpack\summary\unit_summary.html:36
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:356
+msgid "Love Level"
+msgstr "羁绊等级"
+
+#: .\templates\pcrd_unpack\summary\unit_summary.html:37
+msgid "with fully enhanced equipments"
+msgstr "和满强化装备"
+
+#: .\templates\pcrd_unpack\summary\unit_summary.html:75
+msgid "Experience Analyse"
+msgstr "狗粮需求分析"
+
+#: .\templates\pcrd_unpack\summary\unit_summary.html:87
+msgid "Mana Analyse"
+msgstr "Mana需求分析"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:138
+msgid "Name"
+msgstr "名字"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:146
+msgid "Age"
+msgstr "年龄"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:154
+msgid "Guild"
+msgstr "公会"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:162
+msgid "Race"
+msgstr "种族"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:170
+msgid "Height"
+msgstr "身高"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:178
+msgid "Weight"
+msgstr "体重"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:186
+msgid "Birthday"
+msgstr "生日"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:194
+msgid "Favorite"
+msgstr "喜好"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:202
+msgid "CV"
+msgstr "声优"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:232
+msgid "Meeting Text"
+msgstr "相遇台词"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:244
+msgid "Self Text"
+msgstr "自我介绍"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:346
+msgid "Unit Data"
+msgstr "人物属性:"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:354
+msgid "Rarity"
+msgstr "星级"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:390
+msgid "Attack Pattern"
+msgstr "行动顺序"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:394
+msgid "Once"
+msgstr "起手"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:395
+msgid "Loop"
+msgstr "循环"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:417
+msgid "Skill Data"
+msgstr "技能数据"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:421
+msgid "Sill Icon"
+msgstr "技能图标"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:423
+msgid "Skill Name"
+msgstr "技能名"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:426
+msgid "Skill Discription"
+msgstr "技能描述"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:429
+msgid "Effect"
+msgstr "效果"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:432
+msgid "Effect Value"
+msgstr "效果数值"
+
+#: .\templates\pcrd_unpack\unit_list.html:20
+msgid "Unit"
+msgstr "人物"
+
+#: .\templates\pcrd_unpack\unit_list.html:22
+msgid "Or if you want a data table view, go to summary page"
+msgstr "如果你需要详细的表格视图, 点击下方"
+
+#: .\templates\pcrd_unpack\unit_list.html:24
+msgid "Summary Table"
+msgstr "数据总结"

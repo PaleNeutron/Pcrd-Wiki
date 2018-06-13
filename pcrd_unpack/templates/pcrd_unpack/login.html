@@ -1,4 +1,5 @@
 {% extends "pcrd_unpack/layout.html" %}
+{% load i18n %}
 
 {% block content %}
 
@@ -8,16 +9,16 @@
         <section id="loginForm">
             <form action="." method="post" class="form-horizontal">
                 {% csrf_token %}
-                <h4>Use a local account to log in.</h4>
+                <h4>{% trans "Use a local account to log in." %}</h4>
                 <hr />
                 <div class="form-group">
-                    <label for="id_username" class="col-md-2 control-label">User name</label>
+                    <label for="id_username" class="col-md-2 control-label">{% trans "User name" %}</label>
                     <div class="col-md-10">
                         {{ form.username }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="id_password" class="col-md-2 control-label">Password</label>
+                    <label for="id_password" class="col-md-2 control-label">{% trans "Password" %}</label>
                     <div class="col-md-10">
                         {{ form.password }}
                     </div>
@@ -29,7 +30,7 @@
                     </div>
                 </div>
                 {% if form.errors %}
-                <p class="validation-summary-errors">Please enter a correct user name and password.</p>
+                <p class="validation-summary-errors">{% trans "Please enter a correct user name and password." %}</p>
                 {% endif %}
             </form>
         </section>

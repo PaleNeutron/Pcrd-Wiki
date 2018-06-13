@@ -10,6 +10,7 @@
     </title>
 
     {% load static %}
+    {% load i18n %}
     {% static 'pcrd_unpack/Texture2D/assets/_elementsresources/resources/icon/equipment' as equipment_icon_dir %}
     {% static 'pcrd_unpack/Texture2D/assets/_elementsresources/resources/icon/item' as item_icon_dir %}
 
@@ -49,7 +50,7 @@
 <body>
     <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="top_nav">
-        <a class="navbar-brand" href="{% url 'pcrd_unpack:index' %}">Princess Connect Re:Dive Wiki</a>
+        <a class="navbar-brand" href="{% url 'pcrd_unpack:index' %}">{% trans "Princess Connect Re:Dive Wiki" %}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -57,20 +58,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'pcrd_unpack:area' %}">Quest Areas <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'pcrd_unpack:area' %}">{% trans "Quest Areas" %}<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'pcrd_unpack:equipment_list' %}">Equipments</a>
+                    <a class="nav-link" href="{% url 'pcrd_unpack:equipment_list' %}">{% trans "Equipments" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'pcrd_unpack:unit_list' %}">Characters</a>
+                    <a class="nav-link" href="{% url 'pcrd_unpack:unit_list' %}">{% trans "Characters" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'pcrd_unpack:unit_summary' %}">Summary</a>
+                    <a class="nav-link" href="{% url 'pcrd_unpack:unit_summary' %}">{% trans "Summary" %}</a>
                 </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'pcrd_unpack:solution_index' %}">Solutions</a>
+                        <a class="nav-link" href="{% url 'pcrd_unpack:solution_index' %}">{% trans "Solutions" %}</a>
                     </li>
                 {% endif %}
 
@@ -118,7 +119,7 @@
         </div>
     </main>
     <footer class="footer px-5">
-        <p class="mb-0">&copy; {{ year }} - Princess Connect Re:Dive Wiki</p>
+        <p class="mb-0">&copy; {{ year }} - {% trans "Princess Connect Re:Dive Wiki" %}</p>
     </footer>
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"

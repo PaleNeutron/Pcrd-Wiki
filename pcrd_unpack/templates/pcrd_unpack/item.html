@@ -1,5 +1,5 @@
 {% extends "pcrd_unpack/layout.html" %}
-
+{% load i18n %}
 {% block style_sheet %}
     <style>
         .drop_num {
@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block title %}
-    {{ item.item_name }} - Princess Connect Re:Dive Wiki
+    {{ item.item_name }} - {% trans "Princess Connect Re:Dive Wiki" %}
 {% endblock %}
 
 {% block content %}

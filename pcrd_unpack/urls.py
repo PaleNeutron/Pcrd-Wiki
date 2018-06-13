@@ -23,7 +23,7 @@ from . import views
 
 app_name = 'pcrd_unpack'
 
-urlpatterns = [
+urlpatterns  = [
     path("", views.IndexView.as_view(), name="index"),
     path("unit_data/<int:unit_id>", views.UnitJsonView.as_view(), name="unit_json"),
     path("unit/<int:unit_id>", views.UnitDetailView.as_view(), name="unit"),

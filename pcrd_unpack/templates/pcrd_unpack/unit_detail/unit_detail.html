@@ -59,11 +59,15 @@
             max-width: 4vw;
             min-Width: 3em;
         }
+
+        th {
+            white-space:nowrap;
+        }
     </style>
 {% endblock %}
 
 {% block title %}
-    {{ unit_data.unit_name }} - {% trans "Princess Connect Re:Dive Wiki" %}
+    {% trans unit_data.unit_name %} - {% trans "Princess Connect Re:Dive Wiki" %}
 {% endblock %}
 
 {% block content %}
@@ -131,7 +135,7 @@
                     <tbody>
                     <tr>
                         <th>
-                            Name
+                            {% trans "Name" %}
                         </th>
                         <td>
                             {{ unit_profile.unit_name }}
@@ -139,7 +143,7 @@
                     </tr>
                     <tr>
                         <th>
-                            Age
+                            {% trans "Age" %}
                         </th>
                         <td>
                             {{ unit_profile.age }}
@@ -147,7 +151,7 @@
                     </tr>
                     <tr>
                         <th>
-                            Guild
+                            {% trans "Guild" %}
                         </th>
                         <td>
                             {{ unit_profile.guild }}
@@ -155,7 +159,7 @@
                     </tr>
                     <tr>
                         <th>
-                            Race
+                            {% trans "Race" %}
                         </th>
                         <td>
                             {{ unit_profile.race }}
@@ -163,7 +167,7 @@
                     </tr>
                     <tr>
                         <th>
-                            Height
+                            {% trans "Height" %}
                         </th>
                         <td>
                             {{ unit_profile.height }}
@@ -171,7 +175,7 @@
                     </tr>
                     <tr>
                         <th>
-                            Weight
+                            {% trans "Weight" %}
                         </th>
                         <td>
                             {{ unit_profile.weight }}
@@ -179,7 +183,7 @@
                     </tr>
                     <tr>
                         <th>
-                            Birthday
+                            {% trans "Birthday" %}
                         </th>
                         <td>
                             {{ unit_profile.birth_day }}//{{ unit_profile.birth_month }}
@@ -187,7 +191,7 @@
                     </tr>
                     <tr>
                         <th>
-                            Favorite
+                            {% trans "Favorite" %}
                         </th>
                         <td>
                             {{ unit_profile.favorite }}
@@ -195,7 +199,7 @@
                     </tr>
                     <tr>
                         <th>
-                            CV
+                            {% trans "CV" %}
                         </th>
                         <td>
                             {{ unit_profile.voice }}
@@ -225,7 +229,7 @@
                     <tbody>
                     <tr>
                         <th>
-                            Meeting Text
+                            {% trans "Meeting Text" %}
                         </th>
                     </tr>
 
@@ -237,7 +241,7 @@
 
                     <tr>
                         <th>
-                            Self Text
+                            {% trans "Self Text" %}
                         </th>
                     </tr>
 
@@ -338,16 +342,18 @@
     {#data table#}
     <hr/>
     <div id="unit_data">
-        <div class="row justify-content-center"><h3 class="col-12 badge-dark text-center">Unit Data</h3></div>
+        <div class="row justify-content-center"><h3 class="col-12 badge-dark text-center">
+            {% trans "Unit Data" %}
+        </h3></div>
         <div class="container">
             <div class="row justify-content-center text-center">
                 <table class="col-9 table table-bordered" id="parameters">
                     <thead>
                     <tr>
-                        <th>Level</th>
-                        <th>Rarity</th>
-                        <th>Rank</th>
-                        <th>Love</th>
+                        <th>{% trans "Level" %}</th>
+                        <th>{% trans "Rarity" %}</th>
+                        <th>{% trans "Rank" %}</th>
+                        <th>{% trans "Love Level" %}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -381,12 +387,12 @@
     {#    unit pattern table#}
     <hr/>
     <div id="unit_pattern" class="container justify-content-center">
-    <div class="row"><h3 class="col-12 badge-dark text-center">Attack Pattern</h3></div>
+    <div class="row"><h3 class="col-12 badge-dark text-center">{% trans "Attack Pattern" %}</h3></div>
     <table class="table table-bordered un_colored">
     <thead>
         <tr>
-            <th colspan="{{ unit_patterns.loop_start|add:"-1" }}" class="table-danger">Once</th>
-            <th colspan="{{ unit_patterns.patterns|length|add:"1"}}" class="table-success">Loop</th>
+            <th colspan="{{ unit_patterns.loop_start|add:"-1" }}" class="table-danger">{% trans "Once" %}</th>
+            <th colspan="{{ unit_patterns.patterns|length|add:"1"}}" class="table-success">{% trans "Loop" %}</th>
         </tr>
     </thead>
     <tbody>
@@ -408,22 +414,22 @@
     {#    skill data table#}
     <hr/>
     <div id="unit_skill_data" class="container justify-content-center">
-        <div class="row"><h3 class="col-12 badge-dark text-center">Skill Data</h3></div>
+        <div class="row"><h3 class="col-12 badge-dark text-center">{% trans "Skill Data" %}</h3></div>
         <table class="table table-bordered justify-content-center">
             <thead>
             <tr>
-                <th>Sill Icon</th>
+                <th>{% trans "Sill Icon" %}</th>
                 <th>
-                    Skill Name
+                    {% trans "Skill Name" %}
                 </th>
                 <th>
-                    Skill Discription
+                    {% trans "Skill Discription" %}
                 </th>
                 <th>
-                    Effect
+                    {% trans "Effect" %}
                 </th>
                 <th>
-                    Effect Value
+                    {% trans "Effect Value" %}
                 </th>
             </tr>
             </thead>

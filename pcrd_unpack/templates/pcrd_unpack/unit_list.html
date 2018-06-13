@@ -1,5 +1,6 @@
 {% extends "pcrd_unpack/layout.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block style_sheet %}
     <style type="text/css">
@@ -16,11 +17,11 @@
 
     <div class="jumbotron h-100">
         <h1 class="display-4">
-            Unit List</h1>
+            {% trans "Unit" %} {% trans "List" %}</h1>
         <hr class="my-4">
-        <p>Or if you want a data table view, go to summary page</p>
+        <p>{% trans "Or if you want a data table view, go to summary page" %}</p>
         <p class="lead">
-            <a class="btn btn-primary btn-lg" href="{% url "pcrd_unpack:unit_summary" %}" role="button">Summary Table</a>
+            <a class="btn btn-primary btn-lg" href="{% url "pcrd_unpack:unit_summary" %}" role="button">{% trans "Summary Table" %}</a>
         </p>
     </div>
 
