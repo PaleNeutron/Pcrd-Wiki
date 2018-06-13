@@ -326,3 +326,6 @@ msgstr "每波次能量回复"
 
 msgid "life_steal"
 msgstr "生命窃取"
+
+msgid "energy_reduce_rate"
+msgstr "能量消耗减少"
