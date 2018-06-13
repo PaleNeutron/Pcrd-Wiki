@@ -1,0 +1,48 @@
+.dropdown-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+.card-group{
+    overflow-x: hidden;
+}
+
+.card hr {
+    margin: 2px;
+}
+.card-body{
+    padding: 5px;
+}
+
+img.card-img-top{
+    object-fit: contain;
+}
+
+.card-body div{
+    font-size: 1vw;
+}
+
+@media (max-width: 576px) {
+    body .btn{
+        font-size: 10px;
+        padding: 0;
+    }
+    body .form-control{
+        font-size: 10px;
+        padding: 0;
+    }
+    .card{
+        max-width: 70px;
+        margin-bottom: 2px  !important;
+    }
+    hr {
+        margin: 0;
+    }
+    .card-body{
+        padding: 1px;
+    }
+    .card-body div{
+        font-size: 10px;
+    }
+}

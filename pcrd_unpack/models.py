@@ -2,7 +2,7 @@ from django.db import models
 from .models_gen import *
 from django.utils.functional import cached_property
 from django.db.models import Max
-
+from django.contrib.auth.models import User
 
 @cached_property
 def is_hard(self):
@@ -60,7 +60,7 @@ class UnitSummary(CustomBaseModel):
     @classmethod
     def max_level(cls):
         """this method calc the max level each time called, should be store the value somewhere instead of calc"""
-        return ExperienceUnit.objects.aggregate(Max("unit_level"))["unit_level__max"]
+        return ExperienceUnit.objects.aggregate(Max("unit_level"))["unit_level__max"] - 1
 
     @classmethod
     def max_rank(cls):
@@ -78,6 +78,73 @@ class UnitSummary(CustomBaseModel):
     @cached_property
     def position(self):
         return self.unit.search_area_width
+
+
+class Team(CustomBaseModel):
+    UNITS_NUM = 5
+
+    unit_1 = models.ForeignKey(UnitData, on_delete=models.CASCADE, related_name="unit_1")
+    unit_2 = models.ForeignKey(UnitData, on_delete=models.CASCADE, related_name="unit_2")
+    unit_3 = models.ForeignKey(UnitData, on_delete=models.CASCADE, related_name="unit_3")
+    unit_4 = models.ForeignKey(UnitData, on_delete=models.CASCADE, related_name="unit_4")
+    unit_5 = models.ForeignKey(UnitData, on_delete=models.CASCADE, related_name="unit_5")
+    rarity_1 = models.IntegerField(default=1)
+    rarity_2 = models.IntegerField(default=1)
+    rarity_3 = models.IntegerField(default=1)
+    rarity_4 = models.IntegerField(default=1)
+    rarity_5 = models.IntegerField(default=1)
+
+    def __str__(self):
+        return "{} {}, {} {}, {} {}, {} {}, {} {}".format(
+            self.unit_1.unit_name,
+            self.rarity_1,
+            self.unit_2.unit_name,
+            self.rarity_2,
+            self.unit_3.unit_name,
+            self.rarity_3,
+            self.unit_4.unit_name,
+            self.rarity_4,
+            self.unit_5.unit_name,
+            self.rarity_5,
+        )
+
+    @property
+    def team_list(self):
+        return [self.unit_1.unit_id, self.unit_2.unit_id, self.unit_3.unit_id, self.unit_4.unit_id, self.unit_5.unit_id, ]
+
+    @property
+    def rarity_list(self):
+        return [self.rarity_1, self.rarity_2, self.rarity_3, self.rarity_4, self.rarity_5, ]
+
+    @classmethod
+    def get_team(cls, team_list, rarity_list):
+        kw = cls._list_to_key(team_list, rarity_list)
+        team = cls.objects.get_or_create(**kw)
+        return team
+
+    @classmethod
+    def _list_to_key(cls, team_list, rarity_list):
+        unit_key = [("unit_{}".format(i+1), UnitData.objects.get(unit_id=u)) for i, u in enumerate(team_list)]
+        rarity_key = [("rarity_{}".format(i+1), r) for i, r in enumerate(rarity_list)]
+        return dict(unit_key+rarity_key)
+
+class Solution(CustomBaseModel):
+    left_team = models.ForeignKey(Team, default=None, null=True, on_delete=models.CASCADE, related_name="left_team")
+    right_team = models.ForeignKey(Team, default=None, null=True, on_delete=models.CASCADE, related_name="right_team")
+    up_vote = models.IntegerField(default=0)
+    down_vote = models.IntegerField(default=0)
+    pub_data = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return "Solution {}".format(str(self.id))
+
+class SolutionComment(CustomBaseModel):
+    comment = models.TextField(max_length=1000)
+    user = models.IntegerField(default=1)
+    solution = models.ForeignKey(Solution, on_delete=models.CASCADE)
+
+    def get_user(self):
+        return User.objects.get(id=self.user)
 
 class GlobalStatus(object):
     love_status_map = {

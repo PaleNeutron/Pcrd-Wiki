@@ -1,0 +1,72 @@
+{% load static %}
+{% load custom_tags %}
+{#specific team_units rarities to init#}
+{#use disabled to make it not editable#}
+
+{% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/icon" as unit_icon %}
+<div class="row d-block">
+<div class="d-none">{{ team_num.reverse }}{{ rarities.reverse }}</div>
+<div class="row justify-content-center team-container mx-0">
+    <div class="card-group flex-row">
+        {% for unit_id in team_num %}
+            {% with forloop.counter0 as i %}
+
+                <div class="card bg-light">
+                    <div hidden class="storage"></div>
+{#                    <a class="custom-card" href="{% url 'pcrd_unpack:area' %}">#}
+{#                    </a>#}
+                    <img class="card-img-top" {% if team %}id="unit_img_{{ team }}_{{ forloop.revcounter }}"{% endif %}
+                            {% if unit_id %}
+                         src="{{ unit_icon }}/icon_unit_{% if rarities|index:forloop.counter0 >= 3 %}{{ unit_id|add:"30" }}{% else %}{{ unit_id|add:"10" }}{% endif %}.jpg"
+                            {% else %}
+                         src="{% static "pcrd_unpack/Texture2D/assets/_elementsresources/resources/unit/icon/icon_unit_unknown.jpg" %}"
+                            {% endif %}
+                         alt="Card image cap">
+                    <hr>
+
+                    <div class="card-body">
+                        {% if disabled %}
+                            {% with rarities|index:i as r %}
+                                <div class="text-center font-weight-bold"> {% for x in ""|ljust:r %}★{% endfor %} </div>
+
+                            {% endwith %}
+                        {% else %}
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle  w-100" type="button"
+                                    {% if team %}id="dropdownMenuButton_{{ team }}"{% endif %} data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                Unit {{ forloop.revcounter }}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                 {% if team %}id="unit_select_{{ team }}_{{ forloop.revcounter }}"{% endif %}>
+                                {% for unit in units %}
+                                    <a class="dropdown-item btn"><span hidden
+                                                                   class="storage">{{ unit.unit_id }}</span><img
+                                            class="img-thumbnail w-50 h-50" src="{{ unit_icon }}/icon_unit_{% if unit.rarity == 3 %}{{ unit.unit_id|add:"30" }}{% else %}{{ unit.unit_id|add:"10" }}{% endif %}.jpg"
+                                            alt="">{{ unit.unit_name }}</a>
+                                {% endfor %}
+                            </div>
+                            <div>
+                                <select class="form-control unit_rarity_selector"
+                                        {% if team %}id="unit_rarity_select_{{ team }}_{{ forloop.revcounter }}{% endif %}"
+                                        title="unit_rarity_select_{{ team }}_{{ forloop.revcounter }}">
+                                    {% for r in rarity_set %}
+                                        <option value="{{ r }}" {% if rarities|index:i == r %}
+                                                selected
+                                        {% endif %} >{% for x in ""|ljust:r %}★{% endfor %}</option>
+                                    {% endfor %}
+                                </select>
+
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {#                <div class="card-footer">#}
+                    {#                    <small class="text-white">Hidden Drops Included</small>#}
+                    {#                </div>#}
+                </div>
+            {% endwith %}
+        {% endfor %}
+    </div>
+</div>
+</div>

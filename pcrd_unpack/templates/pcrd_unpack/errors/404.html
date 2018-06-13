@@ -1,11 +1,13 @@
 {% extends "pcrd_unpack/layout.html" %}
 {% load static %}
-{% static '/Texture2D/assets/_elementsresources/resources/comic/' as comic_dir %}
 
 {% block content %}
+    {% static 'pcrd_unpack/Texture2D/assets/_elementsresources/resources/comic/' as comic_dir %}
 
     <div class="jumbotron">
-        <h1 class="display-4"><img src="{{ comic_dir }}comic_l_104901_01.png" alt="">404 Not Found !</h1>
+        <div class="row justify-content-center"> <h1 class="display-4">404 Not Found !</h1></div>
+        <div class="row justify-content-center"><img class="w-25 h-25" src="{{ comic_dir }}comic_l_105701_01.jpg" alt=""> </div>
+
 {#        <p class="lead">here should be some discription</p>#}
         <hr class="my-4">
             Lost in the wilderness

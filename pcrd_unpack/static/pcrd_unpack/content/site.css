@@ -10,7 +10,7 @@
 
 
 body {
-    padding-top: 60px;
+    padding-top: 50px;
     padding-bottom: 20px;
 }
 
@@ -26,11 +26,11 @@ body {
 /*}*/
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
+/*input,*/
+/*select,*/
+/*textarea {*/
+    /*max-width: 280px;*/
+/*}*/
 
 /* styles for validation helpers */
 .field-validation-error {
@@ -79,3 +79,8 @@ body {
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
+
+body,html {
+    /*margin:0;*/
+    /*padding:0;*/
+}

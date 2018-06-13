@@ -1,0 +1,78 @@
+{% extends "pcrd_unpack/layout.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block style_sheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/team_deck.css' %}" />
+    <style>
+    body .btn h2{
+        font-size: 3vw;
+    }
+    #search_area .nav{
+        padding-top: 200px;
+    }
+    #search_area {
+        max-width: 107px;
+        min-width: 42px;
+    }
+    body .solution_item{
+        overflow: hidden;
+    }
+    @media (max-width: 576px) {
+        body .btn h2{
+            font-size: 30px ;
+        }
+
+        a.nav-link {
+            padding-left: 1px;
+        }
+        #search_area {
+            padding-left: 2px;
+            padding-right: 2px;
+        }
+    }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-row">
+    <div class="col-2 bg-dark  navbar-dark " id="search_area">
+
+{#            <div class="my-5 d-none d-md-block" id="nav_spacer"></div>#}
+{##}
+{#            <div class="mb-auto"><a class="btn btn-primary btn-lg btn-block" href="{% url "pcrd_unpack:create_solution" %}"><h2>Create</h2></a></div>#}
+{#            <div class="my-1 my-md-5"><a class="btn btn-secondary btn-lg btn-block disabled"  href="#"><h2>Search</h2></a></div>#}
+{#        #}
+            <ul class="nav navbar-nav flex-column  nav-pills sticky-top">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "pcrd_unpack:create_solution" %}">Create</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "pcrd_unpack:search_solution" %}">Search</a>
+                </li>
+            </ul>
+    </div>
+    <div class="col-10 justify-content-between ">
+        <div class="row justify-content-center m-3">
+            <h1>Solutions</h1>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="row justify-content-center m-2">
+                    <h2>Top Voted</h2>
+                </div>
+                {% include "pcrd_unpack/solution/solutions_table.html" %}
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+    function go_to_solution(e) {
+        window.location.href = $(e).attr("content");
+    }
+    </script>
+{% endblock %}

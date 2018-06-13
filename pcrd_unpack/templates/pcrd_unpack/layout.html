@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>
     {% block title %}
         {{ title|default:"Princess Connect Re:Dive Wiki" }}
@@ -14,7 +14,7 @@
     {% static 'pcrd_unpack/Texture2D/assets/_elementsresources/resources/icon/equipment' as equipment_icon_dir %}
     {% static 'pcrd_unpack/Texture2D/assets/_elementsresources/resources/icon/item' as item_icon_dir %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'pcrd_unpack/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 {#    <!-- Latest compiled and minified CSS -->#}
 {#    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.0/bootstrap-table.min.css">#}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.16/fc-3.2.4/sc-1.4.4/datatables.min.css"/>
@@ -24,7 +24,7 @@
     {% block style_sheet %}
     {% endblock %}
 
-    <link rel="icon" type="image/png" sizes="96x96" href="{%  static "favicon-96x96.png" %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{%  static "favicon.png" %}">
 {#    <script src="{% static 'pcrd_unpack/scripts/modernizr-2.6.2.js' %}"></script>#}
 </head>
 
@@ -50,6 +50,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'pcrd_unpack:unit_summary' %}">{% trans "Summary" %}</a>
                 </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'pcrd_unpack:solution_index' %}">Solutions</a>
+                    </li>
+                {% endif %}
+
     {#            <li class="nav-item">#}
     {#                <a class="nav-link" href="{% url 'pcrd_unpack:item_list' %}">Items</a>#}
     {#            </li>#}
@@ -80,23 +86,29 @@
     </nav>
     </header>
     <main>
-        <div class="d-block d-sm-none" id="xs-nav-spacer"></div>
+
+        {% block body %}
+
+
         <div  class="container body-content">
 
         {% block content %}
 
         {% endblock %}
-
-            <hr/>
+        {% endblock %}
 
         </div>
     </main>
     <footer class="footer px-5">
         <p class="mb-0">&copy; {{ year }} - Princess Connect Re:Dive Wiki</p>
     </footer>
-    <script src="{% static 'pcrd_unpack/scripts/jquery-1.10.2.js' %}"></script>
-    <script src="{% static 'pcrd_unpack/scripts/bootstrap.bundle.js' %}"></script>
-    <script src="{% static 'pcrd_unpack/scripts/respond.js' %}"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
     <!-- Latest compiled and minified JavaScript -->
 {#    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.0/bootstrap-table.min.js"></script>#}
 
@@ -106,7 +118,7 @@
 {#    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>#}
 {#    use bootstrap tooltip#}
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.16/fc-3.2.4/sc-1.4.4/datatables.min.js"></script>
-
+    <script type="text/javascript" src="{% static "pcrd_unpack/scripts/csrf_base_set.js" %}"></script>
 {% block scripts %}
 
 {% endblock %}

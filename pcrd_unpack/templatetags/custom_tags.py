@@ -19,3 +19,7 @@ def static_exists(path):
 def escape_return(string):
     # path =static(path)
     return string.replace("\\n", "\n")
+
+@register.filter
+def index(List, i):
+    return List[int(i)]
