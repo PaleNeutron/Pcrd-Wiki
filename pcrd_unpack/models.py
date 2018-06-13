@@ -52,6 +52,7 @@ class UnitSummary(CustomBaseModel):
     energy_recovery_rate = models.FloatField(default=0)
     wave_energy_recovery = models.FloatField(default=0)
     life_steal = models.FloatField(default=0)
+    energy_reduce_rate = models.FloatField(default=0)
 
     @classmethod
     def data_tags(cls):
