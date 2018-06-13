@@ -373,7 +373,7 @@
                             <tr>
                             {% for data_tag in data_tags_one_line %}
                                 {% if data_tag %}
-                                    <th>{{data_tag}}</th> <td id="{{data_tag}}">{{data_tag}}</td>
+                                    <th>{% trans data_tag %}</th> <td id="{{data_tag}}">{{data_tag}}</td>
                                 {% endif %}
                             {% endfor %}
                             </tr>
