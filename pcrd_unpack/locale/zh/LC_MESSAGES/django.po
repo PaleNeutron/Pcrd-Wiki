@@ -291,3 +291,44 @@ msgstr "如果你需要详细的表格视图, 点击下方"
 #: .\templates\pcrd_unpack\unit_list.html:24
 msgid "Summary Table"
 msgstr "数据总结"
+
+
+#manual
+msgid "hp"
+msgstr "生命值"
+
+msgid "atk"
+msgstr "物理攻击力"
+
+msgid "magic_str"
+msgstr "魔法攻击力"
+
+msgid "def_field"
+msgstr "物理防御"
+
+msgid "magic_def"
+msgstr "魔法防御"
+
+msgid "physical_critical"
+msgstr "物理暴击"
+
+msgid "magic_critical"
+msgstr "魔法暴击"
+
+msgid "dodge"
+msgstr "闪避"
+
+msgid "hp_recovery_rate"
+msgstr "HP恢复增幅"
+
+msgid "wave_hp_recovery"
+msgstr "每波次HP回复"
+
+msgid "energy_recovery_rate"
+msgstr "能量获取增幅"
+
+msgid "wave_energy_recovery"
+msgstr "每波次能量回复"
+
+msgid "life_steal"
+msgstr "生命窃取"
