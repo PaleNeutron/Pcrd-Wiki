@@ -1,9 +1,10 @@
+{% load i18n %}
 {% if user.is_authenticated %}
 <form id="logoutForm" action="/logout" method="post" class="navbar-right">
     {% csrf_token %}
     <ul class="nav navbar-nav ml-auto">
         <li class="nav-item"><span class="navbar-brand">{{ user.username }}!</span></li>
-        <li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">{% trans "Log off" %}</a></li>
     </ul>
 
 </form>

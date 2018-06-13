@@ -1,11 +1,12 @@
 {# passing one dict "quest_reward" to this template #}
 {# QuestData: Query[QuestRewardDataCustom]#}
+{% load i18n %}
 <div class="container">
     <table class="table table-striped table-hover text-center table-responsive " id="equipment_table">
         <thead class="thead-dark ">
         <tr>
-            <th scope="col">Quest Name</th>
-            <th colspan="20" scope="col">Droped Rewards</th>
+            <th scope="col">{% trans "Quest Name" %}</th>
+            <th colspan="20" scope="col">{% trans "Droped Rewards" %}</th>
         </tr>
         </thead>
         <tbody>

@@ -1,19 +1,20 @@
 {% extends "pcrd_unpack/layout.html" %}
+{% load i18n %}
 
 {% block content %}
     <div class="jumbotron">
-        <h1 class="display-4">Quest Areas</h1>
-        <p class="lead">here should be some discription</p>
+        <h1 class="display-4">{% trans "Quest Areas" %}</h1>
         <hr class="my-4">
+        <p class="lead">{% trans "Map list, click to see droped items in this Area" %}</p>
     </div>
 
     <hr class="my-4">
     <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="pills-normal-tab" data-toggle="pill" href="#pills-area-normal" role="tab" aria-controls="pills-home" aria-selected="true">Normal</a>
+            <a class="nav-link active" id="pills-normal-tab" data-toggle="pill" href="#pills-area-normal" role="tab" aria-controls="pills-home" aria-selected="true">{% trans "Normal" %}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="pills-hard-tab" data-toggle="pill" href="#pills-are-hard" role="tab" aria-controls="pills-profile" aria-selected="false">Hard</a>
+            <a class="nav-link" id="pills-hard-tab" data-toggle="pill" href="#pills-are-hard" role="tab" aria-controls="pills-profile" aria-selected="false">{% trans "Hard" %}</a>
         </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">

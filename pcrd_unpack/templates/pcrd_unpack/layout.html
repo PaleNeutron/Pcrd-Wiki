@@ -52,7 +52,7 @@
                 </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'pcrd_unpack:solution_index' %}">Solutions</a>
+                        <a class="nav-link" href="{% url 'pcrd_unpack:solution_index' %}">{% trans "Solutions" %}</a>
                     </li>
                 {% endif %}
 
@@ -100,7 +100,7 @@
         </div>
     </main>
     <footer class="footer px-5">
-        <p class="mb-0">&copy; {{ year }} - Princess Connect Re:Dive Wiki</p>
+        <p class="mb-0">&copy; {{ year }} - {% trans "Princess Connect Re:Dive Wiki" %}</p>
     </footer>
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"

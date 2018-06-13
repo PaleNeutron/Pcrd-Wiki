@@ -1,16 +1,16 @@
 {% extends "pcrd_unpack/layout.html" %}
-
+{% load i18n %}
 
 {% block title %}
-    Equipment - Princess Connect Re:Dive Wiki
+    {% trans "Equipment" %} - {% trans "Princess Connect Re:Dive Wiki" %}
 {% endblock %}
 
 {% block content %}
 
     <div class="jumbotron">
-        <h1 class="display-4">Equipment List</h1>
+        <h1 class="display-4">{% trans "Equipment" %} {% trans "List" %}</h1>
         <hr class="my-4">
-        <p class="lead">Click Icons and check dropped Quests</p>
+        <p class="lead">{% trans "Click Icons and check dropped Quests" %}</p>
     </div>
 
     <div class="d-flex flex-wrap  justify-content-center" id="equipment_card_column">

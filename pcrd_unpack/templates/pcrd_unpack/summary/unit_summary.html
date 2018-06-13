@@ -25,16 +25,16 @@
 
     <div class="jumbotron-fluid h-100">
         <h1 class="display-4">
-            Summary Data</h1>
+            {% trans "Summary Data" %}</h1>
     </div>
 
     <hr>
     <div class="col justify-content-center">
-        <h2 class="text-center">Unit Maxim Data</h2>
+        <h2 class="text-center">{% trans "Unit Maxim Data" %}</h2>
         <hr class="my-4">
-        <p class="lead">Units Data at Level {{ max_level }}, Rank {{ max_rank }},
-            Star {{ max_rarity }}, Love Level {{ max_love }}
-            with fully enhanced equipments</p>
+        <p class="lead">{% trans "Units Data at" %} {% trans "Level" %} {{ max_level }}, {% trans "Rank" %} {{ max_rank }},
+            {% trans "Star" %} {{ max_rarity }}, {% trans "Love Level" %} {{ max_love }}
+            {% trans "with fully enhanced equipments" %}</p>
     </div>
     <div class="row">
         <table class="table table-sm table-bordered table-hover"  id="unit_summary_list">
@@ -72,7 +72,7 @@
 
     <hr>
     <div class="row justify-content-center">
-    <h2> Experience Analyse</h2>
+    <h2>{% trans "Experience Analyse" %}</h2>
     </div>
     <div class="container row d-flex">
         <div class="container col-md-5 col-sm-12">
@@ -84,7 +84,7 @@
 
     </div>
     <div class="row justify-content-center">
-        <h2> Mana Analyse</h2>
+        <h2>{% trans "Mana Analyse" %}</h2>
     </div>
     <div class="container row d-flex">
         <div class="container col-md-5 col-sm-12">
