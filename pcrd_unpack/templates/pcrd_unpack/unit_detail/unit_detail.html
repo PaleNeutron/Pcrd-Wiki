@@ -451,14 +451,9 @@
                         {% endif %}
                     <td>
                         {% if skill_action.description %}
-                        {% if skill_action.action_name %}
-                            {{ skill_action.action_name.name }}<br>
-                        {% endif %}
                             {{ skill_action.description|default:"Unknown" }}
                         {% else %}
-                            {% if skill_action.action_name %}
-                                {{ skill_action.action_name.name }}<br>
-                            {% endif %}
+                            {{ skill_action.action_name.name|default:"" }}
                         {% endif %}
                     </td>
                     <td nowrap>
