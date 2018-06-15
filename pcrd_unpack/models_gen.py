@@ -188,6 +188,15 @@ class CampaignSchedule(models.Model):
         db_table = 'campaign_schedule'
 
 
+class CharaIdentity(models.Model):
+    unit_id = models.IntegerField(primary_key=True)
+    chara_type = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'chara_identity'
+
+
 class CharaStoryStatus(models.Model):
     story_id = models.IntegerField(primary_key=True)
     unlock_story_name = models.TextField()
@@ -327,6 +336,7 @@ class ClanBattleBossGroup(models.Model):
     reward_gold_coefficient = models.FloatField()
     limited_mana = models.IntegerField()
     wave_bgm = models.TextField()
+    quest_detail_rehearsal_label_height = models.IntegerField()
 
     class Meta:
         managed = False
@@ -353,6 +363,7 @@ class ClanBattleMapData(models.Model):
     lap_num_from = models.IntegerField()
     lap_num_to = models.IntegerField()
     clan_battle_boss_group_id = models.IntegerField()
+    aura_effect = models.IntegerField()
 
     class Meta:
         managed = False
@@ -1065,6 +1076,20 @@ class EventNaviComment(models.Model):
         db_table = 'event_navi_comment'
 
 
+class EventNaviCommentCondition(models.Model):
+    comment_id = models.IntegerField(primary_key=True)
+    condition_type_1 = models.IntegerField()
+    condition_value_1 = models.IntegerField()
+    condition_type_2 = models.IntegerField()
+    condition_value_2 = models.IntegerField()
+    condition_type_3 = models.IntegerField()
+    condition_value_3 = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'event_navi_comment_condition'
+
+
 class EventStoryData(models.Model):
     story_group_id = models.IntegerField(primary_key=True)
     story_type = models.IntegerField()
@@ -1107,6 +1132,23 @@ class EventStoryDetail(models.Model):
     class Meta:
         managed = False
         db_table = 'event_story_detail'
+
+
+class EventTopAdv(models.Model):
+    event_top_adv_id = models.IntegerField(primary_key=True)
+    event_id = models.IntegerField()
+    type = models.IntegerField()
+    value_1 = models.IntegerField()
+    value_2 = models.IntegerField()
+    value_3 = models.IntegerField()
+    story_id = models.IntegerField()
+    character_id = models.IntegerField()
+    start_time = models.TextField()
+    end_time = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'event_top_adv'
 
 
 class EventWaveGroupData(models.Model):
@@ -1370,6 +1412,9 @@ class HatsuneBoss(models.Model):
     reward_gold_limit = models.IntegerField()
     start_time = models.TextField()
     end_time = models.TextField()
+    map_position_x = models.FloatField()
+    map_position_y = models.FloatField()
+    map_size = models.FloatField()
 
     class Meta:
         managed = False
@@ -1563,6 +1608,11 @@ class HatsuneSchedule(models.Model):
     sheet_id = models.TextField()
     que_id = models.TextField()
     banner_unit_id = models.IntegerField()
+    count_start_time = models.TextField()
+    backgroud_size_x = models.IntegerField()
+    backgroud_size_y = models.IntegerField()
+    backgroud_pos_x = models.IntegerField()
+    backgroud_pos_y = models.IntegerField()
 
     class Meta:
         managed = False
@@ -1600,6 +1650,20 @@ class HatsuneUnlockStoryCondition(models.Model):
     class Meta:
         managed = False
         db_table = 'hatsune_unlock_story_condition'
+
+
+class HatsuneUnlockUnitCondition(models.Model):
+    id = models.IntegerField(primary_key=True)
+    unit_id = models.IntegerField()
+    event_id = models.IntegerField()
+    condition_mission_id = models.IntegerField()
+    top_description = models.TextField()
+    description_1 = models.TextField()
+    description_2 = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = 'hatsune_unlock_unit_condition'
 
 
 class ItemData(models.Model):
@@ -2025,6 +2089,7 @@ class RoomItemAnnouncement(models.Model):
     id = models.IntegerField(primary_key=True)
     announcement_start = models.TextField()
     announcement_end = models.TextField()
+    announcement_text = models.TextField()
 
     class Meta:
         managed = False
@@ -2475,6 +2540,7 @@ class UnitData(models.Model):
     guild_id = models.IntegerField()
     exskill_display = models.IntegerField()
     comment = models.TextField()
+    only_disp_owned = models.IntegerField()
 
     class Meta:
         managed = False
@@ -2516,6 +2582,15 @@ class UnitIntroduction(models.Model):
     class Meta:
         managed = False
         db_table = 'unit_introduction'
+
+
+class UnitMotionList(models.Model):
+    unit_id = models.IntegerField(primary_key=True)
+    sp_motion = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'unit_motion_list'
 
 
 class UnitMypagePos(models.Model):
