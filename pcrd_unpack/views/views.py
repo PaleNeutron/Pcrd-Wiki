@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.views.generic import TemplateView, View, ListView, DetailView
@@ -8,7 +9,7 @@ from django.urls import reverse
 # Create your views here.
 from pcrd_unpack import models
 from collections import OrderedDict
-
+from pcrd_unpack.utils import skill_utility
 
 class EquipmentView(TemplateView):
     """docstring for """
@@ -105,54 +106,7 @@ class UnitDetailView(TemplateView):
     """docstring for UnitDetailView"""
     template_name = "pcrd_unpack/unit_detail/unit_detail.html"
     skill_type_table = {
-        2:"MOVE",
-        3:"KNOCK",
-        4:"HEAL",
-        5:"CURE",
-        6:"BARRIER",
-        7:"REFLEXIVE",
-        8:"CHANGE_SPEED",
-        9:"SLIP_DAMAGE",
-        10:"BUFF_",
-        11:"CHARM",
-        12:"BLIND",
-        13:"SILENCE",
-        14:"MODE_CHANGE",
-        15:"SUMMON",
-        16:"CHARGE_ENERGY",
-        17:"TRIGER",
-        18:"DAMAGE_CHARGE",
-        19:"CHARGE",
-        20:"DECOY",
-        21:"NO_DAMAGE",
-        22:"CHANGE_PATTERN",
-        23:"IF_FOR_CHILDREN",
-        24:"REVIVAL",
-        25:"CONTINUOUS_ATTACK",
-        26:"GIVE_VALUE_AS_ADDITIVE",
-        27:"GIVE_VALUE_AS_MULTIPLE",
-        28:"IF_FOR_ALL",
-        29:"SEARCH_AREA_CHANGE",
-        30:"DESTROY",
-        31:"CONTINUOUS_ATTACK_NEARBY",
-        32:"ENCHANT_LIFE_STEAL",
-        33:"ENCHANT_STRIKE_BACK",
-        34:"ACCUMULATIVE_DAMAGE",
-        35:"SEAL",
-        36:"ATTACK_FIELD",
-        37:"HEAL_FIELD",
-        38:"CHANGE_PARAMETER_FIELD",
-        39:"SLIP_DAMAGE_FIELD",
-        40:"CHANGE_SPEED_FIELD",
-        41:"UB_CHANGE_TIME",
-        42:"LOOP_TRIGGER",
-        43:"IF_HAS_TARGET",
-        44:"WAVE_START_IDLE",
-        45:"SKILL_EXEC_COUNT",
-        46:"RATIO_DAMAGE",
-        47:"UPPER_LIMIT_ATTACK",
-        48:"REGENERATION",
-        49:"PASSIVE"
+
     }
 
     def get_context_data(self, **kwargs):
@@ -216,63 +170,7 @@ class UnitDetailView(TemplateView):
                    for f in type(skill)._meta.get_fields()
                    if not f.primary_key and f.name.startswith("action") and getattr(skill, f.name) != 0]
         for a in actions:
-
-            if a.action_type in [1, 8, 9, 11, 12, 13, 25, 32, 38, 39, 40, 47,]:
-                factor_static = a.action_value_1
-                factor_level = a.action_value_2
-                factor_atk = a.action_value_3
-                factor_atk_level = a.action_value_4
-            elif a.action_type in [4, 10, 24, 29, 31, 34,]:
-                factor_static = a.action_value_1 + a.action_value_2
-                factor_level = a.action_value_3
-                factor_atk = 0
-                factor_atk_level = 0
-            elif a.action_type in [5, 6, 14, 16, 17, 18, 19, 20, 21, 33, 46, ]:
-                factor_static = a.action_value_1
-                factor_level = a.action_value_2
-                factor_atk = 0
-                factor_atk_level = 0
-            elif a.action_type in [90, 91, 26, 15, 27]:
-                factor_static = a.action_value_2
-                factor_level = a.action_value_3
-                factor_atk = 0
-                factor_atk_level = 0
-            else:
-                factor_static = 0
-                factor_level = 0
-                factor_atk = 0
-                factor_atk_level = 0
-
-
-            # manual patches
-            if a.action_type == 2:
-                factor_static = a.action_value_1
-
-            elif a.action_type == 3:
-                factor_static = a.action_value_3
-            elif a.action_type in [9, 12]:
-                # I don't know why, but
-                # type 9 is DOT
-                # type 10 is self-buff
-                # type 12 is de-buff
-                # type 34 is accumulated self-buff or buff forever
-                # which are not affected by atk
-                factor_atk = 0
-                factor_atk_level = 0
-
-
-            a.result = ""
-            if factor_static:
-                a.result += str(factor_static)
-            if factor_level:
-                a.result += " + {} × skill_level".format(factor_level)
-            if factor_atk_level and factor_atk:
-                a.result += " + ({} + {} × skill_level) × atk".format(factor_atk, factor_atk_level)
-            elif factor_atk:
-                a.result += " + {} × atk".format(factor_atk)
-
-            if a.action_type in self.skill_type_table:
-                a.action_code = self.skill_type_table[a.action_type]
+            skill_utility.get_action_result(a)
         return actions
 
 
