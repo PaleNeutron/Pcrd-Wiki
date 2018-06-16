@@ -1,3 +1,5 @@
+"use strict";
+
 $(document).ready(function () {
 
     // select unit
@@ -6,8 +8,7 @@ $(document).ready(function () {
     // change rarity
     set_rarity();
 
-
-    if (check_list_valid(left_team) && check_list_valid(right_team)){
+    if (check_list_valid(left_team) && check_list_valid(right_team)) {
 
         var imgs = $(".card-img-top.img-thumbnail");
         var selectors = $(".form-control.unit_rarity_selector");
@@ -15,12 +16,9 @@ $(document).ready(function () {
         imgs.each(function (i, e) {
 
             $(selectors[i]).change();
-
         });
-    } else {
-    }
-}
-);
+    } else {}
+});
 
 function set_unit() {
     $(".dropdown-menu a").click(function () {
@@ -28,10 +26,9 @@ function set_unit() {
         var pos = $(this).parent().attr("id").split("_").slice(-1)[0];
         $(this).closest("div.card").find("img.card-img-top").attr("src", img_src);
         if ($(this).parent().attr("id").includes("right")) {
-            right_team[pos-1] = $(this).find("span").text();
-        }
-        else{
-            left_team[pos-1] = $(this).find("span").text();
+            right_team[pos - 1] = $(this).find("span").text();
+        } else {
+            left_team[pos - 1] = $(this).find("span").text();
         }
         $(this).closest("div.card").find(".unit_rarity_selector").change();
     });
@@ -42,11 +39,11 @@ function set_rarity() {
         var rarity = parseInt($(this).val());
         var current_img = $(this).closest("div.card").find("img.card-img-top");
         var img_src = current_img.attr("src");
-        if (img_src.includes("unknown")){
+        if (img_src.includes("unknown")) {
             return;
         }
-        var img_head = img_src.slice(0,img_src.length - 6);
-        if (rarity >=3) {
+        var img_head = img_src.slice(0, img_src.length - 6);
+        if (rarity >= 3) {
             img_src = img_head + "3";
         } else {
             img_src = img_head + "1";
@@ -56,14 +53,13 @@ function set_rarity() {
 
         var pos = $(this).attr("id").split("_").slice(-1)[0];
         if ($(this).attr("id").includes("right")) {
-            right_rarity[pos-1] = parseInt($(this).val());
-        }
-        else{
-            left_rarity[pos-1] = parseInt($(this).val());
+            right_rarity[pos - 1] = parseInt($(this).val());
+        } else {
+            left_rarity[pos - 1] = parseInt($(this).val());
         }
     });
 }
 
 function check_list_valid(team_list) {
-    return team_list.length ===5 && !team_list.includes(undefined) && !team_list.includes("")
+    return team_list.length === 5 && !team_list.includes(undefined) && !team_list.includes("");
 }
