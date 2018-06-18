@@ -17,9 +17,8 @@ function pcrd_calculate() {
 
 var tags = [];
 function pcrd_unit_data_init() {
-    unit_parameter = $.getJSON(data_url, success = function success(data) {
-        unit_parameter = data;
-        udm.unit_parameter = unit_parameter;
+    unit_parameter = $.getJSON(data_url, function success(data) {
+        udm.unit_parameter = data;
         tags = $("#input_tags input").map(function () {
             return this.id;
         }).get();
@@ -31,6 +30,8 @@ function pcrd_unit_data_init() {
         pcrd_calculate_main();
     });
 }
+
+
 
 function parameterChecker() {
     tags.forEach(function (element) {

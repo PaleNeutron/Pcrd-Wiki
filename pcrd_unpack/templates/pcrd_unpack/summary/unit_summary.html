@@ -16,6 +16,10 @@
     #unit_summary_list_wrapper #unit_summary_list{
         visibility: visible;
     }
+
+    #unit_summary_list_wrapper th{
+        white-space: nowrap;
+    }
     </style>
 {% endblock %}
 
@@ -43,7 +47,7 @@
             <th>PIC</th>
             <th>Name</th>
             {% for data_tag in data_tags %}
-                <th>{{ data_tag }}</th>
+                <th>{% trans data_tag  %}</th>
             {% endfor %}
         </tr>
         </thead>

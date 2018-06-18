@@ -99,7 +99,7 @@ class UnitListView(ListView):
     model = models.UnitData
 
     def get_queryset(self, **hints):
-        return self.model.objects.exclude(comment__exact="").order_by("-rarity")
+        return self.model.available_unit().order_by("-rarity")
 
 
 class UnitDetailView(TemplateView):
