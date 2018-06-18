@@ -2543,8 +2543,12 @@ class UnitData(models.Model):
     only_disp_owned = models.IntegerField()
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'unit_data'
+
+    @classmethod
+    def available_unit(cls):
+        return cls.objects.exclude(comment__exact="", search_area_width=0, move_speed=0)
 
 
 class UnitEnemyData(models.Model):

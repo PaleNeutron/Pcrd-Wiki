@@ -8,7 +8,7 @@ class UnitSitemap(Sitemap):
     priority = 1
 
     def items(self):
-        return UnitData.objects.order_by('unit_id').exclude(comment__isnull=True)
+        return UnitData.available_unit().exclude(comment__isnull=True)
 
     def lastmod(self, obj):
         # todo add data version include date to models
