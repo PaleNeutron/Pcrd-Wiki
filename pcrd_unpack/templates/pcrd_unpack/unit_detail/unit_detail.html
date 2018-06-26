@@ -414,7 +414,16 @@
         </tr>
     </tbody>
     </table>
-
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <th>{% trans "Move Speed" %}</th> <th>{% trans "Attack Range" %}</th>
+            </tr>
+            <tr>
+                <td>{{ unit_data.move_speed }}</td><td>{{ unit_data.search_area_width }}</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
     {#    skill data table#}
@@ -467,6 +476,9 @@
                         {% if skill_action.result %}
                             {% autoescape off %}
                             {{ skill_action.result }}
+                                {% if skill_action.target_range > 0 %}
+                                    <br>{% trans "range" %}: {{ skill_action.target_range }}
+                                {% endif %}
                             {% endautoescape %}
                         {% else %}
                             None
