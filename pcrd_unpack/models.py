@@ -54,6 +54,24 @@ class UnitSummary(CustomBaseModel):
     life_steal = models.FloatField(default=0)
     energy_reduce_rate = models.FloatField(default=0)
 
+    def _makemessages_entry(self):
+        _ = lambda s:s
+        items_should_add_to_po = [
+            _("hp"),
+            _("atk"),
+            _("magic_str"),
+            _("def_field"),
+            _("magic_def"),
+            _("physical_critical"),
+            _("magic_critical"),
+            _("dodge"),
+            _("hp_recovery_rate"),
+            _("wave_hp_recovery"),
+            _("energy_recovery_rate"),
+            _("wave_energy_recovery"),
+            _("life_steal"),
+            _("energy_reduce_rate"),
+        ]
     @classmethod
     def data_tags(cls):
         return [f.name for f in cls._meta.get_fields() if not f.primary_key]
