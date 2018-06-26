@@ -106,6 +106,7 @@ def get_action_result(a: models.SkillAction):
         factor_atk_level = 0
 
     a.result = ""
+    a.time = ""
     if a.action_value_1:
         a.result += str(a.action_value_1)
     if a.action_value_3:
@@ -114,13 +115,16 @@ def get_action_result(a: models.SkillAction):
     # patch for individual skill
     # CHANGE_SPEED
     if a.action_type in [ActionType.CHANGE_SPEED, ActionType.SLIP_DAMAGE] :
-        a.result = "{}<br> time: {}".format(a.action_value_1, a.action_value_3)
+        a.result = str(a.action_value_1)
+        a.duration = a.action_value_3
     # BUFF_DEBUFF
     elif a.action_type == ActionType.BUFF_DEBUFF:
         if a.action_value_1 == 1:
-            a.result = "{}<br> time: {}".format(a.action_value_2, a.action_value_4)
+            a.result = str(a.action_value_2)
+            a.duration = a.action_value_4
         elif a.action_value_1 == 2:
-            a.result = "{}%<br> time: {}".format(a.action_value_2, a.action_value_4)
+            a.result = "{}%".format(a.action_value_2)
+            a.duration = a.action_value_4
     elif a.action_type in [90]:
         a.result = a.action_value_2
     elif a.action_type == ActionType.ACCUMULATIVE_DAMAGE:

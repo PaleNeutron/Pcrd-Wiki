@@ -472,7 +472,10 @@
                             {% autoescape off %}
                             {{ skill_action.result }}
                                 {% if skill_action.target_range > 0 %}
-                                    <br>{% trans "range" %}: {{ skill_action.target_range }}
+                                    <br>{% trans "Range" %}: {{ skill_action.target_range }}
+                                {% endif %}
+                                {% if skill_action.duration > 0 %}
+                                    <br>{% trans "Duration" %}: {{ skill_action.duration }}
                                 {% endif %}
                             {% endautoescape %}
                         {% else %}

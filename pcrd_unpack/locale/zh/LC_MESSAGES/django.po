@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-26 09:46+0800\n"
+"POT-Creation-Date: 2018-06-26 10:42+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -340,8 +340,12 @@ msgid "Effect Value"
 msgstr "效果数值"
 
 #: .\templates\pcrd_unpack\unit_detail\unit_detail.html:480
-msgid "range"
-msgstr ""
+msgid "Range"
+msgstr "范围"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:483
+msgid "Duration"
+msgstr "持续时间"
 
 #: .\templates\pcrd_unpack\unit_list.html:20
 msgid "Unit"
