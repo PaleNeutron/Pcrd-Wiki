@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-13 14:44+0800\n"
+"POT-Creation-Date: 2018-06-26 09:46+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,63 @@ msgstr ""
 msgid "Password"
 msgstr "密码"
 
+# manual
+#: .\models.py:60
+msgid "hp"
+msgstr "生命值"
+
+#: .\models.py:61
+msgid "atk"
+msgstr "物理攻击力"
+
+#: .\models.py:62
+msgid "magic_str"
+msgstr "魔法攻击力"
+
+#: .\models.py:63
+msgid "def_field"
+msgstr "物理防御"
+
+#: .\models.py:64
+msgid "magic_def"
+msgstr "魔法防御"
+
+#: .\models.py:65
+msgid "physical_critical"
+msgstr "物理暴击"
+
+#: .\models.py:66
+msgid "magic_critical"
+msgstr "魔法暴击"
+
+#: .\models.py:67
+msgid "dodge"
+msgstr "闪避"
+
+#: .\models.py:68
+msgid "hp_recovery_rate"
+msgstr "HP恢复增幅"
+
+#: .\models.py:69
+msgid "wave_hp_recovery"
+msgstr "每波次HP回复"
+
+#: .\models.py:70
+msgid "energy_recovery_rate"
+msgstr "能量获取增幅"
+
+#: .\models.py:71
+msgid "wave_energy_recovery"
+msgstr "每波次能量回复"
+
+#: .\models.py:72
+msgid "life_steal"
+msgstr "生命窃取"
+
+#: .\models.py:73
+msgid "energy_reduce_rate"
+msgstr "能量消耗减少"
+
 #: .\templates\pcrd_unpack\equipment.html:14
 #: .\templates\pcrd_unpack\equipment_list.html:5
 #: .\templates\pcrd_unpack\index.html:24 .\templates\pcrd_unpack\item.html:12
@@ -28,7 +85,7 @@ msgstr "密码"
 #: .\templates\pcrd_unpack\layout.html:103
 #: .\templates\pcrd_unpack\solution\create_solution.html:6
 #: .\templates\pcrd_unpack\summary\unit_summary.html:7
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:70
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:74
 msgid "Princess Connect Re:Dive Wiki"
 msgstr "公主链接 Re:Dive Wiki"
 
@@ -143,136 +200,148 @@ msgstr "困难难度"
 msgid "Create Solution"
 msgstr "创建对战阵容"
 
-#: .\templates\pcrd_unpack\summary\unit_summary.html:28
+#: .\templates\pcrd_unpack\summary\unit_summary.html:32
 msgid "Summary Data"
 msgstr "数据总结"
 
-#: .\templates\pcrd_unpack\summary\unit_summary.html:33
+#: .\templates\pcrd_unpack\summary\unit_summary.html:37
 msgid "Unit Maxim Data"
 msgstr "人物极限属性"
 
-#: .\templates\pcrd_unpack\summary\unit_summary.html:35
+#: .\templates\pcrd_unpack\summary\unit_summary.html:39
 msgid "Units Data at"
 msgstr "处于满状态的人物属性:"
 
-#: .\templates\pcrd_unpack\summary\unit_summary.html:35
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:353
+#: .\templates\pcrd_unpack\summary\unit_summary.html:39
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:358
 msgid "Level"
 msgstr "等级"
 
-#: .\templates\pcrd_unpack\summary\unit_summary.html:35
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:355
+#: .\templates\pcrd_unpack\summary\unit_summary.html:39
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:360
 msgid "Rank"
 msgstr ""
 
-#: .\templates\pcrd_unpack\summary\unit_summary.html:36
+#: .\templates\pcrd_unpack\summary\unit_summary.html:40
 msgid "Star"
 msgstr "星级"
 
-#: .\templates\pcrd_unpack\summary\unit_summary.html:36
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:356
+#: .\templates\pcrd_unpack\summary\unit_summary.html:40
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:361
 msgid "Love Level"
 msgstr "羁绊等级"
 
-#: .\templates\pcrd_unpack\summary\unit_summary.html:37
+#: .\templates\pcrd_unpack\summary\unit_summary.html:41
 msgid "with fully enhanced equipments"
 msgstr "和满强化装备"
 
-#: .\templates\pcrd_unpack\summary\unit_summary.html:75
+#: .\templates\pcrd_unpack\summary\unit_summary.html:79
 msgid "Experience Analyse"
 msgstr "狗粮需求分析"
 
-#: .\templates\pcrd_unpack\summary\unit_summary.html:87
+#: .\templates\pcrd_unpack\summary\unit_summary.html:91
 msgid "Mana Analyse"
 msgstr "Mana需求分析"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:138
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:142
 msgid "Name"
 msgstr "名字"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:146
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:150
 msgid "Age"
 msgstr "年龄"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:154
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:158
 msgid "Guild"
 msgstr "公会"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:162
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:166
 msgid "Race"
 msgstr "种族"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:170
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:174
 msgid "Height"
 msgstr "身高"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:178
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:182
 msgid "Weight"
 msgstr "体重"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:186
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:190
 msgid "Birthday"
 msgstr "生日"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:194
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:198
 msgid "Favorite"
 msgstr "喜好"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:202
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:206
 msgid "CV"
 msgstr "声优"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:232
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:236
 msgid "Meeting Text"
 msgstr "相遇台词"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:244
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:248
 msgid "Self Text"
 msgstr "自我介绍"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:346
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:350
 msgid "Unit Data"
 msgstr "人物属性:"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:354
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:359
 msgid "Rarity"
 msgstr "星级"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:390
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:396
 msgid "Attack Pattern"
 msgstr "行动顺序"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:394
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:400
 msgid "Once"
 msgstr "起手"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:395
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:401
 msgid "Loop"
 msgstr "循环"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:417
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:420
+msgid "Move Speed"
+msgstr "移动速度"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:420
+msgid "Attack Range"
+msgstr "攻击距离"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:432
 msgid "Skill Data"
 msgstr "技能数据"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:421
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:436
 msgid "Sill Icon"
 msgstr "技能图标"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:423
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:438
 msgid "Skill Name"
 msgstr "技能名"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:426
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:441
 msgid "Skill Discription"
 msgstr "技能描述"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:429
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:444
 msgid "Effect"
 msgstr "效果"
 
-#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:432
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:447
 msgid "Effect Value"
 msgstr "效果数值"
+
+#: .\templates\pcrd_unpack\unit_detail\unit_detail.html:480
+msgid "range"
+msgstr ""
 
 #: .\templates\pcrd_unpack\unit_list.html:20
 msgid "Unit"
@@ -285,47 +354,3 @@ msgstr "如果你需要详细的表格视图, 点击下方"
 #: .\templates\pcrd_unpack\unit_list.html:24
 msgid "Summary Table"
 msgstr "数据总结"
-
-
-#manual
-msgid "hp"
-msgstr "生命值"
-
-msgid "atk"
-msgstr "物理攻击力"
-
-msgid "magic_str"
-msgstr "魔法攻击力"
-
-msgid "def_field"
-msgstr "物理防御"
-
-msgid "magic_def"
-msgstr "魔法防御"
-
-msgid "physical_critical"
-msgstr "物理暴击"
-
-msgid "magic_critical"
-msgstr "魔法暴击"
-
-msgid "dodge"
-msgstr "闪避"
-
-msgid "hp_recovery_rate"
-msgstr "HP恢复增幅"
-
-msgid "wave_hp_recovery"
-msgstr "每波次HP回复"
-
-msgid "energy_recovery_rate"
-msgstr "能量获取增幅"
-
-msgid "wave_energy_recovery"
-msgstr "每波次能量回复"
-
-msgid "life_steal"
-msgstr "生命窃取"
-
-msgid "energy_reduce_rate"
-msgstr "能量消耗减少"
