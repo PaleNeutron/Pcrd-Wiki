@@ -97,10 +97,12 @@ var UnitDataModel = function () {
                     // apply love status
                     if (m.love > 1) {
                         var _loop = function _loop(i) {
-                            var love_status = m.unit_parameter["love_table"][i - 2];
-                            Object.keys(love_status).forEach(function (s) {
-                                m[s] += love_status[s];
-                            });
+                            if (i -1 <= m.unit_parameter["love_table"].length) {
+                                var love_status = m.unit_parameter["love_table"][i - 2];
+                                Object.keys(love_status).forEach(function (s) {
+                                    m[s] += love_status[s];
+                                });
+                            }
                         };
 
                         for (var i = 2; i <= m.love; i++) {
