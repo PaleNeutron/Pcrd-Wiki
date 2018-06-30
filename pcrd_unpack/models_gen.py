@@ -2548,7 +2548,7 @@ class UnitData(models.Model):
 
     @classmethod
     def available_unit(cls):
-        return cls.objects.exclude(comment__exact="", search_area_width=0, move_speed=0)
+        return cls.objects.exclude(comment__exact="").exclude(search_area_width=0).exclude(move_speed=0).exclude(unit_id__gte=200000)
 
 
 class UnitEnemyData(models.Model):
