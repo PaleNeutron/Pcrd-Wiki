@@ -46,6 +46,7 @@ class UnitSummary(CustomBaseModel):
     magic_def = models.FloatField(default=0)
     physical_critical = models.FloatField(default=0)
     magic_critical = models.FloatField(default=0)
+    accuracy = models.FloatField(default=0)
     dodge = models.FloatField(default=0)
     hp_recovery_rate = models.FloatField(default=0)
     wave_hp_recovery = models.FloatField(default=0)
@@ -64,6 +65,7 @@ class UnitSummary(CustomBaseModel):
             _("magic_def"),
             _("physical_critical"),
             _("magic_critical"),
+            _("accuracy"),
             _("dodge"),
             _("hp_recovery_rate"),
             _("wave_hp_recovery"),

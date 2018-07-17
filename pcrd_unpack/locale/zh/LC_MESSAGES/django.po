@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-26 10:42+0800\n"
+"POT-Creation-Date: 2018-07-17 16:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,59 +22,63 @@ msgid "Password"
 msgstr "密码"
 
 # manual
-#: .\models.py:60
+#: .\models.py:61
 msgid "hp"
 msgstr "生命值"
 
-#: .\models.py:61
+#: .\models.py:62
 msgid "atk"
 msgstr "物理攻击力"
 
-#: .\models.py:62
+#: .\models.py:63
 msgid "magic_str"
 msgstr "魔法攻击力"
 
-#: .\models.py:63
+#: .\models.py:64
 msgid "def_field"
 msgstr "物理防御"
 
-#: .\models.py:64
+#: .\models.py:65
 msgid "magic_def"
 msgstr "魔法防御"
 
-#: .\models.py:65
+#: .\models.py:66
 msgid "physical_critical"
 msgstr "物理暴击"
 
-#: .\models.py:66
+#: .\models.py:67
 msgid "magic_critical"
 msgstr "魔法暴击"
 
-#: .\models.py:67
+#: .\models.py:68
+msgid "accuracy"
+msgstr "命中"
+
+#: .\models.py:69
 msgid "dodge"
 msgstr "闪避"
 
-#: .\models.py:68
+#: .\models.py:70
 msgid "hp_recovery_rate"
 msgstr "HP恢复增幅"
 
-#: .\models.py:69
+#: .\models.py:71
 msgid "wave_hp_recovery"
 msgstr "每波次HP回复"
 
-#: .\models.py:70
+#: .\models.py:72
 msgid "energy_recovery_rate"
 msgstr "能量获取增幅"
 
-#: .\models.py:71
+#: .\models.py:73
 msgid "wave_energy_recovery"
 msgstr "每波次能量回复"
 
-#: .\models.py:72
+#: .\models.py:74
 msgid "life_steal"
 msgstr "生命窃取"
 
-#: .\models.py:73
+#: .\models.py:75
 msgid "energy_reduce_rate"
 msgstr "能量消耗减少"
 

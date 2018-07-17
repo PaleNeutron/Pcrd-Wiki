@@ -337,6 +337,7 @@ class ClanBattleBossGroup(models.Model):
     limited_mana = models.IntegerField()
     wave_bgm = models.TextField()
     quest_detail_rehearsal_label_height = models.IntegerField()
+    last_attack_reward_id = models.IntegerField()
 
     class Meta:
         managed = False
@@ -353,6 +354,29 @@ class ClanBattleHpResetCost(models.Model):
     class Meta:
         managed = False
         db_table = 'clan_battle_hp_reset_cost'
+
+
+class ClanBattleLastAttackReward(models.Model):
+    last_attack_reward_id = models.IntegerField(primary_key=True)
+    reward_type_1 = models.IntegerField()
+    reward_id_1 = models.IntegerField()
+    reward_num_1 = models.IntegerField()
+    reward_type_2 = models.IntegerField()
+    reward_id_2 = models.IntegerField()
+    reward_num_2 = models.IntegerField()
+    reward_type_3 = models.IntegerField()
+    reward_id_3 = models.IntegerField()
+    reward_num_3 = models.IntegerField()
+    reward_type_4 = models.IntegerField()
+    reward_id_4 = models.IntegerField()
+    reward_num_4 = models.IntegerField()
+    reward_type_5 = models.IntegerField()
+    reward_id_5 = models.IntegerField()
+    reward_num_5 = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'clan_battle_last_attack_reward'
 
 
 class ClanBattleMapData(models.Model):
@@ -735,6 +759,7 @@ class EnemyParameter(models.Model):
     ex_skill_lv_4 = models.IntegerField()
     ex_skill_lv_5 = models.IntegerField()
     resist_status_id = models.IntegerField()
+    accuracy = models.IntegerField()
 
     class Meta:
         managed = False
@@ -825,6 +850,7 @@ class EquipmentData(models.Model):
     energy_recovery_rate = models.FloatField()
     energy_reduce_rate = models.FloatField()
     enable_donation = models.IntegerField()
+    accuracy = models.FloatField()
 
     class Meta:
         managed = False
@@ -875,6 +901,7 @@ class EquipmentEnhanceRate(models.Model):
     hp_recovery_rate = models.FloatField()
     energy_recovery_rate = models.FloatField()
     energy_reduce_rate = models.FloatField()
+    accuracy = models.FloatField()
 
     class Meta:
         managed = False
@@ -1002,6 +1029,7 @@ class EventEnemyParameter(models.Model):
     ex_skill_lv_4 = models.IntegerField()
     ex_skill_lv_5 = models.IntegerField()
     resist_status_id = models.IntegerField()
+    accuracy = models.IntegerField()
 
     class Meta:
         managed = False
@@ -2541,6 +2569,8 @@ class UnitData(models.Model):
     exskill_display = models.IntegerField()
     comment = models.TextField()
     only_disp_owned = models.IntegerField()
+    start_time = models.TextField()
+    end_time = models.TextField()
 
     class Meta:
         # managed = False
@@ -2666,6 +2696,7 @@ class UnitPromotionStatus(models.Model):
     hp_recovery_rate = models.FloatField()
     energy_recovery_rate = models.FloatField()
     energy_reduce_rate = models.FloatField()
+    accuracy = models.FloatField()
 
     class Meta:
         managed = False
@@ -2711,6 +2742,8 @@ class UnitRarity(models.Model):
     unit_material_id = models.IntegerField()
     consume_num = models.IntegerField()
     consume_gold = models.IntegerField()
+    accuracy = models.FloatField()
+    accuracy_growth = models.FloatField()
 
     class Meta:
         managed = False
@@ -2773,6 +2806,7 @@ class UnitStatusCoefficient(models.Model):
     skill_lv_coefficient = models.FloatField()
     exskill_evolution_coefficient = models.IntegerField()
     overall_coefficient = models.FloatField()
+    accuracy_coefficient = models.FloatField()
 
     class Meta:
         managed = False
