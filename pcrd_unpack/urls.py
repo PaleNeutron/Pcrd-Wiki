@@ -39,6 +39,7 @@ urlpatterns  = [
     path("solution/search", views.SolutionSearchView.as_view(), name="search_solution"),
     path("solution/view/<str:solution_id>", views.SolutionView.as_view(), name="solution"),
     path("solution", views.SolutionIndexView.as_view(), name="solution_index"),
+    path("enemy_list", views.EnemyListView.as_view(), name="enemy_list"),
     path("vote", views.vote, name="vote"),
     # path("404", views.handler404),
     path('login/',

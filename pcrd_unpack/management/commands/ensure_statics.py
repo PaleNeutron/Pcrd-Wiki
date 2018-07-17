@@ -27,7 +27,7 @@ class Command(BaseCommand):
         self.get_img([r"Texture2D\assets\_elementsresources\resources\unit\profile/"], force43=True)
         self.get_img([r"Texture2D\assets\_elementsresources\resources\unit\actualprofile"], force43=True)
 
-    def get_img(self, img_dirs, force43=False, fill_color="#fff", force=False):
+    def get_img(self, img_dirs, force43=False, fill_color="#fff", force=False, ratio=1.0):
         for d_rel in img_dirs:
             d = os.path.join(self.asset_folder, d_rel)
             new_dir = os.path.join(self.target_static_dir, d_rel)
@@ -51,8 +51,10 @@ class Command(BaseCommand):
 
                 if force43:
                     x, y = im.size
-                    y = x // 4 * 3
-                    im = im.resize((x, y), Image.ANTIALIAS)
+                    y = x / 4 * 3
+                    x = x * ratio
+                    y = y * ratio
+                    im = im.resize((int(x), int(y)), Image.ANTIALIAS)
                 logger.debug("saved {}".format(outfile))
                 im.save(outfile, "JPEG", quality=85)
 
