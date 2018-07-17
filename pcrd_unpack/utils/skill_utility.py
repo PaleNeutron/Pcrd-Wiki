@@ -141,5 +141,8 @@ def get_action_result(a: models.SkillAction):
         a.result = a.action_value_1
     elif a.action_type == ActionType.SUMMON:
         a.result = ""
+    # REGENERATION
+    elif a.action_type == ActionType.REGENERATION:
+        a.duration = a.action_value_5
     # if a.action_type in self.skill_type_table:
     #     a.action_code = self.skill_type_table[a.action_type]
