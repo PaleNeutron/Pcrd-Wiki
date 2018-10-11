@@ -79,7 +79,7 @@ def update_db(src_path, dst_path):
             cols = row.keys()
             query = 'INSERT INTO %(tbl)s (%(cols)s) VALUES (%(phold)s)' % {
                 'tbl': table['name'],
-                'cols': ','.join(cols),
+                'cols': ','.join(["'" + c + "'" for c in cols]),  # escape Reserved Words
                 'phold': ','.join(('?',) * len(cols))
             }
             dst_cur.execute(query, [row[col] for col in cols])
@@ -102,5 +102,5 @@ class Command(BaseCommand):
     help = 'update database from source master.mdb'
 
     def handle(self, *args, **options):
-        update_db("../jp.co.cygames.princessconnectredive/files/manifest/7d2bdcfa272ce3dadad2c2094b496a0ab1176aeb" , 'pcrd_db/pcrdwiki.db')
+        update_db('pcrd_db/redive_jp.db' , 'pcrd_db/pcrdwiki.db')
 

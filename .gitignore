@@ -106,6 +106,7 @@ unpacked_asset/
 Texture2D/
 pcrd_db/7*
 pcrd_db/pcrdwiki.db
+redive_jp.db
 db.sqlite3
 *.ico
 # temp generated model
