@@ -92,7 +92,7 @@ DATABASES = {
     },
     'pcrd_legacy_db': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'pcrd_db/7d2bdcfa272ce3dadad2c2094b496a0ab1176aeb'),
+        'NAME': os.path.join(BASE_DIR, 'pcrd_db/redive_jp.db'),
     },
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
