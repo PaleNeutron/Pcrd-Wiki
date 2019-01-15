@@ -1,4 +1,4 @@
-Django==2.0.8
+Django>=2.0.10
 pytz==2018.3
 dukpy
 # django-robots
