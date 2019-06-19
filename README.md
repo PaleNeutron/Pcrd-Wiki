@@ -20,7 +20,7 @@
 [Princess Connect Re:Dive Wiki Website On Azure](http://pcrd.azurewebsites.net) is synced with repo's master branch
 and should be used **only** for develop.
 
-[pcrxwiki.xyz](https://pcrxwiki.xyz) is the production site, updated manually by myself.
+[pcrxwiki.xyz](https://johnlyu.com) is the production site, updated manually by myself.
 
 
 ## For Developers
