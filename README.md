@@ -25,7 +25,7 @@ and should be used **only** for develop.
 
 ## For Developers
 
-Database and static files are not contained in this repo, you should grab and plce it by yourself.
+Database and static files are not contained in this repo, you should grab and place it by yourself.
 
 ### Database
 
